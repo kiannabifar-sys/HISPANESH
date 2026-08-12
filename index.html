@@ -497,6 +497,28 @@ footer ul{list-style:none}
  z-index:8000;display:none;box-shadow:0 10px 25px rgba(198,11,30,.3)
 }
 
+/* ===== HIGHLIGHT FOR SEARCH ===== */
+.search-highlight {
+ background:rgba(255,196,0,.35);
+ padding:0 2px;
+ border-radius:3px;
+}
+.search-highlight-dark {
+ background:rgba(255,196,0,.25);
+}
+
+.no-results {
+ text-align:center;
+ padding:40px 20px;
+ color:var(--muted);
+ font-size:18px;
+}
+.no-results span {
+ font-size:40px;
+ display:block;
+ margin-bottom:12px;
+}
+
 @media(max-width:1050px){
  .nav-links{display:none}
  .stats{grid-template-columns:repeat(2,1fr)}
@@ -641,6 +663,7 @@ footer ul{list-style:none}
  <div class="search-box">
   <input id="searchInput" placeholder="مثلاً مادرید، فلامنکو، پائیا، فوتبال، بارسلونا، گائودی...">
  </div>
+ <div id="searchResults" style="margin-top:25px;"></div>
 </section>
 
 <!-- ===== CITIES SECTION ===== -->
@@ -658,12 +681,12 @@ footer ul{list-style:none}
   <button data-filter="history" id="filterHistory">تاریخی</button>
  </div>
 
- <div class="cards">
+ <div class="cards" id="citiesContainer">
 
-  <article class="card city" data-category="capital history">
+  <article class="card city" data-category="capital history" data-search="مادرید madrid">
    <div class="city-top"><h3>🇪🇸 <span data-fa="مادرید" data-es="Madrid">مادرید</span></h3></div>
    <div class="city-content">
-    <p class="city1">
+    <p>
      مادرید پایتخت اسپانیا و یکی از مهم‌ترین مراکز سیاسی، اقتصادی و فرهنگی اروپا است. 
      این شهر با جمعیتی حدود ۳.۳ میلیون نفر، قلب تپنده اسپانیا محسوب می‌شود. 
      مادرید ترکیبی از ساختمان‌های تاریخی باشکوه مانند کاخ سلطنتی، موزه‌های درجه‌یک جهانی 
@@ -674,10 +697,10 @@ footer ul{list-style:none}
    </div>
   </article>
 
-  <article class="card city" data-category="coast">
+  <article class="card city" data-category="coast" data-search="بارسلونا barcelona">
    <div class="city-top"><h3>🌊 <span data-fa="بارسلونا" data-es="Barcelona">بارسلونا</span></h3></div>
    <div class="city-content">
-    <p class="city2">
+    <p>
      بارسلونا مرکز کاتالونیا و دومین شهر بزرگ اسپانیا با جمعیتی حدود ۱.۶ میلیون نفر است. 
      این شهر به معماری خارق‌العاده آنتونی گائودی (ساگرادا فامیلیا، پارک گوئل، کازا میلا و کازا باتلو)، 
      ساحل مدیترانه، فضای هنری پویا، زندگی شبانه پرجنب‌وجوش و تیم فوتبال معروفش شهرت جهانی دارد. 
@@ -687,10 +710,10 @@ footer ul{list-style:none}
    </div>
   </article>
 
-  <article class="card city" data-category="history">
+  <article class="card city" data-category="history" data-search="سویل sevilla">
    <div class="city-top"><h3>🏰 <span data-fa="سویل" data-es="Sevilla">سویل</span></h3></div>
    <div class="city-content">
-    <p class="city3">
+    <p>
      سویل، پایتخت اندلس، یکی از مهم‌ترین شهرهای تاریخی اسپانیا با جمعیتی حدود ۷۰۰ هزار نفر است. 
      این شهر ارتباط عمیقی با تاریخ، معماری موریش (اسلامی-اسپانیایی) و هنر فلامنکو دارد. 
      کلیسای جامع سویل (سومین کلیسای بزرگ جهان)، برج خیرالدا (مناره مسجد سابق)، 
@@ -700,10 +723,10 @@ footer ul{list-style:none}
    </div>
   </article>
 
-  <article class="card city" data-category="coast">
+  <article class="card city" data-category="coast" data-search="والنسیا valencia">
    <div class="city-top"><h3>🏖️ <span data-fa="والنسیا" data-es="Valencia">والنسیا</span></h3></div>
    <div class="city-content">
-    <p class="city4">
+    <p>
      والنسیا، سومین شهر بزرگ اسپانیا با جمعیتی حدود ۸۰۰ هزار نفر، در ساحل شرقی این کشور قرار دارد. 
      این شهر با سواحل زیبای مدیترانه، معماری مدرن (شهر هنرها و علوم - طراحی سانتیاگو کالاتراوا)، 
      و غذای معروف پائیا شناخته می‌شود. والنسیا ترکیبی از سنت و مدرنیته است و باغ‌های تاریخی، 
@@ -713,10 +736,10 @@ footer ul{list-style:none}
    </div>
   </article>
 
-  <article class="card city" data-category="history">
+  <article class="card city" data-category="history" data-search="گرانادا granada">
    <div class="city-top"><h3>🕌 <span data-fa="گرانادا" data-es="Granada">گرانادا</span></h3></div>
    <div class="city-content">
-    <p class="city5">
+    <p>
      گرانادا یکی از مهم‌ترین شهرهای تاریخی اندلس با جمعیتی حدود ۲۴۰ هزار نفر است. 
      کاخ الحمرا، شاهکار معماری اسلامی-اسپانیایی، مهم‌ترین نماد تاریخی این شهر محسوب می‌شود 
      و در فهرست میراث جهانی یونسکو ثبت شده است. گرانادا با کوه‌های برفی سیرا ناوادا (بلندترین رشته‌کوه اسپانیا)، 
@@ -726,10 +749,10 @@ footer ul{list-style:none}
    </div>
   </article>
 
-  <article class="card city" data-category="coast">
+  <article class="card city" data-category="coast" data-search="مالاگا malaga">
    <div class="city-top"><h3>🌴 <span data-fa="مالاگا" data-es="Málaga">مالاگا</span></h3></div>
    <div class="city-content">
-    <p class="city6">
+    <p>
      مالاگا، با جمعیتی حدود ۶۰۰ هزار نفر، یکی از شهرهای مهم ساحلی جنوب اسپانیا در منطقه اندلس است. 
      این شهر آب‌وهوای مدیترانه‌ای فوق‌العاده و سواحل زیبایی دارد و زادگاه پابلو پیکاسو، 
      نقاش و مجسمه‌ساز مشهور جهان است. موزه پیکاسو، موزه هنر معاصر، کلیسای جامع، 
@@ -750,12 +773,12 @@ footer ul{list-style:none}
   <p id="placesText">از کاخ‌های تاریخی تا معماری مدرن؛ اسپانیا جاذبه‌های متنوع و کم‌نظیری دارد.</p>
  </div>
 
- <div class="cards">
+ <div class="cards" id="placesContainer">
 
-  <div class="card">
+  <div class="card" data-search="الحمرا alhambra گرانادا granada">
    <div class="card-icon">🏰</div>
    <h3 data-fa="کاخ الحمرا" data-es="La Alhambra">کاخ الحمرا</h3>
-   <p class="place1">
+   <p>
     الحمرا در گرانادا یکی از برجسته‌ترین مجموعه‌های تاریخی اسپانیا و شاخص‌ترین نماد معماری اسلامی-اسپانیایی است. 
     این مجموعه شامل کاخ‌های باشکوه ناصری، باغ‌های سرسبز (Generalife)، حیاط‌های زیبا با حوض‌های آب، 
     و جزئیات معماری خارق‌العاده با گچ‌بری‌ها و کاشیکاری‌های ظریف است. 
@@ -763,10 +786,10 @@ footer ul{list-style:none}
    </p>
   </div>
 
-  <div class="card">
+  <div class="card" data-search="ساگرادا فامیلیا sagrada familia بارسلونا barcelona گائودی gaudi">
    <div class="card-icon">⛪</div>
    <h3 data-fa="ساگرادا فامیلیا" data-es="Sagrada Familia">ساگرادا فامیلیا</h3>
-   <p class="place2">
+   <p>
     کلیسای مشهور بارسلونا از آثار برجسته آنتونی گائودی، معمار نابغه کاتالان، است. 
     ساخت این کلیسا از سال ۱۸۸۲ آغاز شده و همچنان ادامه دارد و پیش‌بینی می‌شود تا سال ۲۰۲۶ (صدمین سال مرگ گائودی) به پایان برسد. 
     این کلیسا با ۱۸ برج بلند (که بلندترین آنها به ۱۷۲ متر می‌رسد) و معماری منحصربه‌فردش، 
@@ -774,10 +797,10 @@ footer ul{list-style:none}
    </p>
   </div>
 
-  <div class="card">
+  <div class="card" data-search="کاخ سلطنتی مادرید palacio real madrid">
    <div class="card-icon">🏛️</div>
    <h3 data-fa="کاخ سلطنتی مادرید" data-es="Palacio Real de Madrid">کاخ سلطنتی مادرید</h3>
-   <p class="place3">
+   <p>
     کاخ سلطنتی مادرید، اقامتگاه رسمی خانواده سلطنتی اسپانیا، یکی از مهم‌ترین بناهای سلطنتی این کشور است. 
     این کاخ با بیش از ۳۴۰۰ اتاق، یکی از بزرگترین کاخ‌های اروپا محسوب می‌شود. 
     معماری باشکوه، نقاشی‌های دیواری، لوسترهای کریستالی، مجموعه‌های هنری و باغ‌های زیبای آن، 
@@ -785,10 +808,10 @@ footer ul{list-style:none}
    </p>
   </div>
 
-  <div class="card">
+  <div class="card" data-search="پارک رتیرو retiro مادرید madrid">
    <div class="card-icon">🌳</div>
    <h3 data-fa="پارک رتیرو" data-es="Parque del Retiro">پارک رتیرو</h3>
-   <p class="place4">
+   <p>
     پارک رتیرو، یکی از بزرگترین و معروف‌ترین فضاهای سبز مادرید با مساحتی بیش از ۱۲۵ هکتار است. 
     این پارک دارای دریاچه قایقرانی، بناهای تاریخی مانند کاخ کریستال (Palacio de Cristal)، 
     مجسمه‌های زیبا، باغ‌های گل‌آرایی شده و فضای دلنشین است. 
@@ -796,10 +819,10 @@ footer ul{list-style:none}
    </p>
   </div>
 
-  <div class="card">
+  <div class="card" data-search="میدان اسپانیا plaza espana سویل sevilla">
    <div class="card-icon">🏟️</div>
    <h3 data-fa="میدان اسپانیا" data-es="Plaza de España">میدان اسپانیا</h3>
-   <p class="place5">
+   <p>
     میدان اسپانیا در سویل، یکی از زیباترین میدان‌های اسپانیا و نماد معماری منطقه‌ای-رنسانس است. 
     این میدان که برای نمایشگاه ایبرو-آمریکایی ۱۹۲۹ ساخته شده، ترکیبی از سبک‌های معماری رنسانس و موریش دارد. 
     کاشی‌کاری‌های زیبا (azulejos) که هر استان اسپانیا را نشان می‌دهند، پل‌های قوسی شکل، 
@@ -807,10 +830,10 @@ footer ul{list-style:none}
    </p>
   </div>
 
-  <div class="card">
+  <div class="card" data-search="ساحل مدیترانه costa mediterraneo">
    <div class="card-icon">🌊</div>
    <h3 data-fa="سواحل مدیترانه" data-es="Costas del Mediterráneo">سواحل مدیترانه</h3>
-   <p class="place6">
+   <p>
     سواحل مدیترانه اسپانیا با بیش از ۴۸۰۰ کیلومتر خط ساحلی، بخش مهمی از گردشگری این کشور هستند. 
     از کوستا براوا در شمال (با صخره‌های زیبا و خلیج‌های کوچک) تا کوستا دل سول در جنوب (با سواحل شنی و آب‌های گرم)، 
     هر منطقه سواحل زیبا، شهرهای ساحلی جذاب و تفریحات آبی متنوعی دارد. 
@@ -845,14 +868,14 @@ footer ul{list-style:none}
   <p id="historyText">تاریخ اسپانیا نتیجه برخورد و تلفیق تمدن‌های مختلف در شبه‌جزیره ایبری است.</p>
  </div>
 
- <div class="timeline">
+ <div class="timeline" id="historyContainer">
 
-  <div class="timeline-item">
+  <div class="timeline-item" data-search="تمدن اولیه ایبری سلت فنیقی روم hispania">
    <div class="timeline-dot"></div>
    <div class="timeline-box">
     <div class="timeline-year">حدود ۱۱۰۰ ق.م</div>
     <h3 data-fa="تمدن‌های اولیه" data-es="Civilizaciones antiguas">تمدن‌های اولیه</h3>
-    <p class="history1">
+    <p>
      اقوام و تمدن‌های مختلفی در شبه‌جزیره ایبری زندگی می‌کردند از جمله ایبری‌ها (بومی‌های منطقه)، 
      سلت‌ها (که از اروپای مرکزی آمدند)، فنیقی‌ها (که شهرهایی مانند کادیز را تأسیس کردند) 
      و کارتاژنی‌ها. رومی‌ها نیز از سال ۲۱۸ ق.م وارد این منطقه شدند و آن را به یکی از مهم‌ترین استان‌های امپراتوری خود تبدیل کردند. 
@@ -862,12 +885,12 @@ footer ul{list-style:none}
    </div>
   </div>
 
-  <div class="timeline-item">
+  <div class="timeline-item" data-search="امپراتوری روم hispania رومی">
    <div class="timeline-dot"></div>
    <div class="timeline-box">
     <div class="timeline-year">۲۰۰ ق.م - ۴۰۰ م</div>
     <h3 data-fa="هیسپانیا در امپراتوری روم" data-es="Hispania romana">هیسپانیا در امپراتوری روم</h3>
-    <p class="history2">
+    <p>
      رومی‌ها شهرها، جاده‌ها، پل‌ها، قنات‌ها، معابد، تئاترها و زیرساخت‌های زیادی در این منطقه ایجاد کردند. 
      شهرهایی مانند مریدا (با تئاتر رومی باشکوه)، تولدو، تراگونا (با قنات و آمفی‌تئاتر) و ایتالیکا 
      از مهم‌ترین مراکز رومی در اسپانیا بودند. زبان لاتین، که پایه و اساس زبان اسپانیایی امروزی است، 
@@ -876,12 +899,12 @@ footer ul{list-style:none}
    </div>
   </div>
 
-  <div class="timeline-item">
+  <div class="timeline-item" data-search="اندلس al-andalus اسلامی مسلمان قرطبه">
    <div class="timeline-dot"></div>
    <div class="timeline-box">
     <div class="timeline-year">۷۱۱ - ۱۴۹۲</div>
     <h3 data-fa="اندلس و حکومت‌های اسلامی" data-es="Al-Ándalus">اندلس و حکومت‌های اسلامی</h3>
-    <p class="history3">
+    <p>
      با ورود مسلمانان به شبه‌جزیره ایبری در سال ۷۱۱ میلادی، تمدن اسلامی در این منطقه شکوفا شد. 
      شهرهایی مانند قرطبه (پایتخت خلافت اموی اندلس و یکی از بزرگترین شهرهای جهان آن زمان)، 
      گرانادا (با کاخ الحمرا)، سویل، تولدو و والنسیا به مراکز علمی، فرهنگی، هنری و معماری مهم تبدیل شدند. 
@@ -892,12 +915,12 @@ footer ul{list-style:none}
    </div>
   </div>
 
-  <div class="timeline-item">
+  <div class="timeline-item" data-search="۱۴۹۲ کلمب reconquista">
    <div class="timeline-dot"></div>
    <div class="timeline-box">
     <div class="timeline-year">۱۴۹۲</div>
     <h3 data-fa="نقطه عطف بزرگ" data-es="Un gran punto de inflexión">نقطه عطف بزرگ</h3>
-    <p class="history4">
+    <p>
      سال ۱۴۹۲ یکی از مهم‌ترین سال‌های تاریخ اسپانیا و جهان است. در این سال، 
      فتح گرانادا (آخرین حکومت اسلامی در شبه‌جزیره) توسط پادشاهان کاتولیک، فردیناند و ایزابلا، 
      پایان جنگ‌های بازپس‌گیری (Reconquista) را رقم زد. همچنین در همین سال، 
@@ -907,12 +930,12 @@ footer ul{list-style:none}
    </div>
   </div>
 
-  <div class="timeline-item">
+  <div class="timeline-item" data-search="معاصر فرانکو دموکراسی">
    <div class="timeline-dot"></div>
    <div class="timeline-box">
     <div class="timeline-year">۱۹۷۵ - امروز</div>
     <h3 data-fa="شکل‌گیری اسپانیای معاصر" data-es="La España moderna">شکل‌گیری اسپانیای معاصر</h3>
-    <p class="history5">
+    <p>
      اسپانیا در قرن‌های بعد تحولات سیاسی و اجتماعی زیادی را تجربه کرد از جمله جنگ‌های داخلی، 
      دیکتاتوری فرانکو (۱۹۳۹-۱۹۷۵) که تأثیر عمیقی بر جامعه و فرهنگ اسپانیا گذاشت، 
      و سپس انتقال به دموکراسی در سال ۱۹۷۵ پس از مرگ فرانکو. 
@@ -934,11 +957,11 @@ footer ul{list-style:none}
   <p id="cultureText">فرهنگ اسپانیا ترکیبی از میراث مدیترانه‌ای، اروپایی، اندلسی و منطقه‌ای است.</p>
  </div>
 
- <div class="culture-box">
+ <div class="culture-box" id="cultureContainer">
 
-  <div class="big-box">
+  <div class="big-box" data-search="فلامنکو flamenco رقص موسیقی اندلس">
    <h3 data-fa="💃 فلامنکو" data-es="💃 Flamenco">💃 فلامنکو</h3>
-   <p class="culture1">
+   <p>
     فلامنکو یکی از شناخته‌شده‌ترین نمادهای فرهنگی اسپانیا و ریشه‌های مهمی در اندلس دارد. 
     این هنر اصیل ترکیبی از موسیقی، رقص و آواز (cante) است که احساسات عمیق عشق، غم، شادی و درد را منتقل می‌کند. 
     فلامنکو با گیتار اسپانیایی، کف‌زنی (zapateado)، دست‌زدن (palmas) و لباس‌های سنتی نقطه‌چین اجرا می‌شود. 
@@ -946,9 +969,10 @@ footer ul{list-style:none}
    </p>
   </div>
 
-  <div class="big-box">
+  <div class="big-box" data-search="جشنواره جشن la tomatina san fermin fallas">
+   <div class="card-icon">🎉</div>
    <h3 data-fa="🎉 جشن‌ها" data-es="🎉 Fiestas">🎉 جشن‌ها</h3>
-   <p class="culture2">
+   <p>
     جشنواره‌ها و جشن‌ها بخش جدایی‌ناپذیر از زندگی اجتماعی اسپانیا هستند و با موسیقی، رقص، 
     برنامه‌های خیابانی و سنت‌های محلی همراه‌اند. معروف‌ترین آنها عبارتند از: 
     "لا توماتینا" (جشن گوجه‌فرنگی) در بونول که هر سال در آخرین چهارشنبه اوت برگزار می‌شود، 
@@ -958,9 +982,9 @@ footer ul{list-style:none}
    </p>
   </div>
 
-  <div class="big-box">
+  <div class="big-box" data-search="لباس سنتی traje flamenco">
    <h3 data-fa="👗 لباس‌های سنتی" data-es="👗 Trajes tradicionales">👗 لباس‌های سنتی</h3>
-   <p class="culture3">
+   <p>
     لباس‌های سنتی در مناطق مختلف اسپانیا متفاوت هستند و تنوع فرهنگی غنی کشور را نشان می‌دهند. 
     لباس فلامنکو با پارچه‌های نقطه‌چین (پولک‌دوزی) و پرچین‌های خاصش برای زنان معروف است 
     و مردان نیز کت‌های کوتاه و شلوارهای تنگ می‌پوشند. در شمال اسپانیا (مانند گالیسیا و باسک)، 
@@ -969,9 +993,9 @@ footer ul{list-style:none}
    </p>
   </div>
 
-  <div class="big-box">
+  <div class="big-box" data-search="موسیقی گیتار flamenco">
    <h3 data-fa="🎸 موسیقی" data-es="🎸 Música">🎸 موسیقی</h3>
-   <p class="culture4">
+   <p>
     موسیقی اسپانیا سبک‌های گوناگون و متنوعی دارد و گیتار اسپانیایی جایگاه ویژه‌ای در آن دارد. 
     از فلامنکو و موسیقی کلاسیک اسپانیایی (مانند آثار ایزاک آلبنیس، انریکه گرانادوس و مانوئل د فایا) 
     تا پاپ مدرن، راک، موسیقی الکترونیک و فلامنکو-پاپ، همه در این کشور جای دارند. 
@@ -991,12 +1015,12 @@ footer ul{list-style:none}
   <p id="foodText">غذا در اسپانیا فقط تغذیه نیست؛ بخشی از فرهنگ اجتماعی و سبک زندگی مردم است.</p>
  </div>
 
- <div class="cards">
+ <div class="cards" id="foodContainer">
 
-  <div class="card food-card">
+  <div class="card food-card" data-search="پائیا paella والنسیا valencia برنج">
    <div class="food-emoji">🥘</div>
    <h3 data-fa="پائیا" data-es="Paella">پائیا</h3>
-   <p class="food1">
+   <p>
     پائیا یکی از معروف‌ترین غذاهای اسپانیا و نماد آشپزی این کشور است. 
     ریشه آن به منطقه والنسیا در شرق اسپانیا برمی‌گردد و نام آن از تابه (paella) گرفته شده است. 
     این غذا با برنج، زعفران (که رنگ طلایی خاص به آن می‌دهد)، و انواع گوشت (مرغ، خرگوش، اردک) 
@@ -1005,10 +1029,10 @@ footer ul{list-style:none}
    </p>
   </div>
 
-  <div class="card food-card">
+  <div class="card food-card" data-search="گازپاچو gazpacho سوپ سرد اندلس">
    <div class="food-emoji">🍅</div>
    <h3 data-fa="گازپاچو" data-es="Gazpacho">گازپاچو</h3>
-   <p class="food2">
+   <p>
     گازپاچو یک سوپ سرد و تازه است که معمولاً با گوجه‌فرنگی، خیار، فلفل سبز، سیر، 
     روغن زیتون فوق‌بکر، سرکه شراب و نان کهنه تهیه می‌شود. 
     این غذا در تابستان‌های گرم اندلس بسیار محبوب است و یک گزینه عالی برای روزهای گرم محسوب می‌شود. 
@@ -1017,10 +1041,10 @@ footer ul{list-style:none}
    </p>
   </div>
 
-  <div class="card food-card">
+  <div class="card food-card" data-search="تورتییا tortilla اسپانیولا سیب زمینی">
    <div class="food-emoji">🥔</div>
    <h3 data-fa="تورتییا اسپانیولا" data-es="Tortilla española">تورتییا اسپانیولا</h3>
-   <p class="food3">
+   <p>
     تورتییا اسپانیولا (املت سیب‌زمینی) یک غذای ساده، مقوی و مشهور اسپانیایی است. 
     این غذا با سیب‌زمینی سرخ شده، تخم‌مرغ، روغن زیتون و گاهی پیاز (که بحث برانگیز است) تهیه می‌شود. 
     تورتییا را می‌توان در هر بار، کافه و رستورانی در اسپانیا پیدا کرد. 
@@ -1029,10 +1053,10 @@ footer ul{list-style:none}
    </p>
   </div>
 
-  <div class="card food-card">
+  <div class="card food-card" data-search="تاپاس tapas خوراک کوچک">
    <div class="food-emoji">🍖</div>
    <h3 data-fa="تاپاس" data-es="Tapas">تاپاس</h3>
-   <p class="food4">
+   <p>
     تاپاس مجموعه‌ای از خوراک‌های کوچک و متنوع است که در مناطق مختلف اسپانیا بسیار محبوب هستند. 
     تاپاس فرهنگ خاصی دارد و معمولاً با نوشیدنی (شراب، آبجو یا نوشابه) سرو می‌شود. 
     انواع تاپاس شامل زیتون، پنیر مانچگو، ژامبون ایبریکو (مشهورترین ژامبون جهان)، 
@@ -1042,10 +1066,10 @@ footer ul{list-style:none}
    </p>
   </div>
 
-  <div class="card food-card">
+  <div class="card food-card" data-search="کرم کاتالان crema catalana دسر">
    <div class="food-emoji">🍮</div>
    <h3 data-fa="کرم کاتالان" data-es="Crema catalana">کرم کاتالان</h3>
-   <p class="food5">
+   <p>
     کرم کاتالان یک دسر سنتی و محبوب اسپانیایی است که ریشه آن به منطقه کاتالونیا (شمال شرق اسپانیا) برمی‌گردد. 
     این دسر با شیر، زرده تخم‌مرغ، شکر، پوست لیمو و دارچین تهیه می‌شود و سطحی کاراملی و ترد دارد. 
     کرم کاتالان شباهت زیادی به کرم بروله فرانسوی دارد، اما با شیر به جای خامه تهیه می‌شود 
@@ -1054,10 +1078,10 @@ footer ul{list-style:none}
    </p>
   </div>
 
-  <div class="card food-card">
+  <div class="card food-card" data-search="مدیترانه mediterraneo رژیم غذایی سالم">
    <div class="food-emoji">🥖</div>
    <h3 data-fa="غذاهای مدیترانه‌ای" data-es="Comida mediterránea">غذاهای مدیترانه‌ای</h3>
-   <p class="food6">
+   <p>
     استفاده از سبزیجات تازه، روغن زیتون فوق‌بکر، غلات کامل، حبوبات، ماهی، غذاهای دریایی و میوه‌ها 
     در غذاهای اسپانیایی بسیار رایج است. رژیم مدیترانه‌ای اسپانیا که توسط یونسکو به‌عنوان 
     میراث فرهنگی ناملموس ثبت شده، یکی از سالم‌ترین رژیم‌های غذایی جهان است. 
@@ -1078,9 +1102,9 @@ footer ul{list-style:none}
   <p id="accommodationText">هتل‌ها و اقامتگاه‌های لوکس و تاریخی اسپانیا که تجربه‌ای فراموش‌نشدنی را رقم می‌زنند.</p>
  </div>
 
- <div class="cards">
+ <div class="cards" id="accommodationContainer">
 
-  <div class="card">
+  <div class="card" data-search="الحمرا پالاس گرانادا hotel alhambra">
    <div class="card-icon">🏰</div>
    <h3 data-fa="هتل الحمرا پالاس" data-es="Hotel Alhambra Palace">هتل الحمرا پالاس</h3>
    <p>
@@ -1090,7 +1114,7 @@ footer ul{list-style:none}
    </p>
   </div>
 
-  <div class="card">
+  <div class="card" data-search="ریتز مادرید hotel ritz">
    <div class="card-icon">🏨</div>
    <h3 data-fa="هتل ریتز مادرید" data-es="Hotel Ritz Madrid">هتل ریتز مادرید</h3>
    <p>
@@ -1100,7 +1124,7 @@ footer ul{list-style:none}
    </p>
   </div>
 
-  <div class="card">
+  <div class="card" data-search="ماریتیم مالاگا hotel maritimo malaga">
    <div class="card-icon">🏖️</div>
    <h3 data-fa="هتل ماریتیم مالاگا" data-es="Hotel Marítimo Málaga">هتل ماریتیم مالاگا</h3>
    <p>
@@ -1110,7 +1134,7 @@ footer ul{list-style:none}
    </p>
   </div>
 
-  <div class="card">
+  <div class="card" data-search="پارادور تولدو parador toledo">
    <div class="card-icon">🏛️</div>
    <h3 data-fa="پارادور د تولدو" data-es="Parador de Toledo">پارادور د تولدو</h3>
    <p>
@@ -1120,7 +1144,7 @@ footer ul{list-style:none}
    </p>
   </div>
 
-  <div class="card">
+  <div class="card" data-search="آرتس بارسلونا hotel arts barcelona">
    <div class="card-icon">🌴</div>
    <h3 data-fa="هتل آرتس بارسلونا" data-es="Hotel Arts Barcelona">هتل آرتس بارسلونا</h3>
    <p>
@@ -1130,7 +1154,7 @@ footer ul{list-style:none}
    </p>
   </div>
 
-  <div class="card">
+  <div class="card" data-search="روستایی اندلس casa rural andalucia">
    <div class="card-icon">🏡</div>
    <h3 data-fa="اقامتگاه‌های روستایی اندلس" data-es="Casas rurales de Andalucía">اقامتگاه‌های روستایی اندلس</h3>
    <p>
@@ -1151,9 +1175,9 @@ footer ul{list-style:none}
   <p id="restaurantsText">بهترین رستوران‌های اسپانیا با غذاهای اصیل و بین‌المللی.</p>
  </div>
 
- <div class="cards">
+ <div class="cards" id="restaurantsContainer">
 
-  <div class="card">
+  <div class="card" data-search="ال بوللی el bulli ferran adria">
    <div class="card-icon">🍽️</div>
    <h3 data-fa="رستوران ال بولّی" data-es="El Bulli">رستوران ال بولّی</h3>
    <p>
@@ -1163,7 +1187,7 @@ footer ul{list-style:none}
    </p>
   </div>
 
-  <div class="card">
+  <div class="card" data-search="پائیا والنسیا paella valencia">
    <div class="card-icon">🥘</div>
    <h3 data-fa="رستوران پائیا والنسیا" data-es="La Paella de Valencia">رستوران پائیا والنسیا</h3>
    <p>
@@ -1173,7 +1197,7 @@ footer ul{list-style:none}
    </p>
   </div>
 
-  <div class="card">
+  <div class="card" data-search="بوکین د پوئرتو botin مادرید">
    <div class="card-icon">🍷</div>
    <h3 data-fa="رستوران بوکین د پوئرتو" data-es="Botín de Puerto">رستوران بوکین د پوئرتو</h3>
    <p>
@@ -1183,7 +1207,7 @@ footer ul{list-style:none}
    </p>
   </div>
 
-  <div class="card">
+  <div class="card" data-search="آرزاک arzak سن سباستین">
    <div class="card-icon">🍣</div>
    <h3 data-fa="رستوران آرزاک" data-es="Arzak">رستوران آرزاک</h3>
    <p>
@@ -1193,7 +1217,7 @@ footer ul{list-style:none}
    </p>
   </div>
 
-  <div class="card">
+  <div class="card" data-search="ال پرل el peral بارسلونا">
    <div class="card-icon">🦐</div>
    <h3 data-fa="رستوران ال پرل" data-es="El Peral">رستوران ال پرل</h3>
    <p>
@@ -1203,7 +1227,7 @@ footer ul{list-style:none}
    </p>
   </div>
 
-  <div class="card">
+  <div class="card" data-search="کافه د لا اپرا مادرید cafe opera">
    <div class="card-icon">🍮</div>
    <h3 data-fa="کافه د لا اپرا" data-es="Café de la Ópera">کافه د لا اپرا</h3>
    <p>
@@ -1224,9 +1248,9 @@ footer ul{list-style:none}
   <p id="souvenirsText">بهترین سوغاتی‌های اسپانیا که می‌توانید برای خود و عزیزانتان تهیه کنید.</p>
  </div>
 
- <div class="cards">
+ <div class="cards" id="souvenirsContainer">
 
-  <div class="card">
+  <div class="card" data-search="ژامبون ایبریکو jamon iberico خوک">
    <div class="card-icon">🧺</div>
    <h3 data-fa="ژامبون ایبریکو" data-es="Jamón Ibérico">ژامبون ایبریکو</h3>
    <p>
@@ -1235,7 +1259,7 @@ footer ul{list-style:none}
    </p>
   </div>
 
-  <div class="card">
+  <div class="card" data-search="پانچو مانتا پشم">
    <div class="card-icon">🧣</div>
    <h3 data-fa="مانتاس و پانچو" data-es="Mantas y ponchos">مانتاس و پانچو</h3>
    <p>
@@ -1244,7 +1268,7 @@ footer ul{list-style:none}
    </p>
   </div>
 
-  <div class="card">
+  <div class="card" data-search="شراب ریوخا rioja">
    <div class="card-icon">🍷</div>
    <h3 data-fa="شراب ریوخا" data-es="Vino de Rioja">شراب ریوخا</h3>
    <p>
@@ -1253,7 +1277,7 @@ footer ul{list-style:none}
    </p>
   </div>
 
-  <div class="card">
+  <div class="card" data-search="تورون turron شیرینی بادام">
    <div class="card-icon">🍬</div>
    <h3 data-fa="شیرینی تورون" data-es="Turrón">شیرینی تورون</h3>
    <p>
@@ -1262,7 +1286,7 @@ footer ul{list-style:none}
    </p>
   </div>
 
-  <div class="card">
+  <div class="card" data-search="پنکه abanico">
    <div class="card-icon">🧵</div>
    <h3 data-fa="پنکه اسپانیایی" data-es="Abanico español">پنکه اسپانیایی</h3>
    <p>
@@ -1271,7 +1295,7 @@ footer ul{list-style:none}
    </p>
   </div>
 
-  <div class="card">
+  <div class="card" data-search="کاشی azulejo سرامیک">
    <div class="card-icon">🏺</div>
    <h3 data-fa="کاشی‌های اندلسی" data-es="Azulejos">کاشی‌های اندلسی</h3>
    <p>
@@ -1291,9 +1315,9 @@ footer ul{list-style:none}
   <p id="festivalsText">اسپانیا سرزمین جشن‌ها و فستیوال‌های رنگارنگ و پرانرژی است.</p>
  </div>
 
- <div class="cards">
+ <div class="cards" id="festivalsContainer">
 
-  <div class="card">
+  <div class="card" data-search="لا توماتینا tomatina گوجه">
    <div class="card-icon">🍅</div>
    <h3 data-fa="لا توماتینا" data-es="La Tomatina">لا توماتینا - جشن گوجه‌فرنگی</h3>
    <p>
@@ -1303,7 +1327,7 @@ footer ul{list-style:none}
    </p>
   </div>
 
-  <div class="card">
+  <div class="card" data-search="سان فرمین san fermin گاوبازی">
    <div class="card-icon">🐂</div>
    <h3 data-fa="سان فرمین" data-es="San Fermín">سان فرمین - گاوبازی در خیابان</h3>
    <p>
@@ -1313,7 +1337,7 @@ footer ul{list-style:none}
    </p>
   </div>
 
-  <div class="card">
+  <div class="card" data-search="لس فالاس fallas والنسیا">
    <div class="card-icon">🔥</div>
    <h3 data-fa="لس فالاس" data-es="Las Fallas">لس فالاس - والنسیا</h3>
    <p>
@@ -1323,7 +1347,7 @@ footer ul{list-style:none}
    </p>
   </div>
 
-  <div class="card">
+  <div class="card" data-search="فریا د آبریل سویل feria">
    <div class="card-icon">💃</div>
    <h3 data-fa="فریا د آبریل" data-es="Feria de Abril">فریا د آبریل - سویل</h3>
    <p>
@@ -1333,7 +1357,7 @@ footer ul{list-style:none}
    </p>
   </div>
 
-  <div class="card">
+  <div class="card" data-search="کریسمس اسپانیا navidad">
    <div class="card-icon">🎄</div>
    <h3 data-fa="کریسمس اسپانیا" data-es="Navidad en España">کریسمس اسپانیا</h3>
    <p>
@@ -1343,7 +1367,7 @@ footer ul{list-style:none}
    </p>
   </div>
 
-  <div class="card">
+  <div class="card" data-search="راهپیمایی سانتیاگو camino">
    <div class="card-icon">🏃</div>
    <h3 data-fa="راهپیمایی سانتیاگو" data-es="Camino de Santiago">راهپیمایی سانتیاگو</h3>
    <p>
@@ -1364,9 +1388,9 @@ footer ul{list-style:none}
   <p id="islandsText">اسپانیا دارای دو مجمع‌الجزایر زیبا در اقیانوس اطلس و دریای مدیترانه است.</p>
  </div>
 
- <div class="cards">
+ <div class="cards" id="islandsContainer">
 
-  <div class="card">
+  <div class="card" data-search="جزایر قناری canarias">
    <div class="card-icon">🌋</div>
    <h3 data-fa="جزایر قناری" data-es="Islas Canarias">جزایر قناری</h3>
    <p>
@@ -1375,7 +1399,7 @@ footer ul{list-style:none}
    </p>
   </div>
 
-  <div class="card">
+  <div class="card" data-search="جزایر بالئار baleares">
    <div class="card-icon">🏖️</div>
    <h3 data-fa="جزایر بالئار" data-es="Islas Baleares">جزایر بالئار</h3>
    <p>
@@ -1384,7 +1408,7 @@ footer ul{list-style:none}
    </p>
   </div>
 
-  <div class="card">
+  <div class="card" data-search="تنریفه tenerife">
    <div class="card-icon">🌴</div>
    <h3 data-fa="تنریفه" data-es="Tenerife">تنریفه - بزرگترین جزیره قناری</h3>
    <p>
@@ -1393,7 +1417,7 @@ footer ul{list-style:none}
    </p>
   </div>
 
-  <div class="card">
+  <div class="card" data-search="مایورکا mallorca">
    <div class="card-icon">🏛️</div>
    <h3 data-fa="مایورکا" data-es="Mallorca">مایورکا - بزرگترین جزیره بالئار</h3>
    <p>
@@ -1402,7 +1426,7 @@ footer ul{list-style:none}
    </p>
   </div>
 
-  <div class="card">
+  <div class="card" data-search="ایبیزا ibiza">
    <div class="card-icon">🎵</div>
    <h3 data-fa="ایبیزا" data-es="Ibiza">ایبیزا - جزیره جشن‌ها</h3>
    <p>
@@ -1411,7 +1435,7 @@ footer ul{list-style:none}
    </p>
   </div>
 
-  <div class="card">
+  <div class="card" data-search="لانزاروته lanzarote">
    <div class="card-icon">🌊</div>
    <h3 data-fa="لانزاروته" data-es="Lanzarote">لانزاروته - جزیره آتشفشانی</h3>
    <p>
@@ -1431,9 +1455,9 @@ footer ul{list-style:none}
   <p id="unescoText">اسپانیا با ۴۹ میراث جهانی، سومین کشور جهان از نظر تعداد آثار ثبت‌شده در یونسکو است.</p>
  </div>
 
- <div class="cards">
+ <div class="cards" id="unescoContainer">
 
-  <div class="card">
+  <div class="card" data-search="الحمرا گرانادا alhambra">
    <div class="card-icon">🏛️</div>
    <h3 data-fa="الحمرا - گرانادا" data-es="Alhambra - Granada">کاخ الحمرا و باغ‌های جنرالیف</h3>
    <p>
@@ -1443,7 +1467,7 @@ footer ul{list-style:none}
    </p>
   </div>
 
-  <div class="card">
+  <div class="card" data-search="ساگرادا فامیلیا گائودی sagrada">
    <div class="card-icon">⛪</div>
    <h3 data-fa="ساگرادا فامیلیا - بارسلونا" data-es="Sagrada Familia - Barcelona">ساگرادا فامیلیا</h3>
    <p>
@@ -1453,7 +1477,7 @@ footer ul{list-style:none}
    </p>
   </div>
 
-  <div class="card">
+  <div class="card" data-search="تولدو toledo">
    <div class="card-icon">🏰</div>
    <h3 data-fa="شهر تاریخی تولدو" data-es="Ciudad histórica de Toledo">شهر تاریخی تولدو</h3>
    <p>
@@ -1463,7 +1487,7 @@ footer ul{list-style:none}
    </p>
   </div>
 
-  <div class="card">
+  <div class="card" data-search="کوردوبا cordoba">
    <div class="card-icon">🏘️</div>
    <h3 data-fa="مرکز تاریخی کوردوبا" data-es="Centro histórico de Córdoba">مرکز تاریخی کوردوبا</h3>
    <p>
@@ -1473,7 +1497,7 @@ footer ul{list-style:none}
    </p>
   </div>
 
-  <div class="card">
+  <div class="card" data-search="تیمانفایا لانزاروته timanfaya">
    <div class="card-icon">🏜️</div>
    <h3 data-fa="پارک ملی تیمانفایا" data-es="Parque Nacional de Timanfaya">پارک ملی تیمانفایا - لانزاروته</h3>
    <p>
@@ -1483,7 +1507,7 @@ footer ul{list-style:none}
    </p>
   </div>
 
-  <div class="card">
+  <div class="card" data-search="گائودی gaudi بارسلونا">
    <div class="card-icon">🎨</div>
    <h3 data-fa="آثار گائودی در بارسلونا" data-es="Obras de Gaudí en Barcelona">آثار آنتونی گائودی</h3>
    <p>
@@ -1505,7 +1529,7 @@ footer ul{list-style:none}
   <p id="footballText">فوتبال یکی از مهم‌ترین بخش‌های فرهنگ ورزشی و هویت ملی اسپانیاست.</p>
  </div>
 
- <div class="football-hero">
+ <div class="football-hero" data-search="la roja تیم ملی اسپانیا">
   <h3>🇪🇸 La Roja</h3>
   <p id="footballHeroText">
    تیم ملی اسپانیا (با نام مستعار "La Roja" به معنی "قرمزها") 
@@ -1520,12 +1544,12 @@ footer ul{list-style:none}
   </p>
  </div>
 
- <div class="cards">
+ <div class="cards" id="footballContainer">
 
-  <div class="card">
+  <div class="card" data-search="افتخارات تیم ملی جام جهانی یورو">
    <div class="card-icon">🏆</div>
    <h3 data-fa="افتخارات تیم ملی" data-es="Éxitos de la selección">افتخارات تیم ملی</h3>
-   <p class="football1">
+   <p>
     اسپانیا قهرمان جام جهانی ۲۰۱۰ در آفریقای جنوبی شد و در فینال هلند را با نتیجه ۱-۰ شکست داد. 
     همچنین در سال ۲۰۲۶ برای دومین بار قهرمان جام جهانی شد و با درخشش ستارگانی مانند پدری، گاوی و لامین یامال، 
     تاریخ‌سازی کرد. اسپانیا سه‌بار قهرمان یورو (۱۹۶۴، ۲۰۰۸، ۲۰۱۲) شده است که با دو قهرمانی متوالی در ۲۰۰۸ و ۲۰۱۲، 
@@ -1534,10 +1558,10 @@ footer ul{list-style:none}
    </p>
   </div>
 
-  <div class="card">
+  <div class="card" data-search="تیکی تاکا سبک بازی">
    <div class="card-icon">🧠</div>
    <h3 data-fa="سبک بازی" data-es="Estilo de juego">سبک بازی</h3>
-   <p class="football2">
+   <p>
     فوتبال اسپانیا اغلب با پاس‌کاری دقیق، حفظ مالکیت توپ، حرکت‌های هوشمندانه بدون توپ 
     و بازی ترکیبی شناخته می‌شود. سبک "تیکی تاکا" مبتنی بر پاس‌های کوتاه و سریع، 
     حرکت‌های دایره‌وار و ایجاد فضاهای مناسب برای حمله است. 
@@ -1547,10 +1571,10 @@ footer ul{list-style:none}
    </p>
   </div>
 
-  <div class="card">
+  <div class="card" data-search="آکادمی لاماسیا پرورش استعداد">
    <div class="card-icon">🌟</div>
    <h3 data-fa="پرورش استعداد" data-es="Formación de talentos">پرورش استعداد</h3>
-   <p class="football3">
+   <p>
     آکادمی‌های فوتبال اسپانیا مانند لاماسیا (بارسلونا)، آکادمی رئال مادرید (La Fábrica) 
     و آکادمی اتلتیکو مادرید نقش مهمی در پرورش بازیکنان جوان و مستعد دارند. 
     اسپانیا همواره ستاره‌های بزرگی را به فوتبال جهان معرفی کرده است.
@@ -1565,8 +1589,8 @@ footer ul{list-style:none}
   🏟️ باشگاه‌های مشهور اسپانیا
  </h3>
 
- <div class="teams">
-  <div class="team">
+ <div class="teams" id="clubsContainer">
+  <div class="team" data-search="رئال مادرید real madrid">
    <div class="team-logo">⚪</div>
    <h4>Real Madrid</h4>
    <p id="realText">
@@ -1578,7 +1602,7 @@ footer ul{list-style:none}
    </p>
   </div>
 
-  <div class="team">
+  <div class="team" data-search="بارسلونا barcelona">
    <div class="team-logo">🔵</div>
    <h4>FC Barcelona</h4>
    <p id="barcaText">
@@ -1590,7 +1614,7 @@ footer ul{list-style:none}
    </p>
   </div>
 
-  <div class="team">
+  <div class="team" data-search="اتلتیکو مادرید atletico">
    <div class="team-logo">🔴</div>
    <h4>Atlético Madrid</h4>
    <p id="atletiText">
@@ -1602,7 +1626,7 @@ footer ul{list-style:none}
    </p>
   </div>
 
-  <div class="team">
+  <div class="team" data-search="بتیس سویل betis">
    <div class="team-logo">🟢</div>
    <h4>Real Betis</h4>
    <p id="betisText">
@@ -1620,9 +1644,9 @@ footer ul{list-style:none}
   ⭐ بازیکنان معروف تاریخ فوتبال اسپانیا
  </h3>
 
- <div class="cards">
+ <div class="cards" id="playersContainer">
 
-  <div class="card">
+  <div class="card" data-search="دی استفانو خنتو سوارز بوتراگوئنو رائول">
    <div class="card-icon">👤</div>
    <h3>اسطوره‌های قدیم</h3>
    <p>
@@ -1634,7 +1658,7 @@ footer ul{list-style:none}
    </p>
   </div>
 
-  <div class="card">
+  <div class="card" data-search="کاسیاس ژاوی اینیستا راموس تورس ویا">
    <div class="card-icon">👤</div>
    <h3>نسل طلایی (۲۰۰۸-۲۰۱۲)</h3>
    <p>
@@ -1647,7 +1671,7 @@ footer ul{list-style:none}
    </p>
   </div>
 
-  <div class="card">
+  <div class="card" data-search="پدری گاوی لامین یامال نیکو ویلیامز">
    <div class="card-icon">👤</div>
    <h3>ستارگان امروز و آینده</h3>
    <p>
@@ -1672,9 +1696,9 @@ footer ul{list-style:none}
   <p id="celebritiesText">اسپانیا سرزمین هنرمندان، نویسندگان، معماران و دانشمندانی است که جهان را تحت تأثیر قرار داده‌اند.</p>
  </div>
 
- <div class="cards">
+ <div class="cards" id="celebritiesContainer">
 
-  <div class="card">
+  <div class="card" data-search="پیکاسو دالی گویا ولاسکس میرو">
    <div class="card-icon">🎨</div>
    <h3 data-fa="نقاشان مشهور" data-es="Pintores famosos">نقاشان مشهور</h3>
    <p>
@@ -1686,7 +1710,7 @@ footer ul{list-style:none}
    </p>
   </div>
 
-  <div class="card">
+  <div class="card" data-search="سروانتس لورکا کالدرون ماچادو">
    <div class="card-icon">✍️</div>
    <h3 data-fa="نویسندگان و شاعران" data-es="Escritores y poetas">نویسندگان و شاعران</h3>
    <p>
@@ -1698,7 +1722,7 @@ footer ul{list-style:none}
    </p>
   </div>
 
-  <div class="card">
+  <div class="card" data-search="گائودی کالاتراوا بوفیل مونئو">
    <div class="card-icon">🏛️</div>
    <h3 data-fa="معماران مشهور" data-es="Arquitectos famosos">معماران مشهور</h3>
    <p>
@@ -1709,7 +1733,7 @@ footer ul{list-style:none}
    </p>
   </div>
 
-  <div class="card">
+  <div class="card" data-search="آلمودوار بونوئل باردم کروز">
    <div class="card-icon">🎬</div>
    <h3 data-fa="کارگردانان و بازیگران" data-es="Directores y actores">کارگردانان و بازیگران</h3>
    <p>
@@ -1721,7 +1745,7 @@ footer ul{list-style:none}
    </p>
   </div>
 
-  <div class="card">
+  <div class="card" data-search="رامون ای کاخال کلمب ماژلان">
    <div class="card-icon">🔬</div>
    <h3 data-fa="دانشمندان و کاشفان" data-es="Científicos y exploradores">دانشمندان و کاشفان</h3>
    <p>
@@ -1733,7 +1757,7 @@ footer ul{list-style:none}
    </p>
   </div>
 
-  <div class="card">
+  <div class="card" data-search="ساراسات گرانادوس آلبنیس فایا پاکو د لوسیا">
    <div class="card-icon">🎶</div>
    <h3 data-fa="موسیقیدانان مشهور" data-es="Músicos famosos">موسیقیدانان مشهور</h3>
    <p>
@@ -1756,12 +1780,12 @@ footer ul{list-style:none}
   <p id="opportunitiesText">شناخت یک کشور فقط به دیدن نقاط مثبت آن محدود نمی‌شود.</p>
  </div>
 
- <div class="cards">
+ <div class="cards" id="opportunitiesContainer">
 
-  <div class="card">
+  <div class="card" data-search="اقتصاد فرصت شغلی سرمایه گذاری">
    <div class="card-icon">💼</div>
    <h3 data-fa="فرصت‌های اقتصادی" data-es="Oportunidades económicas">فرصت‌های اقتصادی</h3>
-   <p class="opp1">
+   <p>
     گردشگری (با بیش از ۸۰ میلیون گردشگر سالانه)، خدمات مالی، صنعت خودروسازی (دومین تولیدکننده خودرو در اروپا)، 
     کشاورزی (مخصوصاً میوه، سبزیجات، زیتون و شراب)، انرژی‌های تجدیدپذیر و فناوری اطلاعات 
     از بخش‌های مهم اقتصاد اسپانیا هستند. اسپانیا چهارمین اقتصاد بزرگ اروپا و چهاردهمین اقتصاد جهان است 
@@ -1769,10 +1793,10 @@ footer ul{list-style:none}
    </p>
   </div>
 
-  <div class="card">
+  <div class="card" data-search="انرژی خورشیدی بادی تجدیدپذیر">
    <div class="card-icon">☀️</div>
    <h3 data-fa="انرژی‌های تجدیدپذیر" data-es="Energías renovables">انرژی‌های تجدیدپذیر</h3>
-   <p class="opp2">
+   <p>
     شرایط جغرافیایی و اقلیمی اسپانیا با بیش از ۳۰۰ روز آفتابی در سال، 
     ظرفیت مناسبی برای انرژی خورشیدی ایجاد کرده است. 
     اسپانیا یکی از پیشروان انرژی بادی در اروپا محسوب می‌شود 
@@ -1782,10 +1806,10 @@ footer ul{list-style:none}
    </p>
   </div>
 
-  <div class="card">
+  <div class="card" data-search="گردشگری توریست">
    <div class="card-icon">✈️</div>
    <h3 data-fa="گردشگری" data-es="Turismo">گردشگری</h3>
-   <p class="opp3">
+   <p>
     تاریخ غنی، سواحل زیبا، شهرهای دیدنی، غذاهای متنوع، آب‌وهوای عالی و فرهنگ غنی 
     باعث شده گردشگری به یکی از ستون‌های اصلی اقتصاد اسپانیا تبدیل شود. 
     اسپانیا پس از فرانسه، دومین کشور پربازدید جهان است 
@@ -1795,10 +1819,10 @@ footer ul{list-style:none}
    </p>
   </div>
 
-  <div class="card">
+  <div class="card" data-search="مسکن اجاره قیمت">
    <div class="card-icon">🏠</div>
    <h3 data-fa="چالش‌های مسکن" data-es="Desafíos de vivienda">چالش‌های مسکن</h3>
-   <p class="opp4">
+   <p>
     هزینه مسکن و اجاره در برخی شهرهای بزرگ مانند مادرید، بارسلونا، والیبدید و سویل 
     به‌طور قابل‌توجهی افزایش یافته است. این موضوع به ویژه برای جوانان و خانواده‌های کم‌درآمد 
     چالش‌برانگیز شده و بسیاری از جوانان مجبور به ترک شهرهای بزرگ یا زندگی با والدین خود هستند. 
@@ -1807,10 +1831,10 @@ footer ul{list-style:none}
    </p>
   </div>
 
-  <div class="card">
+  <div class="card" data-search="اقلیم خشکسالی گرمایش جهانی">
    <div class="card-icon">🌡️</div>
    <h3 data-fa="چالش‌های اقلیمی" data-es="Desafíos climáticos">چالش‌های اقلیمی</h3>
-   <p class="opp5">
+   <p>
     خشکسالی، گرمای شدید، افزایش سطح آب دریاها، بیابان‌زایی و مدیریت منابع آب 
     از موضوعات مهم زیست‌محیطی اسپانیا هستند. این کشور با کمبود آب در مناطق جنوبی و شرقی مواجه است 
     و نیازمند سرمایه‌گذاری در زیرساخت‌های آبی، تصفیه‌خانه‌ها، نمک‌زدایی آب دریا 
@@ -1819,10 +1843,10 @@ footer ul{list-style:none}
    </p>
   </div>
 
-  <div class="card">
+  <div class="card" data-search="استقلال کاتالونیا باسک تنوع">
    <div class="card-icon">👥</div>
    <h3 data-fa="تنوع منطقه‌ای" data-es="Diversidad regional">تنوع منطقه‌ای</h3>
-   <p class="opp6">
+   <p>
     اسپانیا شامل ۱۷ منطقه خودمختار با زبان‌ها، فرهنگ‌ها و سنت‌های متنوع است. 
     زبان‌های رسمی شامل اسپانیایی (کاستیلیان)، کاتالان، باسکی و گالیسیایی هستند 
     که هرکدام ادبیات و تاریخ غنی خود را دارند. 
@@ -1843,12 +1867,12 @@ footer ul{list-style:none}
   <p id="travelText">در یک سفر به اسپانیا می‌توان تاریخ، هنر، ساحل، غذا، ورزش و فرهنگ را کنار هم تجربه کرد.</p>
  </div>
 
- <div class="cards">
+ <div class="cards" id="travelContainer">
 
-  <div class="card">
+  <div class="card" data-search="تاریخ معماری روم اسلامی">
    <div class="card-icon">🏛️</div>
    <h3 data-fa="برای تاریخ" data-es="Por la historia">برای تاریخ</h3>
-   <p class="travel1">
+   <p>
     اسپانیا برای علاقه‌مندان تاریخ و معماری به‌شکلی شگفت‌انگیز جذاب است. 
     از آثار رومی مانند قنات سگوبیا، تئاتر مریدا و آمفی‌تئاتر تراگونا 
     گرفته تا کاخ‌های اسلامی الحمرا و مسجد قرطبه، 
@@ -1858,10 +1882,10 @@ footer ul{list-style:none}
    </p>
   </div>
 
-  <div class="card">
+  <div class="card" data-search="طبیعت ساحل کوهستان">
    <div class="card-icon">🌊</div>
    <h3 data-fa="برای طبیعت" data-es="Por la naturaleza">برای طبیعت</h3>
-   <p class="travel2">
+   <p>
     سواحل مدیترانه و اقیانوس اطلس با بیش از ۴۸۰۰ کیلومتر خط ساحلی، 
     کوهستان‌های پیرنه و سیرا ناوادا با قله‌های بالای ۳۰۰۰ متر، 
     جزایر قناری (با آب‌وهوای بهشتی در تمام طول سال) و جزایر بالئار، 
@@ -1871,10 +1895,10 @@ footer ul{list-style:none}
    </p>
   </div>
 
-  <div class="card">
+  <div class="card" data-search="غذا پائیا تاپاس شراب">
    <div class="card-icon">🍴</div>
    <h3 data-fa="برای غذا" data-es="Por la gastronomía">برای غذا</h3>
-   <p class="travel3">
+   <p>
     غذاهای منطقه‌ای اسپانیا بسیار متنوع، خوش‌طعم و جذاب هستند. 
     از پائیا والنسیا و تاپاس اندلس گرفته تا غذاهای دریایی گالیسیا (مانند پولپو آ فریا)، 
     کرم کاتالان در کاتالونیا، گوشت بره در کاستیا و شراب‌های معروف ریوخا، 
@@ -1884,10 +1908,10 @@ footer ul{list-style:none}
    </p>
   </div>
 
-  <div class="card">
+  <div class="card" data-search="فوتبال برنابئو نیوکمپ">
    <div class="card-icon">⚽</div>
    <h3 data-fa="برای فوتبال" data-es="Por el fútbol">برای فوتبال</h3>
-   <p class="travel4">
+   <p>
     فرهنگ باشگاهی و استادیوم‌های افسانه‌ای اسپانیا مانند برنابئو (رئال مادرید)، 
     نیوکمپ (بارسلونا) و متروپولیتانو (اتلتیکو مادرید) برای علاقه‌مندان فوتبال فوق‌العاده جذاب است. 
     تماشای یک بازی ال کلاسیکو (رئال مادرید در برابر بارسلونا) یا دربی شهر، 
@@ -2024,19 +2048,19 @@ footer ul{list-style:none}
   <div class="comment">
    <div class="comment-stars">★★★★★</div>
    <h4>آرین</h4>
-   <p id="comment1">طراحی سایت خیلی جذابه و بخش فوتبالش رو بیشتر از همه دوست داشتم. اطلاعات کامل و دقیقی داشت.</p>
+   <p>طراحی سایت خیلی جذابه و بخش فوتبالش رو بیشتر از همه دوست داشتم. اطلاعات کامل و دقیقی داشت.</p>
   </div>
 
   <div class="comment">
    <div class="comment-stars">★★★★★</div>
    <h4>سارا</h4>
-   <p id="comment2">بخش غذا و فرهنگ اطلاعات فوق‌العاده‌ای داشت. مخصوصاً توضیحات پائیا و گازپاچو عالی بود.</p>
+   <p>بخش غذا و فرهنگ اطلاعات فوق‌العاده‌ای داشت. مخصوصاً توضیحات پائیا و گازپاچو عالی بود.</p>
   </div>
 
   <div class="comment">
    <div class="comment-stars">★★★★☆</div>
    <h4>محمد</h4>
-   <p id="comment3">نقشه و بخش شهرها خیلی جالب بود و اطلاعات مفیدی داشت. کاش بخش تاریخ رو بیشتر توضیح می‌دادید.</p>
+   <p>نقشه و بخش شهرها خیلی جالب بود و اطلاعات مفیدی داشت. کاش بخش تاریخ رو بیشتر توضیح می‌دادید.</p>
   </div>
  </div>
 
@@ -2516,42 +2540,126 @@ document.querySelectorAll(".city-filter button").forEach(btn=>{
  };
 });
 
-// ===== SEARCH - FIXED =====
+// ===== SEARCH - ADVANCED =====
 document.getElementById("searchInput").addEventListener("input", function() {
     const searchTerm = this.value.trim().toLowerCase();
+    const resultsContainer = document.getElementById("searchResults");
     
-    // تمام کارت‌ها و مقاله‌های داخل بخش‌های مختلف
-    const allCards = document.querySelectorAll('.card, .big-box, .stat, .team, .timeline-box, .comment, .food-card');
+    // حذف هایلایت‌های قبلی
+    document.querySelectorAll(".search-highlight, .search-highlight-dark").forEach(el => {
+        const parent = el.parentNode;
+        const text = el.textContent;
+        parent.replaceChild(document.createTextNode(text), el);
+        parent.normalize();
+    });
     
+    // اگر جستجو خالی است
     if (searchTerm === '') {
-        allCards.forEach(card => {
-            card.style.display = '';
+        resultsContainer.innerHTML = '';
+        // نمایش همه محتوا
+        document.querySelectorAll('.card, .city, .big-box, .stat, .team, .timeline-box, .comment, .food-card, .group .members .member').forEach(el => {
+            el.style.display = '';
         });
-        // نمایش همه شهرها
-        document.querySelectorAll('.city').forEach(city => {
-            city.style.display = '';
+        document.querySelectorAll('.city, .card, .big-box, .stat, .team, .timeline-box, .comment, .food-card, .group .members .member').forEach(el => {
+            el.style.display = '';
         });
         return;
     }
     
-    allCards.forEach(card => {
-        const text = card.textContent.toLowerCase();
-        if (text.includes(searchTerm)) {
-            card.style.display = '';
-        } else {
-            card.style.display = 'none';
+    // جستجو در تمام المان‌های قابل جستجو
+    const searchableItems = document.querySelectorAll([
+        '.city',
+        '.card:not(.city)',
+        '.big-box',
+        '.stat',
+        '.team',
+        '.timeline-box',
+        '.comment',
+        '.food-card',
+        '.group .members .member'
+    ].join(','));
+    
+    let foundCount = 0;
+    const results = [];
+    
+    // ابتدا همه را مخفی کن
+    searchableItems.forEach(el => {
+        el.style.display = 'none';
+    });
+    
+    // جستجو در هر المان
+    searchableItems.forEach(el => {
+        const text = el.textContent.toLowerCase();
+        const searchAttr = el.getAttribute('data-search') || '';
+        const searchText = (text + ' ' + searchAttr).toLowerCase();
+        
+        if (searchText.includes(searchTerm)) {
+            el.style.display = '';
+            foundCount++;
+            results.push(el);
         }
     });
     
-    // برای شهرها که ساختار متفاوتی دارند
-    document.querySelectorAll('.city').forEach(city => {
-        const text = city.textContent.toLowerCase();
-        if (text.includes(searchTerm)) {
-            city.style.display = '';
-        } else {
-            city.style.display = 'none';
-        }
-    });
+    // هایلایت کلمات جستجو شده
+    if (foundCount > 0) {
+        results.forEach(el => {
+            const walker = document.createTreeWalker(
+                el,
+                NodeFilter.SHOW_TEXT,
+                {
+                    acceptNode: function(node) {
+                        const text = node.textContent.toLowerCase();
+                        if (text.includes(searchTerm)) {
+                            return NodeFilter.FILTER_ACCEPT;
+                        }
+                        return NodeFilter.FILTER_SKIP;
+                    }
+                }
+            );
+            
+            const nodesToReplace = [];
+            let currentNode;
+            while (currentNode = walker.nextNode()) {
+                nodesToReplace.push(currentNode);
+            }
+            
+            nodesToReplace.forEach(node => {
+                const text = node.textContent;
+                const parts = text.split(new RegExp(`(${searchTerm.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi'));
+                const fragment = document.createDocumentFragment();
+                
+                parts.forEach((part, index) => {
+                    if (part.toLowerCase() === searchTerm.toLowerCase()) {
+                        const span = document.createElement('span');
+                        span.className = document.body.classList.contains('dark') ? 'search-highlight-dark' : 'search-highlight';
+                        span.textContent = part;
+                        fragment.appendChild(span);
+                    } else if (part) {
+                        fragment.appendChild(document.createTextNode(part));
+                    }
+                });
+                
+                node.parentNode.replaceChild(fragment, node);
+            });
+        });
+    }
+    
+    // نمایش نتایج
+    if (foundCount === 0) {
+        resultsContainer.innerHTML = `
+            <div class="no-results">
+                <span>🔍</span>
+                نتیجه‌ای برای "<strong>${this.value}</strong>" پیدا نشد.
+                <br><small style="font-size:13px;">سعی کنید با کلمات کلیدی دیگر جستجو کنید.</small>
+            </div>
+        `;
+    } else {
+        resultsContainer.innerHTML = `
+            <div style="text-align:center;color:var(--muted);font-size:14px;padding:10px;">
+                ${foundCount} نتیجه برای "<strong>${this.value}</strong>" پیدا شد.
+            </div>
+        `;
+    }
 });
 
 // ===== CLOCK =====
