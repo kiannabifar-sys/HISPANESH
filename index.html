@@ -2,9 +2,8 @@
 <html lang="fa" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 <meta name="theme-color" content="#c60b1e">
-<meta name="description" content="HISPANESH - سفری دیجیتال به اسپانیا؛ تاریخ، فرهنگ، غذا، فوتبال، شهرها و جاذبه‌های اسپانیا">
 <title>HISPANESH | اسپانیا با دانش</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,1224 +12,552 @@
 
 <style>
 :root{
-    --red:#c60b1e;
-    --red2:#e51b35;
-    --yellow:#ffc400;
-    --gold:#ffcf33;
-    --cream:#fff8e8;
-    --bg:#f7f8fc;
-    --card:#ffffff;
-    --text:#171923;
-    --muted:#687080;
-    --border:rgba(0,0,0,.08);
-    --shadow:0 18px 55px rgba(18,24,40,.10);
-    --shadow2:0 8px 25px rgba(18,24,40,.08);
-    --radius:24px;
-    --transition:.3s ease;
+ --red:#c60b1e;
+ --red2:#ed2939;
+ --yellow:#ffc400;
+ --gold:#ffd84d;
+ --bg:#f6f8fc;
+ --card:#fff;
+ --text:#171923;
+ --muted:#687080;
+ --border:rgba(0,0,0,.08);
+ --shadow:0 20px 60px rgba(15,23,42,.12);
+ --shadow2:0 8px 30px rgba(15,23,42,.08);
+ --radius:25px;
 }
-
-body.dark{
-    --bg:#0d1018;
-    --card:#151a25;
-    --text:#f5f7fb;
-    --muted:#aeb6c5;
-    --border:rgba(255,255,255,.09);
-    --shadow:0 18px 55px rgba(0,0,0,.35);
-    --shadow2:0 8px 25px rgba(0,0,0,.3);
-    --cream:#211d14;
-}
-
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
-
-html{
-    scroll-behavior:smooth;
-}
-
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
 body{
-    font-family:"Vazirmatn",sans-serif;
-    background:
-        radial-gradient(circle at 10% 10%,rgba(198,11,30,.07),transparent 25%),
-        radial-gradient(circle at 90% 20%,rgba(255,196,0,.09),transparent 25%),
-        var(--bg);
-    color:var(--text);
-    line-height:1.9;
-    transition:background .35s,color .35s;
-    overflow-x:hidden;
+ font-family:"Vazirmatn",sans-serif;
+ background:
+ radial-gradient(circle at 10% 10%,rgba(198,11,30,.08),transparent 25%),
+ radial-gradient(circle at 90% 20%,rgba(255,196,0,.1),transparent 25%),
+ var(--bg);
+ color:var(--text);
+ line-height:1.9;
+ overflow-x:hidden;
+ transition:.3s;
 }
-
-button,input,select,textarea{
-    font-family:inherit;
+body.dark{
+ --bg:#0b0f17;
+ --card:#151b26;
+ --text:#f5f7fb;
+ --muted:#aeb7c7;
+ --border:rgba(255,255,255,.09);
+ --shadow:0 20px 60px rgba(0,0,0,.4);
+ --shadow2:0 8px 30px rgba(0,0,0,.3);
 }
-
-button{
-    cursor:pointer;
-}
-
-/* =========================
-   LOADING
-========================= */
+button,input,textarea,select{font-family:inherit}
+button{cursor:pointer}
 
 #loader{
-    position:fixed;
-    inset:0;
-    background:#11131a;
-    z-index:99999;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    flex-direction:column;
-    gap:18px;
-    transition:.7s;
+ position:fixed;inset:0;z-index:99999;
+ display:flex;align-items:center;justify-content:center;
+ flex-direction:column;gap:18px;background:#10131b;
+ transition:.7s
 }
-
 .loader-logo{
-    font-family:"Playfair Display",serif;
-    font-size:50px;
-    color:white;
-    letter-spacing:5px;
+ font-family:"Playfair Display",serif;
+ font-size:52px;letter-spacing:6px;color:white
 }
-
 .loader-line{
-    width:220px;
-    height:5px;
-    background:linear-gradient(90deg,var(--red),var(--yellow),var(--red));
-    border-radius:10px;
-    animation:load 1.4s infinite;
+ width:230px;height:5px;border-radius:20px;
+ background:linear-gradient(90deg,var(--red),var(--yellow),var(--red));
+ animation:load 1.3s infinite
 }
-
 @keyframes load{
-    0%{transform:scaleX(.2);opacity:.4}
-    50%{transform:scaleX(1);opacity:1}
-    100%{transform:scaleX(.2);opacity:.4}
+ 0%,100%{transform:scaleX(.2);opacity:.4}
+ 50%{transform:scaleX(1);opacity:1}
 }
-
-/* =========================
-   FLOATING FLAGS
-========================= */
 
 .flag{
-    position:fixed;
-    z-index:2;
-    font-size:40px;
-    pointer-events:none;
-    animation:floatFlag 7s ease-in-out infinite;
-    filter:drop-shadow(0 10px 12px rgba(0,0,0,.15));
+ position:fixed;z-index:1;font-size:38px;
+ pointer-events:none;filter:drop-shadow(0 10px 12px rgba(0,0,0,.15));
+ animation:float 7s ease-in-out infinite
 }
-
-.flag.one{top:115px;left:25px}
-.flag.two{top:260px;right:25px;animation-delay:1.5s}
+.flag.one{top:120px;left:25px}
+.flag.two{top:270px;right:25px;animation-delay:1.5s}
 .flag.three{bottom:130px;left:30px;animation-delay:3s}
 .flag.four{bottom:250px;right:35px;animation-delay:2s}
-
-@keyframes floatFlag{
-    0%,100%{transform:translateY(0) rotate(-4deg)}
-    50%{transform:translateY(-25px) rotate(6deg)}
+@keyframes float{
+ 0%,100%{transform:translateY(0) rotate(-4deg)}
+ 50%{transform:translateY(-25px) rotate(6deg)}
 }
-
-/* =========================
-   HEADER
-========================= */
 
 header{
-    position:sticky;
-    top:0;
-    z-index:5000;
-    backdrop-filter:blur(18px);
-    background:rgba(255,255,255,.82);
-    border-bottom:1px solid var(--border);
+ position:sticky;top:0;z-index:5000;
+ backdrop-filter:blur(20px);
+ background:rgba(255,255,255,.82);
+ border-bottom:1px solid var(--border)
 }
-
-body.dark header{
-    background:rgba(13,16,24,.82);
-}
-
+body.dark header{background:rgba(11,15,23,.84)}
 .nav{
-    max-width:1450px;
-    margin:auto;
-    padding:12px 24px;
-    display:flex;
-    align-items:center;
-    gap:25px;
+ max-width:1450px;margin:auto;padding:12px 24px;
+ display:flex;align-items:center;gap:22px
 }
-
 .logo{
-    display:flex;
-    align-items:center;
-    gap:12px;
-    text-decoration:none;
-    color:var(--text);
-    min-width:max-content;
+ display:flex;align-items:center;gap:12px;
+ color:var(--text);text-decoration:none;min-width:max-content
 }
-
 .logo-mark{
-    width:52px;
-    height:52px;
-    border-radius:16px;
-    display:grid;
-    place-items:center;
-    background:
-        linear-gradient(var(--red) 0 25%,var(--yellow) 25% 75%,var(--red) 75%);
-    box-shadow:0 8px 25px rgba(198,11,30,.25);
-    font-size:28px;
+ width:54px;height:54px;border-radius:17px;
+ display:grid;place-items:center;font-size:28px;
+ background:linear-gradient(var(--red) 0 25%,var(--yellow) 25% 75%,var(--red) 75%);
+ box-shadow:0 10px 30px rgba(198,11,30,.25)
 }
-
 .logo-text{
-    font-family:"Playfair Display",serif;
-    font-size:25px;
-    font-weight:800;
-    letter-spacing:2px;
+ font-family:"Playfair Display",serif;
+ font-size:25px;font-weight:800;letter-spacing:2px
 }
-
 .logo small{
-    display:block;
-    color:var(--muted);
-    font-family:"Vazirmatn";
-    font-size:9px;
-    letter-spacing:0;
+ display:block;font:9px Vazirmatn;color:var(--muted);letter-spacing:0
 }
-
 .nav-links{
-    display:flex;
-    align-items:center;
-    gap:4px;
-    flex:1;
-    justify-content:center;
+ display:flex;align-items:center;justify-content:center;
+ gap:4px;flex:1
 }
-
 .nav-links a{
-    text-decoration:none;
-    color:var(--text);
-    padding:8px 12px;
-    border-radius:12px;
-    font-size:13px;
-    transition:.25s;
+ color:var(--text);text-decoration:none;padding:9px 12px;
+ border-radius:12px;font-size:13px;transition:.25s
 }
-
 .nav-links a:hover{
-    background:var(--red);
-    color:white;
-    transform:translateY(-2px);
+ background:var(--red);color:#fff;transform:translateY(-2px)
 }
-
-.actions{
-    display:flex;
-    gap:8px;
-}
-
+.actions{display:flex;gap:8px}
 .icon-btn{
-    border:1px solid var(--border);
-    background:var(--card);
-    color:var(--text);
-    width:42px;
-    height:42px;
-    border-radius:13px;
-    display:grid;
-    place-items:center;
-    font-size:18px;
-    transition:.25s;
+ width:44px;height:44px;border-radius:14px;
+ border:1px solid var(--border);background:var(--card);
+ color:var(--text);font-size:19px;transition:.25s
 }
-
-.icon-btn:hover{
-    transform:translateY(-3px);
-    border-color:var(--red);
-}
-
-/* =========================
-   HERO
-========================= */
+.icon-btn:hover{transform:translateY(-3px);border-color:var(--red)}
 
 .hero{
-    min-height:calc(100vh - 77px);
-    position:relative;
-    display:flex;
-    align-items:center;
-    overflow:hidden;
-    padding:80px 7%;
+ min-height:calc(100vh - 78px);
+ display:flex;align-items:center;position:relative;
+ padding:80px 7%;overflow:hidden
 }
-
-.hero::before{
-    content:"";
-    position:absolute;
-    inset:0;
-    background:
-        linear-gradient(120deg,rgba(198,11,30,.12),transparent 40%),
-        linear-gradient(300deg,rgba(255,196,0,.13),transparent 45%);
+.hero:before{
+ content:"";position:absolute;inset:0;
+ background:
+ linear-gradient(120deg,rgba(198,11,30,.13),transparent 42%),
+ linear-gradient(300deg,rgba(255,196,0,.13),transparent 45%)
 }
-
 .hero-grid{
-    position:absolute;
-    inset:0;
-    opacity:.35;
-    background-image:
-        linear-gradient(rgba(198,11,30,.07) 1px,transparent 1px),
-        linear-gradient(90deg,rgba(198,11,30,.07) 1px,transparent 1px);
-    background-size:45px 45px;
-    mask-image:linear-gradient(to bottom,black,transparent);
+ position:absolute;inset:0;opacity:.35;
+ background-image:
+ linear-gradient(rgba(198,11,30,.07) 1px,transparent 1px),
+ linear-gradient(90deg,rgba(198,11,30,.07) 1px,transparent 1px);
+ background-size:45px 45px;
+ mask-image:linear-gradient(to bottom,#000,transparent)
 }
-
-.hero-content{
-    max-width:1450px;
-    width:100%;
-    margin:auto;
-    position:relative;
-    z-index:3;
-}
-
+.hero-content{max-width:1450px;width:100%;margin:auto;position:relative;z-index:2}
 .badge{
-    display:inline-flex;
-    align-items:center;
-    gap:8px;
-    padding:8px 15px;
-    border-radius:100px;
-    background:rgba(198,11,30,.09);
-    border:1px solid rgba(198,11,30,.18);
-    color:var(--red);
-    font-weight:700;
-    font-size:13px;
-    margin-bottom:20px;
+ display:inline-flex;padding:9px 16px;border-radius:100px;
+ background:rgba(198,11,30,.09);
+ border:1px solid rgba(198,11,30,.18);
+ color:var(--red);font-weight:800;font-size:13px;margin-bottom:20px
 }
-
 .hero h1{
-    font-family:"Playfair Display",serif;
-    font-size:clamp(55px,9vw,125px);
-    line-height:.95;
-    letter-spacing:5px;
-    margin-bottom:25px;
-    background:linear-gradient(90deg,var(--red),#8c0615,var(--yellow));
-    -webkit-background-clip:text;
-    color:transparent;
+ font-family:"Playfair Display",serif;
+ font-size:clamp(60px,10vw,125px);
+ line-height:.95;letter-spacing:5px;margin-bottom:25px;
+ background:linear-gradient(90deg,var(--red),#870613,var(--yellow));
+ -webkit-background-clip:text;color:transparent
 }
-
-.hero h2{
-    font-size:clamp(24px,4vw,46px);
-    margin-bottom:20px;
-}
-
-.hero p{
-    max-width:850px;
-    color:var(--muted);
-    font-size:18px;
-}
-
-.hero-buttons{
-    display:flex;
-    gap:12px;
-    flex-wrap:wrap;
-    margin-top:30px;
-}
+.hero h2{font-size:clamp(25px,4vw,46px);margin-bottom:20px}
+.hero p{max-width:850px;color:var(--muted);font-size:18px}
+.hero-buttons{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
 
 .btn{
-    border:0;
-    border-radius:15px;
-    padding:13px 22px;
-    font-weight:800;
-    transition:.25s;
+ border:0;border-radius:15px;padding:13px 22px;
+ font-weight:800;transition:.25s
 }
-
+.btn:hover{transform:translateY(-4px)}
 .btn-primary{
-    color:white;
-    background:linear-gradient(135deg,var(--red),#8d0615);
-    box-shadow:0 12px 28px rgba(198,11,30,.25);
+ color:#fff;
+ background:linear-gradient(135deg,var(--red),#820512);
+ box-shadow:0 12px 30px rgba(198,11,30,.25)
 }
-
 .btn-secondary{
-    background:var(--card);
-    color:var(--text);
-    border:1px solid var(--border);
+ background:var(--card);color:var(--text);
+ border:1px solid var(--border)
 }
 
-.btn:hover{
-    transform:translateY(-4px);
+section{max-width:1450px;margin:auto;padding:95px 30px}
+.section-title{text-align:center;margin-bottom:55px}
+.eyebrow{
+ color:var(--red);font-weight:900;letter-spacing:1px;font-size:13px
 }
-
-/* =========================
-   SECTION
-========================= */
-
-section{
-    max-width:1450px;
-    margin:auto;
-    padding:95px 30px;
-}
-
-.section-title{
-    text-align:center;
-    margin-bottom:55px;
-}
-
-.section-title .eyebrow{
-    color:var(--red);
-    font-weight:900;
-    letter-spacing:1px;
-    font-size:13px;
-}
-
 .section-title h2{
-    font-family:"Playfair Display",serif;
-    font-size:clamp(32px,5vw,55px);
-    margin:5px 0 10px;
+ font-family:"Playfair Display",serif;
+ font-size:clamp(32px,5vw,55px);margin:5px 0 10px
 }
-
-.section-title p{
-    max-width:800px;
-    margin:auto;
-    color:var(--muted);
-}
-
-/* =========================
-   STATS
-========================= */
+.section-title p{max-width:800px;margin:auto;color:var(--muted)}
 
 .stats{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:18px;
+ display:grid;grid-template-columns:repeat(4,1fr);gap:18px
 }
-
+.stat,.card,.team,.big-box,.comment,.quiz,.share-box{
+ background:var(--card);
+ border:1px solid var(--border);
+ box-shadow:var(--shadow2);
+ backdrop-filter:blur(12px)
+}
 .stat{
-    background:var(--card);
-    border:1px solid var(--border);
-    border-radius:22px;
-    padding:25px;
-    box-shadow:var(--shadow2);
-    position:relative;
-    overflow:hidden;
+ border-radius:23px;padding:26px;position:relative;overflow:hidden;
+ transition:.35s
 }
-
-.stat::after{
-    content:"";
-    position:absolute;
-    width:100px;
-    height:100px;
-    background:var(--yellow);
-    opacity:.12;
-    border-radius:50%;
-    right:-30px;
-    top:-30px;
+.stat:hover{transform:translateY(-8px)}
+.stat:after{
+ content:"";position:absolute;width:110px;height:110px;
+ border-radius:50%;background:var(--yellow);opacity:.12;
+ right:-30px;top:-30px
 }
+.stat-icon{font-size:30px}
+.stat strong{display:block;font-size:30px;color:var(--red)}
+.stat span{color:var(--muted)}
 
-.stat-icon{
-    font-size:30px;
+.search-box{max-width:700px;margin:auto}
+.search-box input{
+ width:100%;padding:18px 22px;border-radius:18px;
+ border:2px solid var(--border);background:var(--card);
+ color:var(--text);outline:0;font-size:16px
 }
-
-.stat strong{
-    display:block;
-    font-size:30px;
-    color:var(--red);
-}
-
-.stat span{
-    color:var(--muted);
-}
-
-/* =========================
-   CARDS
-========================= */
+.search-box input:focus{border-color:var(--red)}
 
 .cards{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:22px;
+ display:grid;grid-template-columns:repeat(3,1fr);gap:22px
 }
-
 .card{
-    background:var(--card);
-    border:1px solid var(--border);
-    border-radius:var(--radius);
-    padding:28px;
-    box-shadow:var(--shadow2);
-    transition:.35s;
-    position:relative;
-    overflow:hidden;
+ border-radius:var(--radius);padding:28px;
+ position:relative;overflow:hidden;transition:.35s
 }
-
-.card::before{
-    content:"";
-    position:absolute;
-    top:0;
-    right:0;
-    width:100%;
-    height:4px;
-    background:linear-gradient(90deg,var(--red),var(--yellow));
-    transform:scaleX(0);
-    transform-origin:right;
-    transition:.35s;
+.card:before{
+ content:"";position:absolute;top:0;right:0;width:100%;height:4px;
+ background:linear-gradient(90deg,var(--red),var(--yellow));
+ transform:scaleX(0);transform-origin:right;transition:.35s
 }
-
-.card:hover{
-    transform:translateY(-10px);
-    box-shadow:var(--shadow);
-}
-
-.card:hover::before{
-    transform:scaleX(1);
-}
-
+.card:hover{transform:translateY(-9px);box-shadow:var(--shadow)}
+.card:hover:before{transform:scaleX(1)}
 .card-icon{
-    width:60px;
-    height:60px;
-    border-radius:18px;
-    display:grid;
-    place-items:center;
-    background:rgba(198,11,30,.08);
-    font-size:30px;
-    margin-bottom:18px;
+ width:60px;height:60px;border-radius:18px;
+ display:grid;place-items:center;background:rgba(198,11,30,.08);
+ font-size:30px;margin-bottom:18px
 }
-
-.card h3{
-    font-size:23px;
-    margin-bottom:10px;
-}
-
-.card p{
-    color:var(--muted);
-    font-size:14px;
-}
-
-/* =========================
-   CITIES
-========================= */
+.card h3{font-size:23px;margin-bottom:10px}
+.card p{color:var(--muted);font-size:14px}
 
 .city-filter{
-    display:flex;
-    gap:10px;
-    flex-wrap:wrap;
-    justify-content:center;
-    margin-bottom:30px;
+ display:flex;gap:10px;justify-content:center;
+ flex-wrap:wrap;margin-bottom:30px
 }
-
 .city-filter button{
-    padding:9px 16px;
-    border-radius:100px;
-    border:1px solid var(--border);
-    background:var(--card);
-    color:var(--text);
+ padding:9px 17px;border-radius:100px;
+ border:1px solid var(--border);
+ background:var(--card);color:var(--text)
 }
-
-.city-filter button.active,
-.city-filter button:hover{
-    background:var(--red);
-    color:white;
+.city-filter button.active,.city-filter button:hover{
+ background:var(--red);color:#fff
 }
-
-.city{
-    padding:0;
-}
-
+.city{padding:0;overflow:hidden}
 .city-top{
-    padding:28px;
-    background:
-        linear-gradient(135deg,rgba(198,11,30,.95),rgba(112,0,13,.9));
-    color:white;
+ padding:28px;background:linear-gradient(135deg,var(--red),#70000d);
+ color:white
 }
+.city-top h3{font-size:30px}
+.city-content{padding:25px}
+.city-content strong{color:var(--red)}
 
-.city-top h3{
-    font-size:30px;
+.timeline{position:relative;max-width:950px;margin:auto}
+.timeline:before{
+ content:"";position:absolute;right:20px;top:0;bottom:0;
+ width:3px;background:linear-gradient(var(--red),var(--yellow))
 }
-
-.city-content{
-    padding:25px;
-}
-
-.city-content strong{
-    color:var(--red);
-}
-
-/* =========================
-   TIMELINE
-========================= */
-
-.timeline{
-    position:relative;
-    max-width:950px;
-    margin:auto;
-}
-
-.timeline::before{
-    content:"";
-    position:absolute;
-    right:20px;
-    top:0;
-    bottom:0;
-    width:3px;
-    background:linear-gradient(var(--red),var(--yellow));
-}
-
-.timeline-item{
-    position:relative;
-    padding:0 65px 40px 0;
-}
-
+.timeline-item{position:relative;padding:0 65px 40px 0}
 .timeline-dot{
-    position:absolute;
-    right:9px;
-    top:4px;
-    width:25px;
-    height:25px;
-    border-radius:50%;
-    background:var(--yellow);
-    border:5px solid var(--red);
-    z-index:2;
+ position:absolute;right:9px;top:4px;width:25px;height:25px;
+ border-radius:50%;background:var(--yellow);
+ border:5px solid var(--red);z-index:2
 }
-
 .timeline-box{
-    background:var(--card);
-    border:1px solid var(--border);
-    padding:25px;
-    border-radius:20px;
-    box-shadow:var(--shadow2);
+ background:var(--card);border:1px solid var(--border);
+ padding:25px;border-radius:20px;box-shadow:var(--shadow2)
 }
-
-.timeline-year{
-    color:var(--red);
-    font-weight:900;
-    font-size:18px;
-}
-
-/* =========================
-   FOOTBALL
-========================= */
+.timeline-year{color:var(--red);font-weight:900;font-size:18px}
 
 .football{
-    background:
-        radial-gradient(circle at 15% 20%,rgba(255,196,0,.12),transparent 25%),
-        radial-gradient(circle at 80% 70%,rgba(198,11,30,.12),transparent 30%);
+ background:
+ radial-gradient(circle at 15% 20%,rgba(255,196,0,.12),transparent 25%),
+ radial-gradient(circle at 80% 70%,rgba(198,11,30,.12),transparent 30%)
 }
-
 .football-hero{
-    padding:40px;
-    border-radius:35px;
-    background:
-        linear-gradient(135deg,#151a23,#252d3c);
-    color:white;
-    margin-bottom:30px;
-    position:relative;
-    overflow:hidden;
+ padding:42px;border-radius:35px;
+ background:linear-gradient(135deg,#151a23,#293343);
+ color:#fff;margin-bottom:30px;position:relative;overflow:hidden
 }
-
-.football-hero::after{
-    content:"⚽";
-    position:absolute;
-    font-size:220px;
-    left:-30px;
-    bottom:-80px;
-    opacity:.07;
+.football-hero:after{
+ content:"⚽";position:absolute;font-size:220px;
+ left:-30px;bottom:-80px;opacity:.07
 }
-
-.football-hero h3{
-    font-size:40px;
-    color:var(--yellow);
-}
-
+.football-hero h3{font-size:40px;color:var(--yellow)}
 .teams{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:18px;
+ display:grid;grid-template-columns:repeat(4,1fr);gap:18px
 }
-
-.team{
-    background:var(--card);
-    border:1px solid var(--border);
-    border-radius:22px;
-    padding:25px;
-    text-align:center;
-}
-
+.team{text-align:center;border-radius:22px;padding:25px;transition:.3s}
+.team:hover{transform:translateY(-8px)}
 .team-logo{
-    width:75px;
-    height:75px;
-    margin:auto auto 15px;
-    border-radius:50%;
-    display:grid;
-    place-items:center;
-    background:linear-gradient(135deg,var(--red),var(--yellow));
-    color:white;
-    font-size:34px;
+ width:75px;height:75px;margin:auto auto 15px;
+ border-radius:50%;display:grid;place-items:center;
+ background:linear-gradient(135deg,var(--red),var(--yellow));
+ color:#fff;font-size:34px
 }
+.team h4{font-size:19px}
+.team p{color:var(--muted);font-size:13px}
 
-.team h4{
-    font-size:19px;
-}
-
-.team p{
-    color:var(--muted);
-    font-size:13px;
-}
-
-/* =========================
-   FOOD
-========================= */
-
-.food-card{
-    min-height:280px;
-}
-
-.food-emoji{
-    font-size:55px;
-    margin-bottom:15px;
-}
-
-/* =========================
-   CULTURE
-========================= */
+.food-card{min-height:280px}
+.food-emoji{font-size:55px;margin-bottom:15px}
 
 .culture-box{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:25px;
+ display:grid;grid-template-columns:1fr 1fr;gap:25px
 }
-
-.big-box{
-    background:var(--card);
-    border:1px solid var(--border);
-    border-radius:30px;
-    padding:35px;
-    box-shadow:var(--shadow2);
-}
-
-.big-box h3{
-    font-size:30px;
-    margin-bottom:15px;
-}
-
-.big-box p{
-    color:var(--muted);
-}
-
-/* =========================
-   MAP
-========================= */
+.big-box{border-radius:30px;padding:35px}
+.big-box h3{font-size:30px;margin-bottom:15px}
+.big-box p{color:var(--muted)}
 
 .map-wrap{
-    height:500px;
-    border-radius:30px;
-    overflow:hidden;
-    border:2px solid var(--border);
-    box-shadow:var(--shadow);
-    background:
-        linear-gradient(135deg,#eef2f5,#d9e0e5);
+ height:500px;border-radius:30px;overflow:hidden;
+ border:2px solid var(--border);box-shadow:var(--shadow)
 }
-
-.map-wrap iframe{
-    width:100%;
-    height:100%;
-    border:0;
-}
-
-/* =========================
-   WEATHER
-========================= */
+.map-wrap iframe{width:100%;height:100%;border:0}
 
 .weather-controls{
-    display:flex;
-    justify-content:center;
-    gap:10px;
-    margin-bottom:25px;
+ display:flex;justify-content:center;gap:10px;margin-bottom:25px
 }
-
 .weather-controls select{
-    background:var(--card);
-    color:var(--text);
-    border:1px solid var(--border);
-    padding:12px 18px;
-    border-radius:13px;
+ background:var(--card);color:var(--text);
+ border:1px solid var(--border);padding:12px 18px;border-radius:13px
 }
-
 .weather-card{
-    max-width:650px;
-    margin:auto;
-    text-align:center;
-    background:linear-gradient(135deg,#1b2735,#253f55);
-    color:white;
-    padding:40px;
-    border-radius:30px;
-    box-shadow:var(--shadow);
+ max-width:650px;margin:auto;text-align:center;
+ background:linear-gradient(135deg,#192735,#263f55);
+ color:#fff;padding:40px;border-radius:30px;box-shadow:var(--shadow)
 }
-
-.weather-temp{
-    font-size:70px;
-    font-weight:900;
-    color:var(--yellow);
-}
-
+.weather-temp{font-size:70px;font-weight:900;color:var(--yellow)}
 .weather-details{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:10px;
-    margin-top:20px;
+ display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:20px
 }
-
 .weather-details div{
-    background:rgba(255,255,255,.08);
-    border-radius:15px;
-    padding:12px;
+ background:rgba(255,255,255,.08);border-radius:15px;padding:12px
 }
-
-/* =========================
-   CLOCK
-========================= */
 
 .clock-box{
-    text-align:center;
-    padding:55px;
-    background:
-        linear-gradient(135deg,var(--red),#780412);
-    color:white;
-    border-radius:35px;
-    box-shadow:var(--shadow);
+ text-align:center;padding:55px;
+ background:linear-gradient(135deg,var(--red),#780412);
+ color:#fff;border-radius:35px;box-shadow:var(--shadow)
 }
-
 .clock{
-    font-size:clamp(55px,10vw,105px);
-    font-weight:900;
-    letter-spacing:4px;
-    direction:ltr;
+ font-size:clamp(55px,10vw,105px);
+ font-weight:900;letter-spacing:4px;direction:ltr
 }
-
-.date{
-    font-size:18px;
-    opacity:.9;
-}
-
-/* =========================
-   QUIZ
-========================= */
+.date{font-size:18px;opacity:.9}
 
 .quiz{
-    max-width:850px;
-    margin:auto;
-    background:var(--card);
-    border:1px solid var(--border);
-    border-radius:30px;
-    padding:35px;
-    box-shadow:var(--shadow);
+ max-width:850px;margin:auto;border-radius:30px;padding:35px;
+ position:relative;overflow:hidden
 }
-
-.quiz-question{
-    font-size:24px;
-    font-weight:800;
-    margin-bottom:20px;
+.quiz:before{
+ content:"";position:absolute;top:0;left:0;right:0;height:6px;
+ background:linear-gradient(90deg,var(--red),var(--yellow))
 }
-
-.quiz-options{
-    display:grid;
-    gap:12px;
+.quiz-progress-wrap{margin-bottom:22px}
+.quiz-progress-top{
+ display:flex;justify-content:space-between;gap:10px;
+ color:var(--muted);font-size:13px;font-weight:800;margin-bottom:8px
 }
-
+.quiz-progress{
+ height:10px;background:rgba(127,127,127,.15);
+ border-radius:999px;overflow:hidden
+}
+.quiz-progress-bar{
+ height:100%;width:0;border-radius:999px;
+ background:linear-gradient(90deg,var(--red),var(--yellow));
+ transition:.4s
+}
+.quiz-question{font-size:24px;font-weight:800;margin-bottom:20px}
+.quiz-options{display:grid;gap:12px}
 .quiz-option{
-    text-align:right;
-    padding:14px 18px;
-    border-radius:14px;
-    border:1px solid var(--border);
-    background:var(--bg);
-    color:var(--text);
-    transition:.25s;
+ text-align:right;padding:15px 18px;border-radius:15px;
+ border:1px solid var(--border);background:var(--bg);
+ color:var(--text);transition:.25s
 }
-
-.quiz-option:hover{
-    border-color:var(--red);
-    transform:translateX(-4px);
-}
-
+.quiz-option:hover{border-color:var(--red);transform:translateX(-4px)}
+.quiz-option.correct{border-color:#16a34a;background:rgba(22,163,74,.1)}
+.quiz-option.wrong{border-color:#dc2626;background:rgba(220,38,38,.1)}
+.quiz-option:disabled{opacity:1}
 .quiz-result{
-    margin-top:20px;
-    padding:15px;
-    border-radius:14px;
-    background:rgba(255,196,0,.12);
-    display:none;
+ margin-top:20px;padding:15px;border-radius:14px;
+ background:rgba(255,196,0,.12);display:none
+}
+.quiz-final{
+ display:none;text-align:center;margin-top:22px;padding:30px;
+ border-radius:25px;
+ background:linear-gradient(135deg,rgba(198,11,30,.1),rgba(255,196,0,.16));
+ border:1px solid rgba(198,11,30,.16)
+}
+.quiz-final.show{display:block;animation:finalIn .45s}
+.quiz-final-score{
+ font-size:60px;font-weight:900;color:var(--red);line-height:1.1
+}
+.quiz-final-title{font-size:26px;font-weight:900}
+.quiz-final-sub{color:var(--muted);margin:10px 0 18px}
+@keyframes finalIn{
+ from{opacity:0;transform:translateY(15px) scale(.97)}
+ to{opacity:1;transform:none}
 }
 
-/* =========================
-   RATING / COMMENTS
-========================= */
-
-.rating{
-    text-align:center;
-    margin:30px auto;
-}
-
-.stars{
-    direction:ltr;
-    display:flex;
-    justify-content:center;
-    gap:5px;
-}
-
+.rating{text-align:center}
+.stars{direction:ltr;display:flex;justify-content:center;gap:5px}
 .star{
-    font-size:38px;
-    cursor:pointer;
-    filter:grayscale(1);
-    transition:.2s;
+ font-size:40px;cursor:pointer;filter:grayscale(1);transition:.2s
 }
-
-.star.active,
-.star:hover{
-    filter:grayscale(0);
-    transform:scale(1.12);
+.star.active,.star:hover{filter:grayscale(0);transform:scale(1.12)}
+.comments{
+ margin-top:35px;display:grid;grid-template-columns:repeat(3,1fr);gap:18px
 }
+.comment{border-radius:20px;padding:20px}
+.comment-stars{color:var(--yellow)}
 
 .comment-form{
-    max-width:800px;
-    margin:auto;
-    display:grid;
-    gap:12px;
+ max-width:800px;margin:auto;display:grid;gap:12px
 }
-
 .input{
-    width:100%;
-    padding:14px 16px;
-    border-radius:14px;
-    border:1px solid var(--border);
-    background:var(--card);
-    color:var(--text);
-    outline:none;
+ width:100%;padding:14px 16px;border-radius:14px;
+ border:1px solid var(--border);background:var(--card);
+ color:var(--text);outline:0
 }
-
-textarea.input{
-    min-height:130px;
-    resize:vertical;
-}
-
-.comments{
-    margin-top:35px;
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:18px;
-}
-
-.comment{
-    background:var(--card);
-    border:1px solid var(--border);
-    border-radius:20px;
-    padding:20px;
-}
-
-.comment-stars{
-    color:var(--yellow);
-}
-
-/* =========================
-   SHARE / QR
-========================= */
+textarea.input{min-height:130px;resize:vertical}
 
 .share-box{
-    display:grid;
-    grid-template-columns:1fr 300px;
-    gap:25px;
-    align-items:center;
-    background:var(--card);
-    border:1px solid var(--border);
-    padding:35px;
-    border-radius:30px;
-    box-shadow:var(--shadow2);
+ display:grid;grid-template-columns:1fr 300px;gap:25px;
+ align-items:center;padding:35px;border-radius:30px
 }
-
 .qr{
-    background:white;
-    padding:15px;
-    border-radius:20px;
-    width:230px;
-    height:230px;
-    margin:auto;
+ width:230px;height:230px;background:#fff;
+ padding:15px;border-radius:20px;margin:auto
 }
-
-.qr img{
-    width:100%;
-    height:100%;
-}
-
-/* =========================
-   GROUP
-========================= */
+.qr img{width:100%;height:100%}
 
 .group{
-    background:
-        linear-gradient(135deg,#1b1e27,#11131a);
-    color:white;
-    border-radius:35px;
-    padding:50px;
-    text-align:center;
-    position:relative;
-    overflow:hidden;
+ background:linear-gradient(135deg,#1b1e27,#101218);
+ color:#fff;border-radius:35px;padding:50px;
+ text-align:center;position:relative;overflow:hidden
 }
-
-.group::before,
-.group::after{
-    content:"";
-    position:absolute;
-    width:250px;
-    height:250px;
-    border-radius:50%;
-    background:var(--red);
-    opacity:.12;
-}
-
-.group::before{
-    top:-120px;
-    right:-80px;
-}
-
-.group::after{
-    bottom:-130px;
-    left:-90px;
-}
-
 .group h2{
-    font-family:"Playfair Display",serif;
-    font-size:45px;
-    color:var(--yellow);
+ font-family:"Playfair Display",serif;
+ font-size:45px;color:var(--yellow)
 }
-
 .leader{
-    margin:25px auto;
-    padding:20px;
-    max-width:500px;
-    background:rgba(255,255,255,.07);
-    border-radius:20px;
+ margin:25px auto;padding:20px;max-width:500px;
+ background:rgba(255,255,255,.07);border-radius:20px
 }
-
 .members{
-    display:flex;
-    flex-wrap:wrap;
-    justify-content:center;
-    gap:10px;
+ display:flex;flex-wrap:wrap;justify-content:center;gap:10px
 }
-
 .member{
-    padding:9px 15px;
-    border-radius:100px;
-    background:rgba(255,255,255,.08);
+ padding:9px 15px;border-radius:100px;background:rgba(255,255,255,.08)
 }
-
-/* =========================
-   NOTIFICATION
-========================= */
-
-#notification{
-    position:fixed;
-    left:25px;
-    bottom:25px;
-    background:#151923;
-    color:white;
-    padding:15px 20px;
-    border-radius:16px;
-    box-shadow:var(--shadow);
-    transform:translateY(150px);
-    opacity:0;
-    transition:.4s;
-    z-index:9000;
-}
-
-#notification.show{
-    transform:translateY(0);
-    opacity:1;
-}
-
-/* =========================
-   SEARCH
-========================= */
-
-.search-box{
-    max-width:700px;
-    margin:0 auto 35px;
-    position:relative;
-}
-
-.search-box input{
-    width:100%;
-    padding:17px 22px;
-    border-radius:17px;
-    border:2px solid var(--border);
-    background:var(--card);
-    color:var(--text);
-    outline:none;
-    font-size:16px;
-}
-
-.search-box input:focus{
-    border-color:var(--red);
-}
-
-/* =========================
-   BACK TOP
-========================= */
-
-#backTop{
-    position:fixed;
-    bottom:25px;
-    right:25px;
-    width:50px;
-    height:50px;
-    border:0;
-    border-radius:16px;
-    background:var(--red);
-    color:white;
-    font-size:20px;
-    z-index:8000;
-    display:none;
-    box-shadow:0 10px 25px rgba(198,11,30,.3);
-}
-
-/* =========================
-   FOOTER
-========================= */
 
 footer{
-    background:#0d1016;
-    color:white;
-    padding:60px 30px 30px;
-    margin-top:50px;
+ background:#0d1016;color:#fff;padding:60px 30px 30px;margin-top:50px
 }
-
 .footer-grid{
-    max-width:1300px;
-    margin:auto;
-    display:grid;
-    grid-template-columns:2fr 1fr 1fr;
-    gap:35px;
+ max-width:1300px;margin:auto;
+ display:grid;grid-template-columns:2fr 1fr 1fr;gap:35px
 }
-
-footer h3{
-    color:var(--yellow);
-    margin-bottom:12px;
-}
-
-footer p,
-footer li{
-    color:#aeb5c2;
-    font-size:13px;
-}
-
-footer ul{
-    list-style:none;
-}
-
+footer h3{color:var(--yellow);margin-bottom:12px}
+footer p,footer li{color:#aeb5c2;font-size:13px}
+footer ul{list-style:none}
 .copyright{
-    text-align:center;
-    border-top:1px solid rgba(255,255,255,.1);
-    margin-top:40px;
-    padding-top:25px;
-    color:#87909d;
+ text-align:center;border-top:1px solid rgba(255,255,255,.1);
+ margin-top:40px;padding-top:25px;color:#87909d
 }
 
-/* =========================
-   RESPONSIVE
-========================= */
+#notification{
+ position:fixed;left:25px;bottom:25px;
+ background:#151923;color:#fff;padding:15px 20px;
+ border-radius:16px;box-shadow:var(--shadow);
+ transform:translateY(150px);opacity:0;transition:.4s;z-index:9000
+}
+#notification.show{transform:translateY(0);opacity:1}
+#backTop{
+ position:fixed;bottom:25px;right:25px;
+ width:50px;height:50px;border:0;border-radius:16px;
+ background:var(--red);color:#fff;font-size:20px;
+ z-index:8000;display:none;box-shadow:0 10px 25px rgba(198,11,30,.3)
+}
 
 @media(max-width:1050px){
-    .nav-links{
-        display:none;
-    }
-
-    .stats{
-        grid-template-columns:repeat(2,1fr);
-    }
-
-    .cards,
-    .comments{
-        grid-template-columns:repeat(2,1fr);
-    }
-
-    .teams{
-        grid-template-columns:repeat(2,1fr);
-    }
+ .nav-links{display:none}
+ .stats{grid-template-columns:repeat(2,1fr)}
+ .cards,.comments{grid-template-columns:repeat(2,1fr)}
+ .teams{grid-template-columns:repeat(2,1fr)}
 }
-
 @media(max-width:700px){
-    .hero{
-        padding:65px 25px;
-    }
-
-    section{
-        padding:65px 18px;
-    }
-
-    .stats,
-    .cards,
-    .comments,
-    .teams,
-    .culture-box,
-    .share-box,
-    .footer-grid{
-        grid-template-columns:1fr;
-    }
-
-    .flag{
-        font-size:27px;
-    }
-
-    .flag.one{left:8px}
-    .flag.two{right:8px}
-
-    .hero h1{
-        font-size:55px;
-    }
-
-    .share-box{
-        text-align:center;
-    }
-
-    .football-hero,
-    .group{
-        padding:30px 22px;
-    }
-
-    .clock-box{
-        padding:35px 15px;
-    }
-
-    .weather-details{
-        grid-template-columns:1fr;
-    }
+ .hero{padding:65px 25px}
+ section{padding:65px 18px}
+ .stats,.cards,.comments,.teams,.culture-box,.share-box,.footer-grid{
+  grid-template-columns:1fr
+ }
+ .flag{font-size:27px}
+ .hero h1{font-size:55px}
+ .football-hero,.group{padding:30px 22px}
+ .weather-details{grid-template-columns:1fr}
+ .quiz{padding:25px 18px}
+ .quiz-question{font-size:20px}
+ .quiz-final-score{font-size:48px}
+ .share-box{text-align:center}
 }
 </style>
 </head>
 
 <body>
 
-<!-- LOADER -->
 <div id="loader">
-    <div class="loader-logo">HISPANESH</div>
-    <div class="loader-line"></div>
-    <div style="color:#aaa">Bienvenido a España 🇪🇸</div>
+ <div class="loader-logo">HISPANESH</div>
+ <div class="loader-line"></div>
+ <div style="color:#aaa">Bienvenido a España 🇪🇸</div>
 </div>
 
-<!-- FLOATING FLAGS -->
 <div class="flag one">🇪🇸</div>
 <div class="flag two">🇪🇸</div>
 <div class="flag three">🇪🇸</div>
 <div class="flag four">🇪🇸</div>
 
-<!-- HEADER -->
 <header>
 <nav class="nav">
 
 <a href="#home" class="logo">
-    <div class="logo-mark">🇪🇸</div>
-    <div class="logo-text">
-        HISPANESH
-        <small>ESPAÑA • CULTURA • FÚTBOL</small>
-    </div>
+ <div class="logo-mark">🇪🇸</div>
+ <div class="logo-text">
+  HISPANESH
+  <small>ESPAÑA • CULTURA • FÚTBOL</small>
+ </div>
 </a>
 
 <div class="nav-links">
-    <a href="#cities">شهرها</a>
-    <a href="#places">دیدنی‌ها</a>
-    <a href="#history">تاریخ</a>
-    <a href="#culture">فرهنگ</a>
-    <a href="#food">غذا</a>
-    <a href="#football">فوتبال</a>
-    <a href="#travel">سفر</a>
-    <a href="#quiz">چالش</a>
+ <a href="#cities">شهرها</a>
+ <a href="#places">دیدنی‌ها</a>
+ <a href="#history">تاریخ</a>
+ <a href="#culture">فرهنگ</a>
+ <a href="#food">غذا</a>
+ <a href="#football">فوتبال</a>
+ <a href="#travel">سفر</a>
+ <a href="#quiz">چالش</a>
 </div>
 
 <div class="actions">
-    <button class="icon-btn" id="langBtn" title="تغییر زبان">🇪🇸</button>
-    <button class="icon-btn" id="themeBtn" title="تغییر تم">🌙</button>
+ <button class="icon-btn" id="langBtn" title="تغییر زبان">🇪🇸</button>
+ <button class="icon-btn" id="themeBtn">🌙</button>
 </div>
 
 </nav>
@@ -1238,1568 +565,1618 @@ footer ul{
 
 <main>
 
-<!-- HERO -->
 <section class="hero" id="home">
-<div class="hero-grid"></div>
+ <div class="hero-grid"></div>
+ <div class="hero-content">
 
-<div class="hero-content">
+  <div class="badge" id="heroBadge">🇪🇸 پروژه پژوهشی گروه دانش • Spain Digital Experience</div>
 
-<div class="badge">🇪🇸 پروژه پژوهشی گروه دانش • Spain Digital Experience</div>
+  <h1>HISPANESH</h1>
 
-<h1>HISPANESH</h1>
+  <h2 id="heroTitle">اسپانیا را فقط نبین؛ کشفش کن.</h2>
 
-<h2 id="heroTitle">اسپانیا را فقط نبین؛ کشفش کن.</h2>
+  <p id="heroText">
+   به HISPANESH خوش آمدید؛ یک تجربه دیجیتال برای شناخت یکی از جذاب‌ترین کشورهای اروپا.
+   در اینجا تاریخ، شهرها، فرهنگ، فلامنکو، غذا، فوتبال، جاذبه‌های گردشگری،
+   آب‌وهوا، سبک زندگی و فرصت‌ها و چالش‌های اسپانیا را بررسی می‌کنیم.
+  </p>
 
-<p id="heroText">
-به HISPANESH خوش آمدید؛ یک تجربه دیجیتال برای شناخت یکی از جذاب‌ترین کشورهای اروپا.
-در اینجا از تاریخ چند هزارساله و شهرهای تاریخی اسپانیا گرفته تا فرهنگ، فلامنکو،
-لباس‌های سنتی، غذاهای مشهور، فوتبال، جاذبه‌های گردشگری، آب‌وهوا، سبک زندگی،
-فرصت‌ها و چالش‌های این کشور را بررسی می‌کنیم.
-این سایت با هدف ارائه یک پروژه کامل و جذاب دانش‌آموزی طراحی شده است.
-</p>
+  <div class="hero-buttons">
+   <a href="#cities" class="btn btn-primary" id="startBtn">شروع سفر 🇪🇸</a>
+   <a href="#history" class="btn btn-secondary" id="historyBtn">کشف تاریخ اسپانیا</a>
+  </div>
 
-<div class="hero-buttons">
-<a href="#cities" class="btn btn-primary">شروع سفر 🇪🇸</a>
-<a href="#history" class="btn btn-secondary">کشف تاریخ اسپانیا</a>
-</div>
-
-</div>
+ </div>
 </section>
 
-<!-- STATS -->
 <section>
-<div class="section-title">
-<div class="eyebrow">SPAIN AT A GLANCE</div>
-<h2>اسپانیا در چند عدد</h2>
-<p>
-قبل از شروع سفر، چند حقیقت سریع درباره کشوری که در جنوب غربی اروپا قرار گرفته است.
-</p>
-</div>
+ <div class="section-title">
+  <div class="eyebrow">SPAIN AT A GLANCE</div>
+  <h2 id="statsTitle">اسپانیا در چند عدد</h2>
+  <p id="statsText">قبل از شروع سفر، چند حقیقت سریع درباره اسپانیا.</p>
+ </div>
 
-<div class="stats">
-
-<div class="stat">
-<div class="stat-icon">👥</div>
-<strong>۴۸M+</strong>
-<span>جمعیت تقریبی</span>
-</div>
-
-<div class="stat">
-<div class="stat-icon">🌍</div>
-<strong>۵۰۰K+</strong>
-<span>کیلومتر مربع مساحت</span>
-</div>
-
-<div class="stat">
-<div class="stat-icon">💶</div>
-<strong>EUR</strong>
-<span>واحد پول؛ یورو</span>
-</div>
-
-<div class="stat">
-<div class="stat-icon">🇪🇺</div>
-<strong>EU</strong>
-<span>عضو اتحادیه اروپا</span>
-</div>
-
-</div>
+ <div class="stats">
+  <div class="stat">
+   <div class="stat-icon">👥</div>
+   <strong>۴۸M+</strong>
+   <span id="stat1">جمعیت تقریبی</span>
+  </div>
+  <div class="stat">
+   <div class="stat-icon">🌍</div>
+   <strong>۵۰۰K+</strong>
+   <span id="stat2">کیلومتر مربع مساحت</span>
+  </div>
+  <div class="stat">
+   <div class="stat-icon">💶</div>
+   <strong>EUR</strong>
+   <span id="stat3">واحد پول؛ یورو</span>
+  </div>
+  <div class="stat">
+   <div class="stat-icon">🇪🇺</div>
+   <strong>EU</strong>
+   <span id="stat4">عضو اتحادیه اروپا</span>
+  </div>
+ </div>
 </section>
 
-<!-- SEARCH -->
 <section>
-<div class="section-title">
-<div class="eyebrow">EXPLORE</div>
-<h2>🔎 جست‌وجوی HISPANESH</h2>
-<p>
-هر چیزی درباره اسپانیا می‌خواهی پیدا کنی؟ نام شهر، غذا، فرهنگ یا فوتبال را جست‌وجو کن.
-</p>
-</div>
-
-<div class="search-box">
-<input id="searchInput" type="search" placeholder="مثلاً مادرید، فلامنکو، پائیا، فوتبال...">
-</div>
+ <div class="section-title">
+  <div class="eyebrow">EXPLORE</div>
+  <h2 id="searchTitle">🔎 جست‌وجوی HISPANESH</h2>
+  <p id="searchText">نام شهر، غذا، فرهنگ یا فوتبال را جست‌وجو کن.</p>
+ </div>
+ <div class="search-box">
+  <input id="searchInput" placeholder="مثلاً مادرید، فلامنکو، پائیا، فوتبال...">
+ </div>
 </section>
 
-<!-- CITIES -->
 <section id="cities">
-<div class="section-title">
-<div class="eyebrow">SPANISH CITIES</div>
-<h2>🏙️ شهرهای اسپانیا</h2>
-<p>
-اسپانیا فقط مادرید و بارسلونا نیست؛ هر شهر داستان، معماری، غذا و هویت خاص خودش را دارد.
-</p>
-</div>
+ <div class="section-title">
+  <div class="eyebrow">SPANISH CITIES</div>
+  <h2 id="citiesTitle">🏙️ شهرهای اسپانیا</h2>
+  <p id="citiesText">هر شهر داستان، معماری، غذا و هویت خاص خودش را دارد.</p>
+ </div>
 
-<div class="city-filter">
-<button class="active" data-filter="all">همه</button>
-<button data-filter="capital">پایتخت</button>
-<button data-filter="coast">ساحلی</button>
-<button data-filter="history">تاریخی</button>
-</div>
+ <div class="city-filter">
+  <button class="active" data-filter="all" id="filterAll">همه</button>
+  <button data-filter="capital" id="filterCapital">پایتخت</button>
+  <button data-filter="coast" id="filterCoast">ساحلی</button>
+  <button data-filter="history" id="filterHistory">تاریخی</button>
+ </div>
 
-<div class="cards" id="cityGrid">
+ <div class="cards">
 
-<article class="card city" data-category="capital history">
-<div class="city-top">
-<h3>🇪🇸 مادرید</h3>
-</div>
-<div class="city-content">
-<p>
-مادرید پایتخت اسپانیا و یکی از مهم‌ترین مراکز سیاسی، اقتصادی و فرهنگی کشور است.
-این شهر در مرکز شبه‌جزیره ایبری قرار دارد و ترکیبی از ساختمان‌های تاریخی،
-خیابان‌های مدرن، موزه‌های مشهور، پارک‌های بزرگ و زندگی شهری پرانرژی را ارائه می‌کند.
-</p>
-<br>
-<p><strong>نکته مهم:</strong> موزه پرادو، کاخ سلطنتی و میدان پلازا مایور از نمادهای شناخته‌شده مادرید هستند.</p>
-</div>
-</article>
+  <article class="card city" data-category="capital history">
+   <div class="city-top"><h3>🇪🇸 <span data-fa="مادرید" data-es="Madrid">مادرید</span></h3></div>
+   <div class="city-content">
+    <p class="city1">
+     مادرید پایتخت اسپانیا و یکی از مهم‌ترین مراکز سیاسی، اقتصادی و فرهنگی کشور است.
+     این شهر ترکیبی از ساختمان‌های تاریخی، موزه‌ها، پارک‌ها و زندگی شهری پرانرژی دارد.
+    </p>
+   </div>
+  </article>
 
-<article class="card city" data-category="coast">
-<div class="city-top">
-<h3>🌊 بارسلونا</h3>
-</div>
-<div class="city-content">
-<p>
-بارسلونا مرکز کاتالونیا و یکی از مشهورترین شهرهای گردشگری اروپا است.
-این شهر به دلیل معماری منحصربه‌فرد آنتونی گائودی، خیابان لاس رامبلاس،
-ساحل مدیترانه و فضای هنری خود شهرت جهانی دارد.
-</p>
-<br>
-<p><strong>نکته مهم:</strong> کلیسای ساگرادا فامیلیا یکی از معروف‌ترین نمادهای معماری شهر است.</p>
-</div>
-</article>
+  <article class="card city" data-category="coast">
+   <div class="city-top"><h3>🌊 <span data-fa="بارسلونا" data-es="Barcelona">بارسلونا</span></h3></div>
+   <div class="city-content">
+    <p class="city2">
+     بارسلونا مرکز کاتالونیا و یکی از مشهورترین شهرهای گردشگری اروپا است.
+     این شهر به معماری گائودی، ساحل مدیترانه و فضای هنری خود شهرت دارد.
+    </p>
+   </div>
+  </article>
 
-<article class="card city" data-category="history">
-<div class="city-top">
-<h3>🏰 سویل</h3>
-</div>
-<div class="city-content">
-<p>
-سویل یکی از مهم‌ترین شهرهای اندلس است و ارتباط عمیقی با تاریخ، معماری،
-فلامنکو و فرهنگ جنوب اسپانیا دارد. کوچه‌های قدیمی، حیاط‌های سنتی و بناهای
-تاریخی باعث شده‌اند فضای شهر بسیار متفاوت باشد.
-</p>
-<br>
-<p><strong>نکته مهم:</strong> سویل یکی از مراکز مهم سنت فلامنکو به شمار می‌رود.</p>
-</div>
-</article>
+  <article class="card city" data-category="history">
+   <div class="city-top"><h3>🏰 <span data-fa="سویل" data-es="Sevilla">سویل</span></h3></div>
+   <div class="city-content">
+    <p class="city3">
+     سویل یکی از مهم‌ترین شهرهای اندلس است و ارتباط عمیقی با تاریخ،
+     معماری و فلامنکو دارد.
+    </p>
+   </div>
+  </article>
 
-<article class="card city" data-category="coast">
-<div class="city-top">
-<h3>🏖️ والنسیا</h3>
-</div>
-<div class="city-content">
-<p>
-والنسیا در ساحل شرقی اسپانیا قرار دارد و ترکیبی جذاب از تاریخ،
-ساحل مدیترانه، معماری مدرن و غذاهای مشهور است.
-این شهر ارتباط بسیار نزدیکی با پائیا دارد.
-</p>
-<br>
-<p><strong>نکته مهم:</strong> شهر هنر و علوم یکی از شاخص‌ترین مجموعه‌های معماری مدرن شهر است.</p>
-</div>
-</article>
+  <article class="card city" data-category="coast">
+   <div class="city-top"><h3>🏖️ <span data-fa="والنسیا" data-es="Valencia">والنسیا</span></h3></div>
+   <div class="city-content">
+    <p class="city4">
+     والنسیا در ساحل شرقی اسپانیا قرار دارد و با ساحل مدیترانه،
+     معماری مدرن و پائیا شناخته می‌شود.
+    </p>
+   </div>
+  </article>
 
-<article class="card city" data-category="history">
-<div class="city-top">
-<h3>🕌 گرانادا</h3>
-</div>
-<div class="city-content">
-<p>
-گرانادا یکی از مهم‌ترین شهرهای تاریخی اندلس است.
-میراث اسلامی، معماری اسپانیایی و فضای کوهستانی اطراف شهر،
-چهره‌ای متفاوت از اسپانیا ایجاد کرده‌اند.
-</p>
-<br>
-<p><strong>نکته مهم:</strong> کاخ الحمرا مهم‌ترین نماد تاریخی گرانادا است.</p>
-</div>
-</article>
+  <article class="card city" data-category="history">
+   <div class="city-top"><h3>🕌 <span data-fa="گرانادا" data-es="Granada">گرانادا</span></h3></div>
+   <div class="city-content">
+    <p class="city5">
+     گرانادا یکی از مهم‌ترین شهرهای تاریخی اندلس است.
+     کاخ الحمرا مهم‌ترین نماد تاریخی این شهر محسوب می‌شود.
+    </p>
+   </div>
+  </article>
 
-<article class="card city" data-category="coast">
-<div class="city-top">
-<h3>🌴 مالاگا</h3>
-</div>
-<div class="city-content">
-<p>
-مالاگا یکی از شهرهای مهم ساحلی جنوب اسپانیاست.
-آب‌وهوای مدیترانه‌ای، سواحل، بندر، موزه‌ها و نزدیکی به دیگر شهرهای اندلس
-آن را به مقصدی محبوب تبدیل کرده‌اند.
-</p>
-<br>
-<p><strong>نکته مهم:</strong> مالاگا ارتباط تاریخی و فرهنگی قدرتمندی با هنر و مدیترانه دارد.</p>
-</div>
-</article>
+  <article class="card city" data-category="coast">
+   <div class="city-top"><h3>🌴 <span data-fa="مالاگا" data-es="Málaga">مالاگا</span></h3></div>
+   <div class="city-content">
+    <p class="city6">
+     مالاگا یکی از شهرهای مهم ساحلی جنوب اسپانیاست و
+     آب‌وهوای مدیترانه‌ای و سواحل زیبایی دارد.
+    </p>
+   </div>
+  </article>
 
-</div>
+ </div>
 </section>
 
-<!-- PLACES -->
 <section id="places">
-<div class="section-title">
-<div class="eyebrow">PLACES TO DISCOVER</div>
-<h2>📍 جاذبه‌های دیدنی اسپانیا</h2>
-<p>
-از کاخ‌های تاریخی تا معماری مدرن؛ اسپانیا مجموعه‌ای فوق‌العاده متنوع از جاذبه‌ها دارد.
-</p>
-</div>
+ <div class="section-title">
+  <div class="eyebrow">PLACES TO DISCOVER</div>
+  <h2 id="placesTitle">📍 جاذبه‌های دیدنی اسپانیا</h2>
+  <p id="placesText">از کاخ‌های تاریخی تا معماری مدرن؛ اسپانیا جاذبه‌های متنوعی دارد.</p>
+ </div>
 
-<div class="cards">
+ <div class="cards">
 
-<div class="card">
-<div class="card-icon">🏰</div>
-<h3>کاخ الحمرا</h3>
-<p>
-الحمرا در گرانادا یکی از برجسته‌ترین مجموعه‌های تاریخی اسپانیاست.
-این مجموعه دارای کاخ‌ها، باغ‌ها، حیاط‌ها و جزئیات معماری بسیار ظریف است.
-الحمرا یادگاری مهم از دوره اسلامی اندلس و یکی از شناخته‌شده‌ترین بناهای تاریخی اروپا است.
-</p>
-</div>
+  <div class="card">
+   <div class="card-icon">🏰</div>
+   <h3 data-fa="کاخ الحمرا" data-es="La Alhambra">کاخ الحمرا</h3>
+   <p class="place1">
+    الحمرا در گرانادا یکی از برجسته‌ترین مجموعه‌های تاریخی اسپانیاست.
+    این مجموعه دارای کاخ‌ها، باغ‌ها و جزئیات معماری زیباست.
+   </p>
+  </div>
 
-<div class="card">
-<div class="card-icon">⛪</div>
-<h3>ساگرادا فامیلیا</h3>
-<p>
-این کلیسای مشهور بارسلونا از آثار برجسته آنتونی گائودی است.
-ساختمان آن به دلیل فرم‌های پیچیده، جزئیات الهام‌گرفته از طبیعت
-و سبک معماری متفاوتش در سراسر جهان شناخته شده است.
-</p>
-</div>
+  <div class="card">
+   <div class="card-icon">⛪</div>
+   <h3 data-fa="ساگرادا فامیلیا" data-es="Sagrada Familia">ساگرادا فامیلیا</h3>
+   <p class="place2">
+    کلیسای مشهور بارسلونا از آثار برجسته آنتونی گائودی است.
+   </p>
+  </div>
 
-<div class="card">
-<div class="card-icon">🏛️</div>
-<h3>کاخ سلطنتی مادرید</h3>
-<p>
-یکی از مهم‌ترین بناهای سلطنتی اسپانیا که معماری باشکوه و مجموعه‌ای
-از فضاهای تاریخی و هنری دارد. این بنا بخش مهمی از تاریخ سیاسی و سلطنتی کشور را روایت می‌کند.
-</p>
-</div>
+  <div class="card">
+   <div class="card-icon">🏛️</div>
+   <h3 data-fa="کاخ سلطنتی مادرید" data-es="Palacio Real de Madrid">کاخ سلطنتی مادرید</h3>
+   <p class="place3">
+    یکی از مهم‌ترین بناهای سلطنتی اسپانیا با معماری باشکوه.
+   </p>
+  </div>
 
-<div class="card">
-<div class="card-icon">🌳</div>
-<h3>پارک رتیرو</h3>
-<p>
-پارک رتیرو یکی از فضاهای سبز معروف مادرید است.
-فضاهای آرام، درختان، دریاچه و بناهای تاریخی آن باعث شده‌اند
-این پارک در قلب شهر به مکانی محبوب برای استراحت تبدیل شود.
-</p>
-</div>
+  <div class="card">
+   <div class="card-icon">🌳</div>
+   <h3 data-fa="پارک رتیرو" data-es="Parque del Retiro">پارک رتیرو</h3>
+   <p class="place4">
+    یکی از فضاهای سبز معروف مادرید با دریاچه و بناهای تاریخی.
+   </p>
+  </div>
 
-<div class="card">
-<div class="card-icon">🏟️</div>
-<h3>میدان اسپانیا</h3>
-<p>
-در شهرهای مختلف اسپانیا میدان‌هایی با اهمیت تاریخی و شهری وجود دارند.
-میدان اسپانیا در سویل از نمونه‌های مشهور معماری باشکوه و فضای شهری اندلس است.
-</p>
-</div>
+  <div class="card">
+   <div class="card-icon">🏟️</div>
+   <h3 data-fa="میدان اسپانیا" data-es="Plaza de España">میدان اسپانیا</h3>
+   <p class="place5">
+    میدان معروف سویل با معماری باشکوه و فضای شهری زیبا.
+   </p>
+  </div>
 
-<div class="card">
-<div class="card-icon">🌊</div>
-<h3>سواحل مدیترانه</h3>
-<p>
-ساحل مدیترانه بخش مهمی از هویت گردشگری اسپانیا است.
-شهرهای ساحلی بسیاری در شرق و جنوب کشور قرار گرفته‌اند و ترکیبی از
-دریا، غذا، معماری و زندگی شهری را ارائه می‌کنند.
-</p>
-</div>
+  <div class="card">
+   <div class="card-icon">🌊</div>
+   <h3 data-fa="سواحل مدیترانه" data-es="Costas del Mediterráneo">سواحل مدیترانه</h3>
+   <p class="place6">
+    سواحل مدیترانه بخش مهمی از گردشگری اسپانیا هستند.
+   </p>
+  </div>
 
-</div>
+ </div>
 </section>
 
-<!-- MAP -->
 <section id="map">
-<div class="section-title">
-<div class="eyebrow">INTERACTIVE MAP</div>
-<h2>🗺️ نقشه اسپانیا</h2>
-<p>موقعیت جغرافیایی اسپانیا و شهرهای مختلف آن را روی نقشه بررسی کن.</p>
-</div>
+ <div class="section-title">
+  <div class="eyebrow">INTERACTIVE MAP</div>
+  <h2 id="mapTitle">🗺️ نقشه اسپانیا</h2>
+  <p id="mapText">موقعیت اسپانیا و شهرهای مختلف آن را روی نقشه بررسی کن.</p>
+ </div>
 
-<div class="map-wrap">
-<iframe
-src="https://www.openstreetmap.org/export/embed.html?bbox=-9.5%2C35.8%2C4.5%2C43.9&layer=mapnik"
-loading="lazy">
-</iframe>
-</div>
+ <div class="map-wrap">
+  <iframe
+   src="https://www.openstreetmap.org/export/embed.html?bbox=-9.5%2C35.8%2C4.5%2C43.9&layer=mapnik"
+   loading="lazy">
+  </iframe>
+ </div>
 </section>
 
-<!-- HISTORY -->
 <section id="history">
-<div class="section-title">
-<div class="eyebrow">HISTORY OF SPAIN</div>
-<h2>📜 تاریخ اسپانیا؛ سفری در زمان</h2>
-<p>
-تاریخ اسپانیا نتیجه برخورد و ترکیب تمدن‌های مختلف در شبه‌جزیره ایبری است.
-</p>
-</div>
+ <div class="section-title">
+  <div class="eyebrow">HISTORY OF SPAIN</div>
+  <h2 id="historyTitle">📜 تاریخ اسپانیا؛ سفری در زمان</h2>
+  <p id="historyText">تاریخ اسپانیا نتیجه برخورد تمدن‌های مختلف در شبه‌جزیره ایبری است.</p>
+ </div>
 
-<div class="timeline">
+ <div class="timeline">
 
-<div class="timeline-item">
-<div class="timeline-dot"></div>
-<div class="timeline-box">
-<div class="timeline-year">دوران باستان</div>
-<h3>تمدن‌های اولیه</h3>
-<p>
-پیش از شکل‌گیری اسپانیای امروزی، اقوام و تمدن‌های مختلفی در شبه‌جزیره ایبری
-زندگی می‌کردند. فنیقی‌ها، یونانی‌ها، کارتاژی‌ها و سپس رومی‌ها در این منطقه حضور داشتند.
-</p>
-</div>
-</div>
+  <div class="timeline-item">
+   <div class="timeline-dot"></div>
+   <div class="timeline-box">
+    <div class="timeline-year">دوران باستان</div>
+    <h3 data-fa="تمدن‌های اولیه" data-es="Civilizaciones antiguas">تمدن‌های اولیه</h3>
+    <p class="history1">اقوام و تمدن‌های مختلفی در شبه‌جزیره ایبری زندگی می‌کردند و رومی‌ها نیز بعدها در این منطقه حضور یافتند.</p>
+   </div>
+  </div>
 
-<div class="timeline-item">
-<div class="timeline-dot"></div>
-<div class="timeline-box">
-<div class="timeline-year">دوران روم</div>
-<h3>هیسپانیا در امپراتوری روم</h3>
-<p>
-رومی‌ها بخش بزرگی از شبه‌جزیره را تحت کنترل گرفتند و شهرها،
-جاده‌ها، پل‌ها و زیرساخت‌های متعددی ایجاد کردند.
-اثر این دوره هنوز در معماری و باستان‌شناسی اسپانیا دیده می‌شود.
-</p>
-</div>
-</div>
+  <div class="timeline-item">
+   <div class="timeline-dot"></div>
+   <div class="timeline-box">
+    <div class="timeline-year">دوران روم</div>
+    <h3 data-fa="هیسپانیا در امپراتوری روم" data-es="Hispania romana">هیسپانیا در امپراتوری روم</h3>
+    <p class="history2">رومی‌ها شهرها، جاده‌ها، پل‌ها و زیرساخت‌های زیادی در این منطقه ایجاد کردند.</p>
+   </div>
+  </div>
 
-<div class="timeline-item">
-<div class="timeline-dot"></div>
-<div class="timeline-box">
-<div class="timeline-year">قرون وسطی</div>
-<h3>اندلس و حکومت‌های اسلامی</h3>
-<p>
-در قرون وسطی بخش بزرگی از شبه‌جزیره ایبری تحت حکومت‌های اسلامی قرار گرفت.
-شهرهایی مانند قرطبه، گرانادا و سویل به مراکز مهم علمی، فرهنگی،
-هنری و اقتصادی تبدیل شدند و میراث این دوره هنوز در اسپانیا دیده می‌شود.
-</p>
-</div>
-</div>
+  <div class="timeline-item">
+   <div class="timeline-dot"></div>
+   <div class="timeline-box">
+    <div class="timeline-year">قرون وسطی</div>
+    <h3 data-fa="اندلس و حکومت‌های اسلامی" data-es="Al-Ándalus">اندلس و حکومت‌های اسلامی</h3>
+    <p class="history3">شهرهایی مانند قرطبه، گرانادا و سویل به مراکز علمی و فرهنگی مهم تبدیل شدند.</p>
+   </div>
+  </div>
 
-<div class="timeline-item">
-<div class="timeline-dot"></div>
-<div class="timeline-box">
-<div class="timeline-year">۱۴۹۲</div>
-<h3>نقطه عطف بزرگ</h3>
-<p>
-سال ۱۴۹۲ یکی از مهم‌ترین سال‌های تاریخ اسپانیاست.
-فتح گرانادا پایان حکومت مسلمانان در شبه‌جزیره را رقم زد و در همان سال
-سفر کریستف کلمب با حمایت سلطنت اسپانیا آغاز شد.
-</p>
-</div>
-</div>
+  <div class="timeline-item">
+   <div class="timeline-dot"></div>
+   <div class="timeline-box">
+    <div class="timeline-year">۱۴۹۲</div>
+    <h3 data-fa="نقطه عطف بزرگ" data-es="Un gran punto de inflexión">نقطه عطف بزرگ</h3>
+    <p class="history4">سال ۱۴۹۲ یکی از مهم‌ترین سال‌های تاریخ اسپانیاست و فتح گرانادا در همین سال رخ داد.</p>
+   </div>
+  </div>
 
-<div class="timeline-item">
-<div class="timeline-dot"></div>
-<div class="timeline-box">
-<div class="timeline-year">دوران مدرن</div>
-<h3>شکل‌گیری اسپانیای معاصر</h3>
-<p>
-اسپانیا در قرن‌های بعد تحولات سیاسی و اجتماعی زیادی را تجربه کرد.
-در قرن بیستم نیز جنگ داخلی، دوران حکومت فرانکو و سپس گذار به نظام دموکراتیک
-از مهم‌ترین رویدادهای تاریخ معاصر کشور بودند.
-</p>
-</div>
-</div>
+  <div class="timeline-item">
+   <div class="timeline-dot"></div>
+   <div class="timeline-box">
+    <div class="timeline-year">دوران مدرن</div>
+    <h3 data-fa="شکل‌گیری اسپانیای معاصر" data-es="La España moderna">شکل‌گیری اسپانیای معاصر</h3>
+    <p class="history5">اسپانیا در قرن‌های بعد تحولات سیاسی و اجتماعی زیادی را تجربه کرد.</p>
+   </div>
+  </div>
 
-</div>
+ </div>
 </section>
 
-<!-- CULTURE -->
 <section id="culture">
-<div class="section-title">
-<div class="eyebrow">CULTURE</div>
-<h2>💃 فرهنگ اسپانیا</h2>
-<p>
-فرهنگ اسپانیا ترکیبی از میراث مدیترانه‌ای، اروپایی، اندلسی و منطقه‌ای است.
-</p>
-</div>
+ <div class="section-title">
+  <div class="eyebrow">CULTURE</div>
+  <h2 id="cultureTitle">💃 فرهنگ اسپانیا</h2>
+  <p id="cultureText">فرهنگ اسپانیا ترکیبی از میراث مدیترانه‌ای، اروپایی، اندلسی و منطقه‌ای است.</p>
+ </div>
 
-<div class="culture-box">
+ <div class="culture-box">
 
-<div class="big-box">
-<h3>💃 فلامنکو</h3>
-<p>
-فلامنکو یکی از شناخته‌شده‌ترین نمادهای فرهنگی اسپانیاست و ریشه‌های آن
-به‌ویژه با اندلس پیوند دارد. فلامنکو فقط یک نوع رقص نیست؛ بلکه مجموعه‌ای
-از موسیقی، آواز، ریتم و حرکات بدنی است که احساسات مختلف را بیان می‌کند.
-گیتار اسپانیایی، ضربه‌های ریتمیک و حرکات دست و بدن از عناصر مهم این هنر هستند.
-</p>
-</div>
+  <div class="big-box">
+   <h3 data-fa="💃 فلامنکو" data-es="💃 Flamenco">💃 فلامنکو</h3>
+   <p class="culture1">فلامنکو یکی از شناخته‌شده‌ترین نمادهای فرهنگی اسپانیاست و ریشه‌های مهمی در اندلس دارد.</p>
+  </div>
 
-<div class="big-box">
-<h3>🎉 جشن‌ها</h3>
-<p>
-جشنواره‌ها بخش مهمی از زندگی اجتماعی اسپانیا هستند.
-در شهرها و مناطق مختلف، جشن‌های مذهبی، تاریخی و محلی برگزار می‌شود.
-این جشن‌ها معمولاً با موسیقی، غذا، لباس‌های سنتی و برنامه‌های خیابانی همراه هستند.
-</p>
-</div>
+  <div class="big-box">
+   <h3 data-fa="🎉 جشن‌ها" data-es="🎉 Fiestas">🎉 جشن‌ها</h3>
+   <p class="culture2">جشنواره‌ها بخش مهمی از زندگی اجتماعی اسپانیا هستند و با موسیقی و برنامه‌های خیابانی همراه‌اند.</p>
+  </div>
 
-<div class="big-box">
-<h3>👗 لباس‌های سنتی</h3>
-<p>
-لباس‌های سنتی اسپانیا در مناطق مختلف تفاوت دارند.
-در اندلس، لباس‌های مرتبط با فلامنکو با رنگ‌ها و طرح‌های خاص شناخته می‌شوند.
-لباس‌های سنتی برخی مناطق شمالی و مرکزی نیز ویژگی‌های متفاوتی دارند.
-این تنوع نشان می‌دهد که اسپانیا از نظر فرهنگی یک کشور کاملاً یکدست نیست.
-</p>
-</div>
+  <div class="big-box">
+   <h3 data-fa="👗 لباس‌های سنتی" data-es="👗 Trajes tradicionales">👗 لباس‌های سنتی</h3>
+   <p class="culture3">لباس‌های سنتی در مناطق مختلف اسپانیا متفاوت هستند و تنوع فرهنگی کشور را نشان می‌دهند.</p>
+  </div>
 
-<div class="big-box">
-<h3>🎸 موسیقی</h3>
-<p>
-موسیقی اسپانیا سبک‌های گوناگونی دارد و موسیقی سنتی مناطق مختلف،
-فلامنکو و موسیقی مدرن در کنار یکدیگر حضور دارند.
-گیتار اسپانیایی نیز جایگاه ویژه‌ای در فرهنگ موسیقایی این کشور دارد.
-</p>
-</div>
+  <div class="big-box">
+   <h3 data-fa="🎸 موسیقی" data-es="🎸 Música">🎸 موسیقی</h3>
+   <p class="culture4">موسیقی اسپانیا سبک‌های گوناگونی دارد و گیتار اسپانیایی جایگاه ویژه‌ای در آن دارد.</p>
+  </div>
 
-</div>
+ </div>
 </section>
 
-<!-- FOOD -->
 <section id="food">
-<div class="section-title">
-<div class="eyebrow">SPANISH CUISINE</div>
-<h2>🥘 غذاهای معروف اسپانیا</h2>
-<p>
-غذا در اسپانیا فقط برای سیر شدن نیست؛ بخشی از فرهنگ اجتماعی و سبک زندگی مردم است.
-</p>
-</div>
+ <div class="section-title">
+  <div class="eyebrow">SPANISH CUISINE</div>
+  <h2 id="foodTitle">🥘 غذاهای معروف اسپانیا</h2>
+  <p id="foodText">غذا در اسپانیا بخشی از فرهنگ اجتماعی و سبک زندگی مردم است.</p>
+ </div>
 
-<div class="cards">
+ <div class="cards">
 
-<div class="card food-card">
-<div class="food-emoji">🥘</div>
-<h3>پائیا</h3>
-<p>
-پائیا یکی از معروف‌ترین غذاهای اسپانیاست و ریشه آن به والنسیا برمی‌گردد.
-انواع مختلفی از پائیا وجود دارد و بسته به منطقه و دستور آشپزی،
-مواد اولیه آن می‌تواند متفاوت باشد.
-</p>
-</div>
+  <div class="card food-card">
+   <div class="food-emoji">🥘</div>
+   <h3 data-fa="پائیا" data-es="Paella">پائیا</h3>
+   <p class="food1">پائیا یکی از معروف‌ترین غذاهای اسپانیاست و ریشه آن به والنسیا برمی‌گردد.</p>
+  </div>
 
-<div class="card food-card">
-<div class="food-emoji">🍅</div>
-<h3>گازپاچو</h3>
-<p>
-سوپی سرد و تازه که معمولاً با گوجه‌فرنگی و سبزیجات تهیه می‌شود.
-گازپاچو به‌خصوص در آب‌وهوای گرم جنوب اسپانیا محبوب است.
-</p>
-</div>
+  <div class="card food-card">
+   <div class="food-emoji">🍅</div>
+   <h3 data-fa="گازپاچو" data-es="Gazpacho">گازپاچو</h3>
+   <p class="food2">سوپی سرد و تازه که معمولاً با گوجه‌فرنگی و سبزیجات تهیه می‌شود.</p>
+  </div>
 
-<div class="card food-card">
-<div class="food-emoji">🥔</div>
-<h3>تورتییا اسپانیولا</h3>
-<p>
-یکی از غذاهای ساده و مشهور اسپانیا که معمولاً با سیب‌زمینی و تخم‌مرغ تهیه می‌شود.
-این غذا نمونه‌ای خوب از آشپزی ساده اما محبوب اسپانیایی است.
-</p>
-</div>
+  <div class="card food-card">
+   <div class="food-emoji">🥔</div>
+   <h3 data-fa="تورتییا اسپانیولا" data-es="Tortilla española">تورتییا اسپانیولا</h3>
+   <p class="food3">غذایی ساده و مشهور که معمولاً با سیب‌زمینی و تخم‌مرغ تهیه می‌شود.</p>
+  </div>
 
-<div class="card food-card">
-<div class="food-emoji">🍖</div>
-<h3>تاپاس</h3>
-<p>
-تاپاس نام مجموعه‌ای از خوراک‌های کوچک است که در کنار نوشیدنی یا به‌عنوان
-بخشی از یک وعده غذایی سرو می‌شوند. تنوع تاپاس بسیار زیاد است و
-در مناطق مختلف دستورهای متفاوتی دیده می‌شود.
-</p>
-</div>
+  <div class="card food-card">
+   <div class="food-emoji">🍖</div>
+   <h3 data-fa="تاپاس" data-es="Tapas">تاپاس</h3>
+   <p class="food4">مجموعه‌ای از خوراک‌های کوچک که در مناطق مختلف اسپانیا بسیار محبوب هستند.</p>
+  </div>
 
-<div class="card food-card">
-<div class="food-emoji">🍮</div>
-<h3>کرم کاتالان</h3>
-<p>
-یک دسر سنتی مرتبط با کاتالونیا که معمولاً با شیر، تخم‌مرغ،
-شکر و عطرهای مختلف تهیه می‌شود و سطحی کاراملی دارد.
-</p>
-</div>
+  <div class="card food-card">
+   <div class="food-emoji">🍮</div>
+   <h3 data-fa="کرم کاتالان" data-es="Crema catalana">کرم کاتالان</h3>
+   <p class="food5">دسر سنتی مرتبط با کاتالونیا که سطحی کاراملی دارد.</p>
+  </div>
 
-<div class="card food-card">
-<div class="food-emoji">🥖</div>
-<h3>خوراک‌های مدیترانه‌ای</h3>
-<p>
-استفاده از سبزیجات، روغن زیتون، غلات، ماهی و مواد تازه در بسیاری از
-غذاهای اسپانیایی دیده می‌شود و با سبک آشپزی مدیترانه‌ای ارتباط دارد.
-</p>
-</div>
+  <div class="card food-card">
+   <div class="food-emoji">🥖</div>
+   <h3 data-fa="غذاهای مدیترانه‌ای" data-es="Comida mediterránea">غذاهای مدیترانه‌ای</h3>
+   <p class="food6">استفاده از سبزیجات، روغن زیتون، غلات و مواد تازه در غذاهای اسپانیایی رایج است.</p>
+  </div>
 
-</div>
+ </div>
 </section>
 
-<!-- FOOTBALL -->
 <section id="football" class="football">
 
-<div class="section-title">
-<div class="eyebrow">FÚTBOL ESPAÑOL</div>
-<h2>⚽ فوتبال اسپانیا</h2>
-<p>
-فوتبال یکی از مهم‌ترین بخش‌های فرهنگ ورزشی اسپانیاست؛ از تیم ملی گرفته تا رقابت‌های باشگاهی.
-</p>
-</div>
+ <div class="section-title">
+  <div class="eyebrow">FÚTBOL ESPAÑOL</div>
+  <h2 id="footballTitle">⚽ فوتبال اسپانیا</h2>
+  <p id="footballText">فوتبال یکی از مهم‌ترین بخش‌های فرهنگ ورزشی اسپانیاست.</p>
+ </div>
 
-<div class="football-hero">
-<h3>🇪🇸 La Roja</h3>
-<p>
-تیم ملی اسپانیا یکی از موفق‌ترین تیم‌های تاریخ فوتبال جهان است.
-نسل طلایی اسپانیا در اواخر دهه ۲۰۰۰ و اوایل دهه ۲۰۱۰ با سبک بازی مبتنی بر مالکیت توپ،
-پاس‌های کوتاه و کنترل بازی شناخته شد. این دوره با موفقیت‌های بزرگ بین‌المللی همراه بود.
-</p>
-<br>
-<p>
-اسپانیا قهرمان جام جهانی ۲۰۱۰ شد و در مسابقات قهرمانی اروپا نیز موفقیت‌های مهمی
-به دست آورده است. فوتبال اسپانیا همچنین به دلیل آکادمی‌های جوانان،
-تاکتیک‌های فنی و پرورش بازیکنان خلاق شهرت دارد.
-</p>
-</div>
+ <div class="football-hero">
+  <h3>🇪🇸 La Roja</h3>
+  <p id="footballHeroText">
+   تیم ملی اسپانیا یکی از موفق‌ترین تیم‌های تاریخ فوتبال جهان است.
+   اسپانیا قهرمان جام جهانی ۲۰۱۰ شد و فوتبال این کشور به پاس‌کاری،
+   مالکیت توپ و پرورش بازیکنان خلاق شهرت دارد.
+  </p>
+ </div>
 
-<div class="cards">
+ <div class="cards">
 
-<div class="card">
-<div class="card-icon">🏆</div>
-<h3>افتخارات تیم ملی</h3>
-<p>
-تیم ملی اسپانیا یکی از معدود تیم‌هایی است که توانسته جام جهانی را فتح کند.
-قهرمانی اروپا نیز بخش مهمی از تاریخ فوتبال این کشور است.
-یکی از برجسته‌ترین دوره‌ها، موفقیت‌های پی‌درپی تیم در مسابقات بزرگ
-در اواخر دهه ۲۰۰۰ و اوایل دهه ۲۰۱۰ بود.
-</p>
-</div>
+  <div class="card">
+   <div class="card-icon">🏆</div>
+   <h3 data-fa="افتخارات تیم ملی" data-es="Éxitos de la selección">افتخارات تیم ملی</h3>
+   <p class="football1">اسپانیا قهرمان جام جهانی شده و در مسابقات قهرمانی اروپا نیز موفقیت‌های مهمی داشته است.</p>
+  </div>
 
-<div class="card">
-<div class="card-icon">🧠</div>
-<h3>سبک بازی</h3>
-<p>
-سبک معروف فوتبال اسپانیا اغلب با پاس‌کاری، حفظ مالکیت توپ،
-حرکت بدون توپ، بازی ترکیبی و کنترل ریتم مسابقه شناخته می‌شود.
-البته تیم‌ها و مربیان مختلف اسپانیایی سبک‌های متفاوتی نیز دارند.
-</p>
-</div>
+  <div class="card">
+   <div class="card-icon">🧠</div>
+   <h3 data-fa="سبک بازی" data-es="Estilo de juego">سبک بازی</h3>
+   <p class="football2">فوتبال اسپانیا اغلب با پاس‌کاری، حفظ مالکیت توپ و بازی ترکیبی شناخته می‌شود.</p>
+  </div>
 
-<div class="card">
-<div class="card-icon">🌟</div>
-<h3>پرورش استعداد</h3>
-<p>
-باشگاه‌های اسپانیایی سرمایه‌گذاری زیادی روی فوتبال پایه انجام داده‌اند.
-آکادمی‌ها نقش مهمی در پرورش بازیکنان جوان دارند و بسیاری از بازیکنان
-تراز اول فوتبال جهان از سیستم‌های جوانان اسپانیا عبور کرده‌اند.
-</p>
-</div>
+  <div class="card">
+   <div class="card-icon">🌟</div>
+   <h3 data-fa="پرورش استعداد" data-es="Formación de talentos">پرورش استعداد</h3>
+   <p class="football3">آکادمی‌های فوتبال نقش مهمی در پرورش بازیکنان جوان اسپانیا دارند.</p>
+  </div>
 
-</div>
+ </div>
 
-<br><br>
+ <br><br>
 
-<h3 style="text-align:center;font-size:32px;margin-bottom:25px">
-🏟️ باشگاه‌های مشهور اسپانیا
-</h3>
+ <h3 id="clubsTitle" style="text-align:center;font-size:32px;margin-bottom:25px">
+  🏟️ باشگاه‌های مشهور اسپانیا
+ </h3>
 
-<div class="teams">
+ <div class="teams">
+  <div class="team">
+   <div class="team-logo">⚪</div>
+   <h4>Real Madrid</h4>
+   <p id="realText">یکی از پرافتخارترین باشگاه‌های فوتبال اروپا.</p>
+  </div>
 
-<div class="team">
-<div class="team-logo">⚪</div>
-<h4>Real Madrid</h4>
-<p>یکی از پرافتخارترین باشگاه‌های فوتبال اروپا و اسپانیا.</p>
-</div>
+  <div class="team">
+   <div class="team-logo">🔵</div>
+   <h4>FC Barcelona</h4>
+   <p id="barcaText">باشگاهی مشهور با سابقه تاریخی و فوتبال فنی.</p>
+  </div>
 
-<div class="team">
-<div class="team-logo">🔵</div>
-<h4>FC Barcelona</h4>
-<p>باشگاهی مشهور با هویت تاریخی و سبک بازی مبتنی بر فوتبال فنی.</p>
-</div>
+  <div class="team">
+   <div class="team-logo">🔴</div>
+   <h4>Atlético Madrid</h4>
+   <p id="atletiText">یکی از باشگاه‌های مهم پایتخت اسپانیا.</p>
+  </div>
 
-<div class="team">
-<div class="team-logo">🔴</div>
-<h4>Atlético Madrid</h4>
-<p>یکی از باشگاه‌های مهم پایتخت با سابقه طولانی در فوتبال اسپانیا.</p>
-</div>
-
-<div class="team">
-<div class="team-logo">🟢</div>
-<h4>Real Betis</h4>
-<p>باشگاه شناخته‌شده شهر سویل با هواداران پرشور.</p>
-</div>
-
-</div>
+  <div class="team">
+   <div class="team-logo">🟢</div>
+   <h4>Real Betis</h4>
+   <p id="betisText">باشگاه شناخته‌شده شهر سویل.</p>
+  </div>
+ </div>
 
 </section>
 
-<!-- OPPORTUNITIES -->
 <section id="opportunities">
+ <div class="section-title">
+  <div class="eyebrow">OPPORTUNITIES & CHALLENGES</div>
+  <h2 id="opportunitiesTitle">🎯 فرصت‌ها و چالش‌های اسپانیا</h2>
+  <p id="opportunitiesText">شناخت یک کشور فقط به دیدن نقاط مثبت آن محدود نمی‌شود.</p>
+ </div>
 
-<div class="section-title">
-<div class="eyebrow">OPPORTUNITIES & CHALLENGES</div>
-<h2>🎯 فرصت‌ها و چالش‌های اسپانیا</h2>
-<p>
-شناخت یک کشور فقط به دیدن نقاط مثبت آن محدود نمی‌شود؛ بررسی چالش‌ها نیز اهمیت دارد.
-</p>
-</div>
+ <div class="cards">
 
-<div class="cards">
+  <div class="card">
+   <div class="card-icon">💼</div>
+   <h3 data-fa="فرصت‌های اقتصادی" data-es="Oportunidades económicas">فرصت‌های اقتصادی</h3>
+   <p class="opp1">گردشگری، خدمات، صنعت، کشاورزی، انرژی و فناوری از بخش‌های مهم اقتصاد اسپانیا هستند.</p>
+  </div>
 
-<div class="card">
-<div class="card-icon">💼</div>
-<h3>فرصت‌های اقتصادی</h3>
-<p>
-اسپانیا اقتصادی متنوع دارد و حوزه‌هایی مانند گردشگری، خدمات،
-صنعت، کشاورزی، انرژی و فناوری در آن اهمیت دارند.
-</p>
-</div>
+  <div class="card">
+   <div class="card-icon">☀️</div>
+   <h3 data-fa="انرژی‌های تجدیدپذیر" data-es="Energías renovables">انرژی‌های تجدیدپذیر</h3>
+   <p class="opp2">شرایط جغرافیایی اسپانیا ظرفیت مناسبی برای انرژی خورشیدی ایجاد کرده است.</p>
+  </div>
 
-<div class="card">
-<div class="card-icon">☀️</div>
-<h3>انرژی‌های تجدیدپذیر</h3>
-<p>
-آفتاب و شرایط جغرافیایی اسپانیا ظرفیت مناسبی برای توسعه انرژی خورشیدی
-و دیگر منابع تجدیدپذیر ایجاد کرده‌اند.
-</p>
-</div>
+  <div class="card">
+   <div class="card-icon">✈️</div>
+   <h3 data-fa="گردشگری" data-es="Turismo">گردشگری</h3>
+   <p class="opp3">تاریخ، سواحل، شهرها، غذا و فرهنگ باعث اهمیت بالای گردشگری در اسپانیا شده‌اند.</p>
+  </div>
 
-<div class="card">
-<div class="card-icon">✈️</div>
-<h3>گردشگری</h3>
-<p>
-میراث تاریخی، سواحل، شهرهای متنوع، غذا و فرهنگ باعث شده‌اند گردشگری
-یکی از بخش‌های مهم اقتصاد اسپانیا باشد.
-</p>
-</div>
+  <div class="card">
+   <div class="card-icon">🏠</div>
+   <h3 data-fa="چالش‌های مسکن" data-es="Desafíos de vivienda">چالش‌های مسکن</h3>
+   <p class="opp4">هزینه مسکن و اجاره در برخی شهرهای بزرگ می‌تواند چالش‌برانگیز باشد.</p>
+  </div>
 
-<div class="card">
-<div class="card-icon">🏠</div>
-<h3>چالش‌های مسکن</h3>
-<p>
-در برخی شهرهای بزرگ و مناطق گردشگری، هزینه مسکن و اجاره می‌تواند
-برای ساکنان و برخی گروه‌ها چالش‌برانگیز باشد.
-</p>
-</div>
+  <div class="card">
+   <div class="card-icon">🌡️</div>
+   <h3 data-fa="چالش‌های اقلیمی" data-es="Desafíos climáticos">چالش‌های اقلیمی</h3>
+   <p class="opp5">خشکسالی، گرمای شدید و مدیریت منابع آب از موضوعات مهم هستند.</p>
+  </div>
 
-<div class="card">
-<div class="card-icon">🌡️</div>
-<h3>چالش‌های اقلیمی</h3>
-<p>
-خشکسالی، گرمای شدید و مدیریت منابع آب از جمله موضوعاتی هستند که
-برخی مناطق اسپانیا با آن روبه‌رو هستند.
-</p>
-</div>
+  <div class="card">
+   <div class="card-icon">👥</div>
+   <h3 data-fa="تنوع منطقه‌ای" data-es="Diversidad regional">تنوع منطقه‌ای</h3>
+   <p class="opp6">اسپانیا مناطق و جوامع مختلف با زبان‌ها و سنت‌های گوناگون دارد.</p>
+  </div>
 
-<div class="card">
-<div class="card-icon">👥</div>
-<h3>تنوع منطقه‌ای</h3>
-<p>
-اسپانیا از مناطق و جوامع مختلف با زبان‌ها، سنت‌ها و هویت‌های فرهنگی
-متنوع تشکیل شده است. این تنوع هم یک فرصت فرهنگی و هم موضوعی مهم
-برای شناخت ساختار کشور است.
-</p>
-</div>
-
-</div>
-
+ </div>
 </section>
 
-<!-- WHY TRAVEL -->
 <section id="travel">
+ <div class="section-title">
+  <div class="eyebrow">TRAVEL GUIDE</div>
+  <h2 id="travelTitle">✈️ چرا به اسپانیا سفر کنیم؟</h2>
+  <p id="travelText">در یک سفر می‌توان تاریخ، هنر، ساحل، غذا، ورزش و فرهنگ را کنار هم تجربه کرد.</p>
+ </div>
 
-<div class="section-title">
-<div class="eyebrow">TRAVEL GUIDE</div>
-<h2>✈️ چرا به اسپانیا سفر کنیم؟</h2>
-<p>
-اسپانیا مقصدی است که می‌توان در یک سفر، تاریخ، هنر، ساحل، غذا، ورزش و فرهنگ را کنار هم تجربه کرد.
-</p>
-</div>
+ <div class="cards">
 
-<div class="cards">
+  <div class="card">
+   <div class="card-icon">🏛️</div>
+   <h3 data-fa="برای تاریخ" data-es="Por la historia">برای تاریخ</h3>
+   <p class="travel1">اسپانیا برای علاقه‌مندان تاریخ و معماری بسیار جذاب است.</p>
+  </div>
 
-<div class="card">
-<div class="card-icon">🏛️</div>
-<h3>برای تاریخ</h3>
-<p>
-از آثار روم باستان و معماری اندلس تا کاخ‌ها و شهرهای تاریخی،
-اسپانیا برای علاقه‌مندان تاریخ بسیار جذاب است.
-</p>
-</div>
+  <div class="card">
+   <div class="card-icon">🌊</div>
+   <h3 data-fa="برای طبیعت" data-es="Por la naturaleza">برای طبیعت</h3>
+   <p class="travel2">سواحل، کوهستان‌ها، جزایر و پارک‌های طبیعی تنوع زیادی ایجاد کرده‌اند.</p>
+  </div>
 
-<div class="card">
-<div class="card-icon">🌊</div>
-<h3>برای طبیعت</h3>
-<p>
-سواحل مدیترانه، مناطق کوهستانی، جزایر و پارک‌های طبیعی،
-تنوع جغرافیایی قابل توجهی به اسپانیا داده‌اند.
-</p>
-</div>
+  <div class="card">
+   <div class="card-icon">🍴</div>
+   <h3 data-fa="برای غذا" data-es="Por la gastronomía">برای غذا</h3>
+   <p class="travel3">غذاهای منطقه‌ای اسپانیا بسیار متنوع و جذاب هستند.</p>
+  </div>
 
-<div class="card">
-<div class="card-icon">🍴</div>
-<h3>برای غذا</h3>
-<p>
-غذاهای منطقه‌ای اسپانیا بسیار متنوع‌اند و هر منطقه می‌تواند
-تجربه متفاوتی از آشپزی محلی ارائه کند.
-</p>
-</div>
+  <div class="card">
+   <div class="card-icon">⚽</div>
+   <h3 data-fa="برای فوتبال" data-es="Por el fútbol">برای فوتبال</h3>
+   <p class="travel4">فرهنگ باشگاهی و استادیوم‌های اسپانیا برای علاقه‌مندان فوتبال جذاب است.</p>
+  </div>
 
-<div class="card">
-<div class="card-icon">⚽</div>
-<h3>برای فوتبال</h3>
-<p>
-برای علاقه‌مندان فوتبال، دیدن فرهنگ باشگاهی و استادیوم‌های
-اسپانیا می‌تواند بخش جذابی از سفر باشد.
-</p>
-</div>
-
-</div>
-
+ </div>
 </section>
 
-<!-- PRACTICAL -->
-<section>
-
-<div class="section-title">
-<div class="eyebrow">TRAVEL SMART</div>
-<h2>🎒 اطلاعات کاربردی سفر</h2>
-</div>
-
-<div class="cards">
-
-<div class="card">
-<div class="card-icon">💶</div>
-<h3>واحد پول</h3>
-<p>
-واحد پول رسمی اسپانیا یورو (€) است. اسپانیا مانند بسیاری از کشورهای
-عضو منطقه یورو از یک ارز مشترک استفاده می‌کند.
-</p>
-</div>
-
-<div class="card">
-<div class="card-icon">🗣️</div>
-<h3>زبان</h3>
-<p>
-زبان اسپانیایی زبان رسمی کشور است و در برخی مناطق زبان‌های رسمی
-منطقه‌ای مانند کاتالان، باسکی و گالیسیایی نیز اهمیت دارند.
-</p>
-</div>
-
-<div class="card">
-<div class="card-icon">🚆</div>
-<h3>حمل‌ونقل</h3>
-<p>
-شبکه قطار، اتوبوس، مترو و حمل‌ونقل شهری در شهرهای مختلف اسپانیا
-امکان جابه‌جایی نسبتاً متنوعی فراهم می‌کند.
-</p>
-</div>
-
-<div class="card">
-<div class="card-icon">🌤️</div>
-<h3>آب‌وهوا</h3>
-<p>
-آب‌وهوای اسپانیا یکسان نیست؛ مناطق ساحلی مدیترانه، شمال کشور،
-مرکز شبه‌جزیره و جزایر شرایط متفاوتی دارند.
-</p>
-</div>
-
-</div>
-
-</section>
-
-<!-- WEATHER -->
 <section id="weather">
+ <div class="section-title">
+  <div class="eyebrow">LIVE WEATHER</div>
+  <h2 id="weatherTitle">🌤️ آب‌وهوای زنده</h2>
+  <p id="weatherText">اطلاعات آب‌وهوا از سرویس عمومی هواشناسی دریافت می‌شود.</p>
+ </div>
 
-<div class="section-title">
-<div class="eyebrow">LIVE WEATHER</div>
-<h2>🌤️ آب‌وهوای زنده</h2>
-<p>
-اطلاعات آب‌وهوا به‌صورت زنده از سرویس عمومی هواشناسی دریافت می‌شود.
-</p>
-</div>
+ <div class="weather-controls">
+  <select id="weatherCity">
+   <option value="Madrid">Madrid</option>
+   <option value="Barcelona">Barcelona</option>
+   <option value="Valencia">Valencia</option>
+   <option value="Seville">Seville</option>
+   <option value="Malaga">Malaga</option>
+  </select>
+  <button class="btn btn-primary" id="weatherBtn" onclick="getWeather()">به‌روزرسانی</button>
+ </div>
 
-<div class="weather-controls">
-<select id="weatherCity">
-<option value="Madrid">Madrid</option>
-<option value="Barcelona">Barcelona</option>
-<option value="Valencia">Valencia</option>
-<option value="Seville">Seville</option>
-<option value="Malaga">Malaga</option>
-</select>
-<button class="btn btn-primary" onclick="getWeather()">به‌روزرسانی</button>
-</div>
+ <div class="weather-card">
+  <div id="weatherIcon" style="font-size:55px">🌤️</div>
+  <h3 id="weatherName">Madrid</h3>
+  <div class="weather-temp" id="temperature">--°</div>
 
-<div class="weather-card">
-<div id="weatherIcon" style="font-size:55px">🌤️</div>
-<h3 id="weatherName">Madrid</h3>
-<div class="weather-temp" id="temperature">--°</div>
-
-<div class="weather-details">
-<div>
-💨
-<br>
-<span id="wind">--</span>
-</div>
-
-<div>
-💧
-<br>
-<span id="humidity">--</span>
-</div>
-
-<div>
-🌡️
-<br>
-<span>دمای فعلی</span>
-</div>
-</div>
-</div>
-
+  <div class="weather-details">
+   <div>💨<br><span id="wind">--</span></div>
+   <div>💧<br><span id="humidity">--</span></div>
+   <div>🌡️<br><span id="tempLabel">دمای فعلی</span></div>
+  </div>
+ </div>
 </section>
 
-<!-- CLOCK -->
 <section>
+ <div class="section-title">
+  <div class="eyebrow">SPAIN TIME</div>
+  <h2 id="clockTitle">🕐 ساعت زنده اسپانیا</h2>
+ </div>
 
-<div class="section-title">
-<div class="eyebrow">SPAIN TIME</div>
-<h2>🕐 ساعت زنده اسپانیا</h2>
-</div>
-
-<div class="clock-box">
-<div class="clock" id="clock">00:00:00</div>
-<div class="date" id="date">---</div>
-</div>
-
+ <div class="clock-box">
+  <div class="clock" id="clock">00:00:00</div>
+  <div class="date" id="date">---</div>
+ </div>
 </section>
 
-<!-- QUIZ -->
 <section id="quiz">
 
-<div class="section-title">
-<div class="eyebrow">SPANISH CHALLENGE</div>
-<h2>🎮 چالش اسپانیا</h2>
-<p>دانشت درباره اسپانیا را امتحان کن و امتیاز بگیر!</p>
-</div>
+ <div class="section-title">
+  <div class="eyebrow">SPANISH CHALLENGE</div>
+  <h2 id="quizTitle">🎮 چالش اسپانیا</h2>
+  <p id="quizText">دانشت درباره اسپانیا را امتحان کن و امتیاز بگیر!</p>
+ </div>
 
-<div class="quiz">
+ <div class="quiz">
 
-<div class="quiz-question" id="quizQuestion"></div>
+  <div class="quiz-progress-wrap">
+   <div class="quiz-progress-top">
+    <span id="quizProgressText">سؤال ۱ از ۱۰</span>
+    <span>🏆 <span id="score">۰</span> / ۱۰۰</span>
+   </div>
 
-<div class="quiz-options" id="quizOptions"></div>
+   <div class="quiz-progress">
+    <div class="quiz-progress-bar" id="quizProgressBar"></div>
+   </div>
+  </div>
 
-<div class="quiz-result" id="quizResult"></div>
+  <div class="quiz-question" id="quizQuestion"></div>
+  <div class="quiz-options" id="quizOptions"></div>
+  <div class="quiz-result" id="quizResult"></div>
 
-<br>
+  <br>
 
-<button class="btn btn-primary" onclick="nextQuestion()">سؤال بعدی ➜</button>
+  <button class="btn btn-primary" id="nextQuizBtn" onclick="nextQuestion()">
+   سؤال بعدی ➜
+  </button>
 
-<div style="margin-top:20px">
-🏅 امتیاز شما: <strong id="score">0</strong>
-</div>
+  <div class="quiz-final" id="quizFinal">
+   <div style="font-size:55px">🏆</div>
+   <div class="quiz-final-title" id="quizFinalTitle">مسابقه تمام شد!</div>
+   <div class="quiz-final-score">
+    <span id="finalScore">۰</span> / ۱۰۰
+   </div>
+   <div class="quiz-final-sub" id="quizFinalSub">امتیاز نهایی شما</div>
+   <button class="btn btn-primary" id="restartQuizBtn" onclick="restartQuiz()">
+    🔄 شروع دوباره
+   </button>
+  </div>
 
-</div>
-
+ </div>
 </section>
 
-<!-- RATING -->
 <section>
+ <div class="section-title">
+  <div class="eyebrow">YOUR OPINION</div>
+  <h2 id="ratingTitle">⭐ امتیازدهی به HISPANESH</h2>
+  <p id="ratingDesc">نظرت درباره تجربه سایت چیست؟</p>
+ </div>
 
-<div class="section-title">
-<div class="eyebrow">YOUR OPINION</div>
-<h2>⭐ امتیازدهی به HISPANESH</h2>
-<p>نظرت درباره تجربه سایت چیست؟</p>
-</div>
-
-<div class="rating">
-<div class="stars">
-<span class="star" data-star="1">★</span>
-<span class="star" data-star="2">★</span>
-<span class="star" data-star="3">★</span>
-<span class="star" data-star="4">★</span>
-<span class="star" data-star="5">★</span>
-</div>
-
-<p id="ratingText">امتیاز خود را انتخاب کنید.</p>
-</div>
-
+ <div class="rating">
+  <div class="stars">
+   <span class="star" data-star="1">★</span>
+   <span class="star" data-star="2">★</span>
+   <span class="star" data-star="3">★</span>
+   <span class="star" data-star="4">★</span>
+   <span class="star" data-star="5">★</span>
+  </div>
+  <p id="ratingText">امتیاز خود را انتخاب کنید.</p>
+ </div>
 </section>
 
-<!-- COMMENTS -->
 <section>
+ <div class="section-title">
+  <div class="eyebrow">COMMENTS</div>
+  <h2 id="commentsTitle">💬 نظرات کاربران</h2>
+  <p id="commentsDesc">نظر خودت را درباره سایت بنویس.</p>
+ </div>
 
-<div class="section-title">
-<div class="eyebrow">COMMENTS</div>
-<h2>💬 نظرات کاربران</h2>
-<p>
-چند نظر نمونه برای نمایش بخش تعامل سایت.
-</p>
-</div>
+ <div class="comments">
+  <div class="comment">
+   <div class="comment-stars">★★★★★</div>
+   <h4>آرین</h4>
+   <p id="comment1">طراحی سایت خیلی جذابه و بخش فوتبالش رو بیشتر از همه دوست داشتم.</p>
+  </div>
 
-<div class="comments">
+  <div class="comment">
+   <div class="comment-stars">★★★★★</div>
+   <h4>سارا</h4>
+   <p id="comment2">بخش غذا و فرهنگ اطلاعات خوبی داشت.</p>
+  </div>
 
-<div class="comment">
-<div class="comment-stars">★★★★★</div>
-<h4>آرین</h4>
-<p>طراحی سایت خیلی جذابه و بخش فوتبالش رو بیشتر از همه دوست داشتم.</p>
-</div>
+  <div class="comment">
+   <div class="comment-stars">★★★★☆</div>
+   <h4>محمد</h4>
+   <p id="comment3">نقشه و بخش شهرها خیلی جالب بود.</p>
+  </div>
+ </div>
 
-<div class="comment">
-<div class="comment-stars">★★★★★</div>
-<h4>سارا</h4>
-<p>بخش غذا و فرهنگ اطلاعات خوبی داشت و ظاهر سایت هم خیلی حرفه‌ایه.</p>
-</div>
+ <br><br>
 
-<div class="comment">
-<div class="comment-stars">★★★★☆</div>
-<h4>محمد</h4>
-<p>نقشه و بخش شهرها خیلی جالب بود و اطلاعات زیادی درباره اسپانیا یاد گرفتم.</p>
-</div>
+ <form class="comment-form" onsubmit="addComment(event)">
+  <input class="input" id="commentName" required placeholder="نام شما">
+  <textarea class="input" id="commentInput" required placeholder="نظر شما درباره سایت..."></textarea>
+  <button class="btn btn-primary" id="commentBtn">ثبت نظر</button>
+ </form>
 
-</div>
-
-<br><br>
-
-<form class="comment-form" onsubmit="addComment(event)">
-<input class="input" id="commentName" required placeholder="نام شما">
-<textarea class="input" id="commentText" required placeholder="نظر شما درباره سایت..."></textarea>
-<button class="btn btn-primary">ثبت نظر</button>
-</form>
-
-<div id="newComments" class="comments"></div>
-
+ <div id="newComments" class="comments"></div>
 </section>
 
-<!-- SHARE -->
 <section>
+ <div class="section-title">
+  <div class="eyebrow">SHARE HISPANESH</div>
+  <h2 id="shareTitle">📤 ما را به دوستان خود معرفی کنید</h2>
+  <p id="shareDesc">اگر از HISPANESH خوشت آمد، آن را با دوستانت به اشتراک بگذار.</p>
+ </div>
 
-<div class="section-title">
-<div class="eyebrow">SHARE HISPANESH</div>
-<h2>📤 ما را به دوستان خود معرفی کنید</h2>
-<p>
-اگر از HISPANESH خوشت آمد، آن را با دوستان و همکلاسی‌هایت به اشتراک بگذار.
-</p>
-</div>
+ <div class="share-box">
+  <div>
+   <h3 id="shareHeading" style="font-size:30px;margin-bottom:15px">
+    🇪🇸 یک سفر دیجیتال را با دوستانت شروع کن!
+   </h3>
 
-<div class="share-box">
+   <p id="shareText" style="color:var(--muted);margin-bottom:20px">
+    لینک سایت را می‌توانی کپی یا برای دوستانت ارسال کنی.
+   </p>
 
-<div>
-<h3 style="font-size:30px;margin-bottom:15px">
-🇪🇸 یک سفر دیجیتال را با دوستانت شروع کن!
-</h3>
+   <div style="display:flex;gap:10px;flex-wrap:wrap">
+    <button class="btn btn-primary" id="shareBtn" onclick="shareSite()">📤 ارسال برای دوست</button>
+    <button class="btn btn-secondary" id="copyBtn" onclick="copyLink()">🔗 کپی لینک سایت</button>
+   </div>
+  </div>
 
-<p style="color:var(--muted);margin-bottom:20px">
-با استفاده از دکمه‌های زیر می‌توانی لینک سایت را کپی کنی یا
-در صورت پشتیبانی دستگاه، مستقیماً آن را برای دوستانت ارسال کنی.
-</p>
-
-<div style="display:flex;gap:10px;flex-wrap:wrap">
-<button class="btn btn-primary" onclick="shareSite()">📤 ارسال برای دوست</button>
-<button class="btn btn-secondary" onclick="copyLink()">🔗 کپی لینک سایت</button>
-</div>
-
-</div>
-
-<div class="qr">
-<img id="qrImage" alt="QR Code">
-</div>
-
-</div>
-
+  <div class="qr">
+   <img id="qrImage" alt="QR Code">
+  </div>
+ </div>
 </section>
 
-<!-- GROUP -->
 <section>
+ <div class="group">
 
-<div class="group">
+  <h2>🎓 HISPANESH × دانش</h2>
 
-<h2>🎓 HISPANESH × دانش</h2>
+  <p id="groupText" style="margin-top:10px;color:#c5c9d1">
+   این پروژه با هدف معرفی کشور اسپانیا و آشنایی با تاریخ، فرهنگ، جغرافیا، غذا و فوتبال این کشور طراحی شده است.
+  </p>
 
-<p style="margin-top:10px;color:#c5c9d1">
-این پروژه با هدف معرفی کشور اسپانیا و آشنایی با تاریخ،
-فرهنگ، جغرافیا، غذا و فوتبال این کشور طراحی شده است.
-</p>
+  <div class="leader">
+   <strong style="font-size:20px;color:var(--yellow)" id="leaderTitle">👑 سرگروه</strong>
+   <br>
+   <span style="font-size:25px">کیان نبی‌فر</span>
+  </div>
 
-<div class="leader">
-<strong style="font-size:20px;color:var(--yellow)">
-👑 سرگروه
-</strong>
-<br>
-<span style="font-size:25px">کیان نبی‌فر</span>
-</div>
+  <h3 id="membersTitle" style="margin-bottom:15px">👥 اعضای گروه</h3>
 
-<h3 style="margin-bottom:15px">👥 اعضای گروه</h3>
+  <div class="members">
+   <div class="member">اروین گچکاران</div>
+   <div class="member">سینا شریعتمداری</div>
+   <div class="member">گرشا صمدی</div>
+   <div class="member">رادمهر محمد کاظمی</div>
+  </div>
 
-<div class="members">
-<div class="member">اروین گچکاران</div>
-<div class="member">سینا شریعتمداری</div>
-<div class="member">گرشا صمدی</div>
-<div class="member">رادمهر محمد کاظمی</div>
-</div>
-
-</div>
-
+ </div>
 </section>
 
 </main>
 
-<!-- FOOTER -->
 <footer>
 
 <div class="footer-grid">
 
-<div>
-<h3>HISPANESH 🇪🇸</h3>
-<p>
-یک پروژه آموزشی و خلاقانه درباره اسپانیا؛
-از تاریخ و فرهنگ گرفته تا غذا، شهرها، جاذبه‌های گردشگری
-و فوتبال. هدف HISPANESH این است که شناخت یک کشور
-را به یک تجربه تعاملی تبدیل کند.
-</p>
-</div>
+ <div>
+  <h3>HISPANESH 🇪🇸</h3>
+  <p id="footerText">
+   یک پروژه آموزشی و خلاقانه درباره اسپانیا؛ از تاریخ و فرهنگ گرفته تا غذا، شهرها، جاذبه‌های گردشگری و فوتبال.
+  </p>
+ </div>
 
-<div>
-<h3>دسترسی سریع</h3>
-<ul>
-<li>🏠 صفحه شروع</li>
-<li>🏙️ شهرهای اسپانیا</li>
-<li>📜 تاریخ</li>
-<li>💃 فرهنگ</li>
-<li>🥘 غذا</li>
-<li>⚽ فوتبال</li>
-</ul>
-</div>
+ <div>
+  <h3 id="footerQuick">دسترسی سریع</h3>
+  <ul>
+   <li>🏠 صفحه شروع</li>
+   <li>🏙️ شهرهای اسپانیا</li>
+   <li>📜 تاریخ</li>
+   <li>💃 فرهنگ</li>
+   <li>🥘 غذا</li>
+   <li>⚽ فوتبال</li>
+  </ul>
+ </div>
 
-<div>
-<h3>Spain / España</h3>
-<ul>
-<li>🇪🇸 فرهنگ و هنر</li>
-<li>🏰 تاریخ و معماری</li>
-<li>🌊 طبیعت</li>
-<li>⚽ فوتبال</li>
-<li>✈️ گردشگری</li>
-</ul>
-</div>
+ <div>
+  <h3>Spain / España</h3>
+  <ul>
+   <li>🇪🇸 فرهنگ و هنر</li>
+   <li>🏰 تاریخ و معماری</li>
+   <li>🌊 طبیعت</li>
+   <li>⚽ فوتبال</li>
+   <li>✈️ گردشگری</li>
+  </ul>
+ </div>
 
 </div>
 
 <div class="copyright">
-© 2026 HISPANESH × دانش | ساخته‌شده برای یک پروژه آموزشی 🇪🇸
+ © 2026 HISPANESH × دانش | ساخته‌شده برای یک پروژه آموزشی 🇪🇸
 </div>
 
 </footer>
 
-<!-- NOTIFICATION -->
 <div id="notification"></div>
 
 <button id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
 
 <script>
 
-/* =========================
-   LOADER
-========================= */
-
+/* LOADER */
 window.addEventListener("load",()=>{
-    setTimeout(()=>{
-        document.getElementById("loader").style.opacity="0";
-        document.getElementById("loader").style.pointerEvents="none";
-    },700);
+ setTimeout(()=>{
+  document.getElementById("loader").style.opacity="0";
+  document.getElementById("loader").style.pointerEvents="none";
+ },700);
 });
 
-/* =========================
-   THEME
-========================= */
-
+/* THEME */
 const themeBtn=document.getElementById("themeBtn");
 
 function setTheme(mode){
-    document.body.classList.toggle("dark",mode==="dark");
-    themeBtn.textContent=mode==="dark"?"☀️":"🌙";
-    localStorage.setItem("hispanesh-theme",mode);
+ document.body.classList.toggle("dark",mode==="dark");
+ themeBtn.textContent=mode==="dark"?"☀️":"🌙";
+ localStorage.setItem("hispanesh-theme",mode);
 }
 
-const savedTheme=localStorage.getItem("hispanesh-theme") || "light";
-setTheme(savedTheme);
+setTheme(localStorage.getItem("hispanesh-theme")||"light");
 
-themeBtn.addEventListener("click",()=>{
-    const dark=!document.body.classList.contains("dark");
-    setTheme(dark?"dark":"light");
-});
+themeBtn.onclick=()=>{
+ setTheme(document.body.classList.contains("dark")?"light":"dark");
+};
 
-/* =========================
-   LANGUAGE
-========================= */
+/* LANGUAGE */
 
 let spanish=false;
 
 const translations={
-    fa:{
-        heroTitle:"اسپانیا را فقط نبین؛ کشفش کن.",
-        heroText:"به HISPANESH خوش آمدید؛ یک تجربه دیجیتال برای شناخت یکی از جذاب‌ترین کشورهای اروپا. در اینجا از تاریخ چند هزارساله و شهرهای تاریخی اسپانیا گرفته تا فرهنگ، فلامنکو، لباس‌های سنتی، غذاهای مشهور، فوتبال، جاذبه‌های گردشگری، آب‌وهوا، سبک زندگی، فرصت‌ها و چالش‌های این کشور را بررسی می‌کنیم. این سایت با هدف ارائه یک پروژه کامل و جذاب دانش‌آموزی طراحی شده است."
-    },
-    es:{
-        heroTitle:"No solo veas España; descúbrela.",
-        heroText:"Bienvenido a HISPANESH, una experiencia digital para conocer uno de los países más fascinantes de Europa. Aquí exploramos la historia de España, sus ciudades, cultura, flamenco, vestimenta tradicional, gastronomía, fútbol, lugares turísticos, clima, estilo de vida, oportunidades y desafíos. Este sitio fue diseñado como un proyecto educativo completo e interactivo."
-    }
+
+fa:{
+ heroBadge:"🇪🇸 پروژه پژوهشی گروه دانش • Spain Digital Experience",
+ heroTitle:"اسپانیا را فقط نبین؛ کشفش کن.",
+ heroText:"به HISPANESH خوش آمدید؛ یک تجربه دیجیتال برای شناخت یکی از جذاب‌ترین کشورهای اروپا. در اینجا تاریخ، شهرها، فرهنگ، فلامنکو، غذا، فوتبال، جاذبه‌های گردشگری، آب‌وهوا، سبک زندگی و فرصت‌ها و چالش‌های اسپانیا را بررسی می‌کنیم.",
+ start:"شروع سفر 🇪🇸",
+ historyBtn:"کشف تاریخ اسپانیا",
+ statsTitle:"اسپانیا در چند عدد",
+ statsText:"قبل از شروع سفر، چند حقیقت سریع درباره اسپانیا.",
+ stat1:"جمعیت تقریبی",stat2:"کیلومتر مربع مساحت",stat3:"واحد پول؛ یورو",stat4:"عضو اتحادیه اروپا",
+ searchTitle:"🔎 جست‌وجوی HISPANESH",
+ searchText:"نام شهر، غذا، فرهنگ یا فوتبال را جست‌وجو کن.",
+ searchPlaceholder:"مثلاً مادرید، فلامنکو، پائیا، فوتبال...",
+ citiesTitle:"🏙️ شهرهای اسپانیا",
+ citiesText:"هر شهر داستان، معماری، غذا و هویت خاص خودش را دارد.",
+ all:"همه",capital:"پایتخت",coast:"ساحلی",history:"تاریخی",
+ placesTitle:"📍 جاذبه‌های دیدنی اسپانیا",
+ placesText:"از کاخ‌های تاریخی تا معماری مدرن؛ اسپانیا جاذبه‌های متنوعی دارد.",
+ mapTitle:"🗺️ نقشه اسپانیا",
+ mapText:"موقعیت اسپانیا و شهرهای مختلف آن را روی نقشه بررسی کن.",
+ historyTitle:"📜 تاریخ اسپانیا؛ سفری در زمان",
+ historyText:"تاریخ اسپانیا نتیجه برخورد تمدن‌های مختلف در شبه‌جزیره ایبری است.",
+ cultureTitle:"💃 فرهنگ اسپانیا",
+ cultureText:"فرهنگ اسپانیا ترکیبی از میراث مدیترانه‌ای، اروپایی، اندلسی و منطقه‌ای است.",
+ foodTitle:"🥘 غذاهای معروف اسپانیا",
+ foodText:"غذا در اسپانیا بخشی از فرهنگ اجتماعی و سبک زندگی مردم است.",
+ footballTitle:"⚽ فوتبال اسپانیا",
+ footballText:"فوتبال یکی از مهم‌ترین بخش‌های فرهنگ ورزشی اسپانیاست.",
+ footballHero:"تیم ملی اسپانیا یکی از موفق‌ترین تیم‌های تاریخ فوتبال جهان است. اسپانیا قهرمان جام جهانی ۲۰۱۰ شد و فوتبال این کشور به پاس‌کاری، مالکیت توپ و پرورش بازیکنان خلاق شهرت دارد.",
+ clubsTitle:"🏟️ باشگاه‌های مشهور اسپانیا",
+ real:"یکی از پرافتخارترین باشگاه‌های فوتبال اروپا.",
+ barca:"باشگاهی مشهور با سابقه تاریخی و فوتبال فنی.",
+ atleti:"یکی از باشگاه‌های مهم پایتخت اسپانیا.",
+ betis:"باشگاه شناخته‌شده شهر سویل.",
+ opportunitiesTitle:"🎯 فرصت‌ها و چالش‌های اسپانیا",
+ opportunitiesText:"شناخت یک کشور فقط به دیدن نقاط مثبت آن محدود نمی‌شود.",
+ travelTitle:"✈️ چرا به اسپانیا سفر کنیم؟",
+ travelText:"در یک سفر می‌توان تاریخ، هنر، ساحل، غذا، ورزش و فرهنگ را کنار هم تجربه کرد.",
+ weatherTitle:"🌤️ آب‌وهوای زنده",
+ weatherText:"اطلاعات آب‌وهوا از سرویس عمومی هواشناسی دریافت می‌شود.",
+ update:"به‌روزرسانی",
+ temp:"دمای فعلی",
+ clockTitle:"🕐 ساعت زنده اسپانیا",
+ quizTitle:"🎮 چالش اسپانیا",
+ quizText:"دانشت درباره اسپانیا را امتحان کن و امتیاز بگیر!",
+ next:"سؤال بعدی ➜",
+ restart:"🔄 شروع دوباره",
+ ratingTitle:"⭐ امتیازدهی به HISPANESH",
+ ratingDesc:"نظرت درباره تجربه سایت چیست؟",
+ ratingSelect:"امتیاز خود را انتخاب کنید.",
+ commentsTitle:"💬 نظرات کاربران",
+ commentsDesc:"نظر خودت را درباره سایت بنویس.",
+ commentBtn:"ثبت نظر",
+ commentName:"نام شما",
+ commentInput:"نظر شما درباره سایت...",
+ shareTitle:"📤 ما را به دوستان خود معرفی کنید",
+ shareDesc:"اگر از HISPANESH خوشت آمد، آن را با دوستانت به اشتراک بگذار.",
+ shareHeading:"🇪🇸 یک سفر دیجیتال را با دوستانت شروع کن!",
+ shareText:"لینک سایت را می‌توانی کپی یا برای دوستانت ارسال کنی.",
+ shareBtn:"📤 ارسال برای دوست",
+ copyBtn:"🔗 کپی لینک سایت",
+ groupText:"این پروژه با هدف معرفی کشور اسپانیا و آشنایی با تاریخ، فرهنگ، جغرافیا، غذا و فوتبال این کشور طراحی شده است.",
+ leader:"👑 سرگروه",
+ members:"👥 اعضای گروه",
+ footerText:"یک پروژه آموزشی و خلاقانه درباره اسپانیا؛ از تاریخ و فرهنگ گرفته تا غذا، شهرها، جاذبه‌های گردشگری و فوتبال.",
+ footerQuick:"دسترسی سریع"
+},
+
+es:{
+ heroBadge:"🇪🇸 Proyecto educativo • Spain Digital Experience",
+ heroTitle:"No solo veas España; descúbrela.",
+ heroText:"Bienvenido a HISPANESH, una experiencia digital para conocer uno de los países más fascinantes de Europa. Aquí exploramos la historia, las ciudades, la cultura, el flamenco, la gastronomía, el fútbol, los lugares turísticos, el clima, el estilo de vida y las oportunidades y desafíos de España.",
+ start:"Comenzar el viaje 🇪🇸",
+ historyBtn:"Descubrir la historia",
+ statsTitle:"España en cifras",
+ statsText:"Antes de comenzar el viaje, conoce algunos datos rápidos sobre España.",
+ stat1:"Población aproximada",stat2:"Kilómetros cuadrados",stat3:"Moneda: Euro",stat4:"Miembro de la Unión Europea",
+ searchTitle:"🔎 Buscar en HISPANESH",
+ searchText:"Busca una ciudad, comida, cultura o fútbol.",
+ searchPlaceholder:"Ej.: Madrid, flamenco, paella, fútbol...",
+ citiesTitle:"🏙️ Ciudades de España",
+ citiesText:"Cada ciudad tiene su propia historia, arquitectura, gastronomía e identidad.",
+ all:"Todas",capital:"Capital",coast:"Costa",history:"Histórica",
+ placesTitle:"📍 Lugares imprescindibles de España",
+ placesText:"Desde palacios históricos hasta arquitectura moderna, España ofrece lugares muy diversos.",
+ mapTitle:"🗺️ Mapa de España",
+ mapText:"Explora España y sus principales ciudades en el mapa.",
+ historyTitle:"📜 Historia de España; un viaje en el tiempo",
+ historyText:"La historia de España es el resultado del encuentro de distintas civilizaciones.",
+ cultureTitle:"💃 Cultura de España",
+ cultureText:"La cultura española combina herencias mediterráneas, europeas, andaluzas y regionales.",
+ foodTitle:"🥘 Comida típica de España",
+ foodText:"La comida forma parte de la cultura social y del estilo de vida español.",
+ footballTitle:"⚽ Fútbol español",
+ footballText:"El fútbol es una parte fundamental de la cultura deportiva española.",
+ footballHero:"La selección española es uno de los equipos más exitosos de la historia. España ganó el Mundial de 2010 y su fútbol es conocido por la posesión, los pases y el desarrollo de jóvenes talentos.",
+ clubsTitle:"🏟️ Clubes famosos de España",
+ real:"Uno de los clubes más laureados de Europa.",
+ barca:"Club famoso por su historia y fútbol técnico.",
+ atleti:"Uno de los grandes clubes de la capital española.",
+ betis:"Club conocido de la ciudad de Sevilla.",
+ opportunitiesTitle:"🎯 Oportunidades y desafíos de España",
+ opportunitiesText:"Conocer un país también significa comprender sus desafíos.",
+ travelTitle:"✈️ ¿Por qué viajar a España?",
+ travelText:"En un mismo viaje puedes disfrutar de historia, arte, playas, gastronomía, deporte y cultura.",
+ weatherTitle:"🌤️ Tiempo en vivo",
+ weatherText:"La información meteorológica procede de un servicio público.",
+ update:"Actualizar",
+ temp:"Temperatura actual",
+ clockTitle:"🕐 Hora de España",
+ quizTitle:"🎮 Reto de España",
+ quizText:"¡Pon a prueba tus conocimientos sobre España y consigue puntos!",
+ next:"Siguiente pregunta ➜",
+ restart:"🔄 Reiniciar",
+ ratingTitle:"⭐ Valora HISPANESH",
+ ratingDesc:"¿Qué opinas de la experiencia del sitio?",
+ ratingSelect:"Selecciona tu valoración.",
+ commentsTitle:"💬 Opiniones de usuarios",
+ commentsDesc:"Escribe tu opinión sobre el sitio.",
+ commentBtn:"Publicar opinión",
+ commentName:"Tu nombre",
+ commentInput:"Tu opinión sobre el sitio...",
+ shareTitle:"📤 Comparte HISPANESH con tus amigos",
+ shareDesc:"Si te gusta HISPANESH, compártelo con tus amigos.",
+ shareHeading:"🇪🇸 ¡Comienza un viaje digital con tus amigos!",
+ shareText:"Puedes copiar el enlace o compartirlo directamente.",
+ shareBtn:"📤 Compartir",
+ copyBtn:"🔗 Copiar enlace",
+ groupText:"Este proyecto fue creado para presentar España y conocer su historia, cultura, geografía, gastronomía y fútbol.",
+ leader:"👑 Líder del grupo",
+ members:"👥 Miembros del grupo",
+ footerText:"Un proyecto educativo y creativo sobre España: historia, cultura, gastronomía, ciudades, turismo y fútbol.",
+ footerQuick:"Acceso rápido"
+}
+
 };
 
-document.getElementById("langBtn").addEventListener("click",()=>{
+function set(id,text){
+ const el=document.getElementById(id);
+ if(el)el.textContent=text;
+}
 
-    spanish=!spanish;
+function applyLanguage(){
 
-    document.documentElement.lang=spanish?"es":"fa";
-    document.documentElement.dir=spanish?"ltr":"rtl";
+ const t=spanish?translations.es:translations.fa;
 
-    document.getElementById("heroTitle").textContent=
-        spanish?translations.es.heroTitle:translations.fa.heroTitle;
+ document.documentElement.lang=spanish?"es":"fa";
+ document.documentElement.dir=spanish?"ltr":"rtl";
 
-    document.getElementById("heroText").textContent=
-        spanish?translations.es.heroText:translations.fa.heroText;
+ set("heroBadge",t.heroBadge);
+ set("heroTitle",t.heroTitle);
+ set("heroText",t.heroText);
+ set("startBtn",t.start);
+ set("historyBtn",t.historyBtn);
 
-    document.getElementById("langBtn").textContent=
-        spanish?"🇮🇷":"🇪🇸";
+ set("statsTitle",t.statsTitle);
+ set("statsText",t.statsText);
+ set("stat1",t.stat1);
+ set("stat2",t.stat2);
+ set("stat3",t.stat3);
+ set("stat4",t.stat4);
 
-    showNotification(
-        spanish
-        ?"Idioma cambiado a español 🇪🇸"
-        :"زبان به فارسی تغییر کرد 🇮🇷"
-    );
+ set("searchTitle",t.searchTitle);
+ set("searchText",t.searchText);
+ document.getElementById("searchInput").placeholder=t.searchPlaceholder;
+
+ set("citiesTitle",t.citiesTitle);
+ set("citiesText",t.citiesText);
+ set("filterAll",t.all);
+ set("filterCapital",t.capital);
+ set("filterCoast",t.coast);
+ set("filterHistory",t.history);
+
+ set("placesTitle",t.placesTitle);
+ set("placesText",t.placesText);
+
+ set("mapTitle",t.mapTitle);
+ set("mapText",t.mapText);
+
+ set("historyTitle",t.historyTitle);
+ set("historyText",t.historyText);
+
+ set("cultureTitle",t.cultureTitle);
+ set("cultureText",t.cultureText);
+
+ set("foodTitle",t.foodTitle);
+ set("foodText",t.foodText);
+
+ set("footballTitle",t.footballTitle);
+ set("footballText",t.footballText);
+ set("footballHeroText",t.footballHero);
+ set("clubsTitle",t.clubsTitle);
+ set("realText",t.real);
+ set("barcaText",t.barca);
+ set("atletiText",t.atleti);
+ set("betisText",t.betis);
+
+ set("opportunitiesTitle",t.opportunitiesTitle);
+ set("opportunitiesText",t.opportunitiesText);
+
+ set("travelTitle",t.travelTitle);
+ set("travelText",t.travelText);
+
+ set("weatherTitle",t.weatherTitle);
+ set("weatherText",t.weatherText);
+ set("weatherBtn",t.update);
+ set("tempLabel",t.temp);
+
+ set("clockTitle",t.clockTitle);
+
+ set("quizTitle",t.quizTitle);
+ set("quizText",t.quizText);
+ set("nextQuizBtn",t.next);
+ set("restartQuizBtn",t.restart);
+
+ set("ratingTitle",t.ratingTitle);
+ set("ratingDesc",t.ratingDesc);
+
+ set("commentsTitle",t.commentsTitle);
+ set("commentsDesc",t.commentsDesc);
+ set("commentBtn",t.commentBtn);
+
+ document.getElementById("commentName").placeholder=t.commentName;
+ document.getElementById("commentInput").placeholder=t.commentInput;
+
+ set("shareTitle",t.shareTitle);
+ set("shareDesc",t.shareDesc);
+ set("shareHeading",t.shareHeading);
+ set("shareText",t.shareText);
+ set("shareBtn",t.shareBtn);
+ set("copyBtn",t.copyBtn);
+
+ set("groupText",t.groupText);
+ set("leaderTitle",t.leader);
+ set("membersTitle",t.members);
+
+ set("footerText",t.footerText);
+ set("footerQuick",t.footerQuick);
+
+ document.querySelectorAll("[data-fa]").forEach(el=>{
+  el.textContent=spanish?el.dataset.es:el.dataset.fa;
+ });
+
+ document.getElementById("langBtn").textContent=spanish?"🇮🇷":"🇪🇸";
+
+ loadQuestion();
+}
+
+document.getElementById("langBtn").onclick=()=>{
+ spanish=!spanish;
+ applyLanguage();
+ showNotification(
+  spanish?"Idioma cambiado a español 🇪🇸":"زبان به فارسی تغییر کرد 🇮🇷"
+ );
+};
+
+/* CITY FILTER */
+
+document.querySelectorAll(".city-filter button").forEach(btn=>{
+ btn.onclick=()=>{
+  document.querySelectorAll(".city-filter button")
+   .forEach(x=>x.classList.remove("active"));
+
+  btn.classList.add("active");
+
+  const filter=btn.dataset.filter;
+
+  document.querySelectorAll(".city").forEach(city=>{
+   city.style.display=
+    filter==="all"||city.dataset.category.includes(filter)
+    ?"":"none";
+  });
+ };
 });
 
-/* =========================
-   CITY FILTER
-========================= */
-
-document.querySelectorAll(".city-filter button").forEach(button=>{
-    button.addEventListener("click",()=>{
-
-        document.querySelectorAll(".city-filter button")
-            .forEach(b=>b.classList.remove("active"));
-
-        button.classList.add("active");
-
-        const filter=button.dataset.filter;
-
-        document.querySelectorAll(".city").forEach(city=>{
-            if(filter==="all" || city.dataset.category.includes(filter)){
-                city.style.display="";
-            }else{
-                city.style.display="none";
-            }
-        });
-    });
-});
-
-/* =========================
-   SEARCH
-========================= */
+/* SEARCH */
 
 document.getElementById("searchInput").addEventListener("input",function(){
 
-    const value=this.value.trim().toLowerCase();
+ const value=this.value.trim().toLowerCase();
 
-    document.querySelectorAll("section .card").forEach(card=>{
-
-        if(!value){
-            card.style.display="";
-            return;
-        }
-
-        const text=card.innerText.toLowerCase();
-
-        card.style.display=text.includes(value)?"":"none";
-    });
+ document.querySelectorAll("section .card").forEach(card=>{
+  card.style.display=
+   !value||card.innerText.toLowerCase().includes(value)
+   ?"":"none";
+ });
 
 });
 
-/* =========================
-   CLOCK
-========================= */
+/* CLOCK */
 
 function updateClock(){
 
-    const now=new Date();
+ const now=new Date();
 
-    const parts=new Intl.DateTimeFormat("fa-IR",{
-        timeZone:"Europe/Madrid",
-        hour:"2-digit",
-        minute:"2-digit",
-        second:"2-digit"
-    }).formatToParts(now);
+ const parts=new Intl.DateTimeFormat(
+  spanish?"es-ES":"fa-IR",
+  {
+   timeZone:"Europe/Madrid",
+   hour:"2-digit",
+   minute:"2-digit",
+   second:"2-digit"
+  }
+ ).formatToParts(now);
 
-    const get=type=>parts.find(x=>x.type===type)?.value || "00";
+ const get=t=>parts.find(x=>x.type===t)?.value||"00";
 
-    document.getElementById("clock").textContent=
-        `${get("hour")}:${get("minute")}:${get("second")}`;
+ document.getElementById("clock").textContent=
+ `${get("hour")}:${get("minute")}:${get("second")}`;
 
-    document.getElementById("date").textContent=
-        new Intl.DateTimeFormat("fa-IR",{
-            timeZone:"Europe/Madrid",
-            weekday:"long",
-            year:"numeric",
-            month:"long",
-            day:"numeric"
-        }).format(now);
+ document.getElementById("date").textContent=
+ new Intl.DateTimeFormat(
+  spanish?"es-ES":"fa-IR",
+  {
+   timeZone:"Europe/Madrid",
+   weekday:"long",
+   year:"numeric",
+   month:"long",
+   day:"numeric"
+  }
+ ).format(now);
 }
 
 setInterval(updateClock,1000);
 updateClock();
 
-/* =========================
-   WEATHER
-========================= */
+/* WEATHER */
 
 const coordinates={
-    Madrid:[40.4168,-3.7038],
-    Barcelona:[41.3874,2.1686],
-    Valencia:[39.4699,-0.3763],
-    Seville:[37.3891,-5.9845],
-    Malaga:[36.7213,-4.4214]
+ Madrid:[40.4168,-3.7038],
+ Barcelona:[41.3874,2.1686],
+ Valencia:[39.4699,-0.3763],
+ Seville:[37.3891,-5.9845],
+ Malaga:[36.7213,-4.4214]
 };
 
 async function getWeather(){
 
-    const city=document.getElementById("weatherCity").value;
-    const [lat,lon]=coordinates[city];
+ const city=document.getElementById("weatherCity").value;
+ const [lat,lon]=coordinates[city];
 
-    document.getElementById("temperature").textContent="...";
+ document.getElementById("temperature").textContent="...";
 
-    try{
+ try{
 
-        const response=await fetch(
-            `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,relative_humidity_2m,wind_speed_10m,weather_code&timezone=Europe%2FMadrid`
-        );
+  const response=await fetch(
+   `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,relative_humidity_2m,wind_speed_10m,weather_code&timezone=Europe%2FMadrid`
+  );
 
-        const data=await response.json();
-        const current=data.current;
+  const data=await response.json();
+  const current=data.current;
 
-        document.getElementById("weatherName").textContent=city;
+  document.getElementById("weatherName").textContent=city;
+  document.getElementById("temperature").textContent=
+   `${Math.round(current.temperature_2m)}°`;
 
-        document.getElementById("temperature").textContent=
-            `${Math.round(current.temperature_2m)}°`;
+  document.getElementById("wind").textContent=
+   `${Math.round(current.wind_speed_10m)} km/h`;
 
-        document.getElementById("wind").textContent=
-            `${Math.round(current.wind_speed_10m)} km/h`;
+  document.getElementById("humidity").textContent=
+   `${current.relative_humidity_2m}%`;
 
-        document.getElementById("humidity").textContent=
-            `${current.relative_humidity_2m}%`;
+  let icon="🌤️";
+  const code=current.weather_code;
 
-        const code=current.weather_code;
+  if(code===0)icon="☀️";
+  else if(code<=3)icon="🌤️";
+  else if(code<=48)icon="🌫️";
+  else if(code<=67)icon="🌧️";
+  else if(code<=77)icon="❄️";
+  else icon="🌦️";
 
-        let icon="🌤️";
+  document.getElementById("weatherIcon").textContent=icon;
 
-        if(code===0) icon="☀️";
-        else if(code<=3) icon="🌤️";
-        else if(code<=48) icon="🌫️";
-        else if(code<=67) icon="🌧️";
-        else if(code<=77) icon="❄️";
-        else if(code>=80) icon="🌦️";
+ }catch{
 
-        document.getElementById("weatherIcon").textContent=icon;
-
-        showNotification(`آب‌وهوای ${city} به‌روزرسانی شد 🌤️`);
-
-    }catch(error){
-
-        document.getElementById("temperature").textContent="خطا";
-
-        showNotification("اتصال به سرویس آب‌وهوا برقرار نشد.");
-    }
+  document.getElementById("temperature").textContent="--";
+  showNotification(
+   spanish
+   ?"No se pudo conectar al servicio meteorológico."
+   :"اتصال به سرویس آب‌وهوا برقرار نشد."
+  );
+ }
 }
 
 getWeather();
 
-/* =========================
-   QUIZ
-========================= */
+/* QUIZ - 10 QUESTIONS */
 
 const questions=[
-{
-q:"پایتخت اسپانیا کدام شهر است؟",
-options:["بارسلونا","مادرید","والنسیا","سویل"],
-answer:1
-},
-{
-q:"پائیا بیشتر با کدام شهر ارتباط تاریخی دارد؟",
-options:["والنسیا","مادرید","گرانادا","بیلبائو"],
-answer:0
-},
-{
-q:"فلامنکو بیشتر با کدام منطقه اسپانیا ارتباط دارد؟",
-options:["اندلس","گالیسیا","آستوریاس","باسک"],
-answer:0
-},
-{
-q:"واحد پول اسپانیا چیست؟",
-options:["پوند","دلار","یورو","فرانک"],
-answer:2
-},
-{
-q:"اسپانیا در چه سالی قهرمان جام جهانی فوتبال شد؟",
-options:["۲۰۰۶","۲۰۱۰","۲۰۱۴","۲۰۱۸"],
-answer:1
-},
-{
-q:"ساگرادا فامیلیا در کدام شهر قرار دارد؟",
-options:["سویل","مالاگا","بارسلونا","مادرید"],
-answer:2
-}
+ {
+  fa:"پایتخت اسپانیا کدام شهر است؟",
+  es:"¿Cuál es la capital de España?",
+  options:[
+   ["بارسلونا","Barcelona"],
+   ["مادرید","Madrid"],
+   ["والنسیا","Valencia"],
+   ["سویل","Sevilla"]
+  ],
+  answer:1
+ },
+ {
+  fa:"پائیا بیشتر با کدام شهر ارتباط تاریخی دارد؟",
+  es:"¿Con qué ciudad se relaciona históricamente la paella?",
+  options:[
+   ["والنسیا","Valencia"],
+   ["مادرید","Madrid"],
+   ["گرانادا","Granada"],
+   ["بیلبائو","Bilbao"]
+  ],
+  answer:0
+ },
+ {
+  fa:"فلامنکو بیشتر با کدام منطقه اسپانیا ارتباط دارد؟",
+  es:"¿Con qué región se relaciona especialmente el flamenco?",
+  options:[
+   ["اندلس","Andalucía"],
+   ["گالیسیا","Galicia"],
+   ["آستوریاس","Asturias"],
+   ["باسک","País Vasco"]
+  ],
+  answer:0
+ },
+ {
+  fa:"واحد پول اسپانیا چیست؟",
+  es:"¿Cuál es la moneda de España?",
+  options:[
+   ["پوند","Libra"],
+   ["دلار","Dólar"],
+   ["یورو","Euro"],
+   ["فرانک","Franco"]
+  ],
+  answer:2
+ },
+ {
+  fa:"اسپانیا در چه سالی قهرمان جام جهانی فوتبال شد؟",
+  es:"¿En qué año ganó España el Mundial de fútbol?",
+  options:[
+   ["۲۰۰۶","2006"],
+   ["۲۰۱۰","2010"],
+   ["۲۰۱۴","2014"],
+   ["۲۰۱۸","2018"]
+  ],
+  answer:1
+ },
+ {
+  fa:"ساگرادا فامیلیا در کدام شهر قرار دارد؟",
+  es:"¿En qué ciudad está la Sagrada Familia?",
+  options:[
+   ["سویل","Sevilla"],
+   ["مالاگا","Málaga"],
+   ["بارسلونا","Barcelona"],
+   ["مادرید","Madrid"]
+  ],
+  answer:2
+ },
+ {
+  fa:"کاخ الحمرا در کدام شهر قرار دارد؟",
+  es:"¿En qué ciudad está la Alhambra?",
+  options:[
+   ["گرانادا","Granada"],
+   ["والنسیا","Valencia"],
+   ["مادرید","Madrid"],
+   ["مالاگا","Málaga"]
+  ],
+  answer:0
+ },
+ {
+  fa:"کدام دریا در شرق و جنوب اسپانیا قرار دارد؟",
+  es:"¿Qué mar se encuentra al este y al sur de España?",
+  options:[
+   ["دریای سیاه","Mar Negro"],
+   ["مدیترانه","Mediterráneo"],
+   ["دریای بالتیک","Mar Báltico"],
+   ["دریای شمال","Mar del Norte"]
+  ],
+  answer:1
+ },
+ {
+  fa:"پارک رتیرو در کدام شهر معروف است؟",
+  es:"¿En qué ciudad se encuentra el famoso parque del Retiro?",
+  options:[
+   ["بارسلونا","Barcelona"],
+   ["سویل","Sevilla"],
+   ["مادرید","Madrid"],
+   ["بیلبائو","Bilbao"]
+  ],
+  answer:2
+ },
+ {
+  fa:"زبان رسمی اصلی اسپانیا چیست؟",
+  es:"¿Cuál es el principal idioma oficial de España?",
+  options:[
+   ["اسپانیایی","Español"],
+   ["فرانسوی","Francés"],
+   ["ایتالیایی","Italiano"],
+   ["پرتغالی","Portugués"]
+  ],
+  answer:0
+ }
 ];
 
 let currentQuestion=0;
 let score=0;
+let quizFinished=false;
+
+function faNum(n){
+ return String(n).replace(/\d/g,d=>"۰۱۲۳۴۵۶۷۸۹"[d]);
+}
 
 function loadQuestion(){
 
-    const item=questions[currentQuestion];
+ if(quizFinished)return;
 
-    document.getElementById("quizQuestion").textContent=
-        `${currentQuestion+1}. ${item.q}`;
+ const q=questions[currentQuestion];
 
-    const options=document.getElementById("quizOptions");
+ document.getElementById("quizQuestion").textContent=
+  `${spanish?currentQuestion+1:faNum(currentQuestion+1)}. ${spanish?q.es:q.fa}`;
 
-    options.innerHTML="";
+ const options=document.getElementById("quizOptions");
+ options.innerHTML="";
 
-    item.options.forEach((option,index)=>{
+ q.options.forEach((option,index)=>{
 
-        const btn=document.createElement("button");
+  const btn=document.createElement("button");
+  btn.className="quiz-option";
+  btn.textContent=spanish?option[1]:option[0];
 
-        btn.className="quiz-option";
-        btn.textContent=option;
+  btn.onclick=()=>answerQuestion(btn,index,q);
 
-        btn.onclick=()=>{
+  options.appendChild(btn);
+ });
 
-            document.querySelectorAll(".quiz-option")
-                .forEach(b=>b.disabled=true);
+ document.getElementById("quizResult").style.display="none";
 
-            const result=document.getElementById("quizResult");
+ const n=currentQuestion+1;
 
-            result.style.display="block";
+ document.getElementById("quizProgressText").textContent=
+  spanish
+  ?`Question ${n} of 10`
+  :`سؤال ${faNum(n)} از ۱۰`;
 
-            if(index===item.answer){
+ document.getElementById("quizProgressBar").style.width=
+  `${n/10*100}%`;
 
-                score+=10;
+ document.getElementById("score").textContent=
+  spanish?score:faNum(score);
+}
 
-                result.textContent="🎉 پاسخ درست بود! +۱۰ امتیاز";
+function answerQuestion(clicked,index,q){
 
-            }else{
+ if(quizFinished)return;
 
-                result.textContent=
-                    `❌ پاسخ اشتباه بود. پاسخ صحیح: ${item.options[item.answer]}`;
-            }
+ document.querySelectorAll(".quiz-option")
+  .forEach(btn=>btn.disabled=true);
 
-            document.getElementById("score").textContent=score;
-        };
+ const buttons=[...document.querySelectorAll(".quiz-option")];
 
-        options.appendChild(btn);
-    });
+ buttons[q.answer].classList.add("correct");
 
-    document.getElementById("quizResult").style.display="none";
+ const result=document.getElementById("quizResult");
+ result.style.display="block";
+
+ if(index===q.answer){
+
+  score+=10;
+
+  result.textContent=
+   spanish
+   ?"🎉 ¡Respuesta correcta! +10 puntos"
+   :"🎉 پاسخ درست بود! +۱۰ امتیاز";
+
+ }else{
+
+  clicked.classList.add("wrong");
+
+  const correct=
+   spanish?q.options[q.answer][1]:q.options[q.answer][0];
+
+  result.textContent=
+   spanish
+   ?`❌ Respuesta incorrecta. Correcta: ${correct}`
+   :`❌ پاسخ اشتباه بود. پاسخ صحیح: ${correct}`;
+ }
+
+ document.getElementById("score").textContent=
+  spanish?score:faNum(score);
+
+ if(currentQuestion===questions.length-1){
+  document.getElementById("nextQuizBtn").textContent=
+   spanish?"🏆 Ver resultado":"🏆 نمایش نتیجه";
+ }
 }
 
 function nextQuestion(){
 
-    currentQuestion++;
+ if(quizFinished)return;
 
-    if(currentQuestion>=questions.length){
+ const answered=
+  document.querySelector(".quiz-option:disabled");
 
-        currentQuestion=0;
+ if(!answered){
 
-        showNotification(
-            `🏆 دور کامل شد! امتیاز شما: ${score}`
-        );
-    }
+  showNotification(
+   spanish
+   ?"Primero responde a la pregunta."
+   :"اول به سؤال پاسخ بده."
+  );
 
-    loadQuestion();
+  return;
+ }
+
+ if(currentQuestion<questions.length-1){
+
+  currentQuestion++;
+  loadQuestion();
+
+ }else{
+
+  finishQuiz();
+ }
 }
 
-loadQuestion();
+function finishQuiz(){
 
-/* =========================
-   RATING
-========================= */
+ quizFinished=true;
+
+ document.getElementById("finalScore").textContent=
+  spanish?score:faNum(score);
+
+ document.getElementById("quizFinal").classList.add("show");
+ document.getElementById("quizOptions").style.display="none";
+ document.getElementById("quizResult").style.display="none";
+ document.getElementById("nextQuizBtn").style.display="none";
+
+ let title;
+
+ if(score===100){
+  title=spanish?"🏆 ¡Perfecto!":"🏆 فوق‌العاده! ۱۰۰ از ۱۰۰";
+ }else if(score>=70){
+  title=spanish?"🌟 ¡Excelente!":"🌟 عالی بود!";
+ }else if(score>=40){
+  title=spanish?"👏 ¡Buen trabajo!":"👏 خوب بود!";
+ }else{
+  title=spanish?"💪 ¡Sigue practicando!":"💪 بیشتر تمرین کن!";
+ }
+
+ document.getElementById("quizFinalTitle").textContent=title;
+
+ document.getElementById("quizFinalSub").textContent=
+  spanish
+  ?`Tu puntuación final: ${score} de 100`
+  :`امتیاز نهایی شما: ${faNum(score)} از ۱۰۰`;
+
+ document.getElementById("quizProgressText").textContent=
+  spanish?"Quiz completed":"مسابقه کامل شد";
+
+ document.getElementById("quizProgressBar").style.width="100%";
+}
+
+function restartQuiz(){
+
+ currentQuestion=0;
+ score=0;
+ quizFinished=false;
+
+ document.getElementById("quizFinal").classList.remove("show");
+ document.getElementById("quizOptions").style.display="grid";
+ document.getElementById("nextQuizBtn").style.display="inline-block";
+
+ loadQuestion();
+}
+
+/* RATING */
 
 document.querySelectorAll(".star").forEach(star=>{
 
-    star.addEventListener("click",()=>{
+ star.onclick=()=>{
 
-        const rating=Number(star.dataset.star);
+  const rating=Number(star.dataset.star);
 
-        document.querySelectorAll(".star").forEach(s=>{
-            s.classList.toggle(
-                "active",
-                Number(s.dataset.star)<=rating
-            );
-        });
+  document.querySelectorAll(".star").forEach(s=>{
+   s.classList.toggle(
+    "active",
+    Number(s.dataset.star)<=rating
+   );
+  });
 
-        document.getElementById("ratingText").textContent=
-            `امتیاز شما: ${rating} از ۵ ⭐`;
+  document.getElementById("ratingText").textContent=
+   spanish
+   ?`Your rating: ${rating}/5 ⭐`
+   :`امتیاز شما: ${rating} از ۵ ⭐`;
 
-        localStorage.setItem("hispanesh-rating",rating);
-
-        showNotification("امتیاز شما ثبت شد ⭐");
-    });
+  localStorage.setItem("hispanesh-rating",rating);
+ };
 });
 
-/* =========================
-   COMMENTS
-========================= */
+/* COMMENTS */
+
+function escapeHTML(text){
+ return text
+  .replaceAll("&","&amp;")
+  .replaceAll("<","&lt;")
+  .replaceAll(">","&gt;")
+  .replaceAll('"',"&quot;")
+  .replaceAll("'","&#039;");
+}
 
 function addComment(event){
 
-    event.preventDefault();
+ event.preventDefault();
 
-    const name=document.getElementById("commentName").value.trim();
-    const text=document.getElementById("commentText").value.trim();
+ const name=document.getElementById("commentName").value.trim();
+ const text=document.getElementById("commentInput").value.trim();
 
-    if(!name || !text)return;
+ if(!name||!text)return;
 
-    const comment=document.createElement("div");
+ const comment=document.createElement("div");
 
-    comment.className="comment";
+ comment.className="comment";
 
-    comment.innerHTML=`
-        <div class="comment-stars">★★★★★</div>
-        <h4>${escapeHTML(name)}</h4>
-        <p>${escapeHTML(text)}</p>
-    `;
+ comment.innerHTML=`
+  <div class="comment-stars">★★★★★</div>
+  <h4>${escapeHTML(name)}</h4>
+  <p>${escapeHTML(text)}</p>
+ `;
 
-    document.getElementById("newComments").prepend(comment);
+ document.getElementById("newComments").prepend(comment);
 
-    event.target.reset();
+ event.target.reset();
 
-    showNotification("نظر شما با موفقیت ثبت شد 💬");
+ showNotification(
+  spanish
+  ?"¡Comentario publicado!"
+  :"نظر شما با موفقیت ثبت شد 💬"
+ );
 }
 
-function escapeHTML(text){
-
-    return text
-        .replaceAll("&","&amp;")
-        .replaceAll("<","&lt;")
-        .replaceAll(">","&gt;")
-        .replaceAll('"',"&quot;")
-        .replaceAll("'","&#039;");
-}
-
-/* =========================
-   SHARE
-========================= */
+/* SHARE */
 
 async function copyLink(){
 
-    const url=window.location.href;
+ const url=window.location.href;
 
-    try{
+ try{
 
-        await navigator.clipboard.writeText(url);
+  await navigator.clipboard.writeText(url);
 
-        showNotification("🔗 لینک سایت کپی شد!");
+  showNotification(
+   spanish?"🔗 Enlace copiado":"🔗 لینک سایت کپی شد!"
+  );
 
-    }catch{
+ }catch{
 
-        prompt("این لینک را کپی کن:",url);
-    }
+  prompt(
+   spanish?"Copia este enlace:":"این لینک را کپی کن:",
+   url
+  );
+ }
 }
 
 async function shareSite(){
 
-    const shareData={
-        title:"HISPANESH 🇪🇸",
-        text:"یک سایت کامل و جذاب درباره اسپانیا!",
-        url:window.location.href
-    };
+ const data={
+  title:"HISPANESH 🇪🇸",
+  text:"HISPANESH - España Digital Experience",
+  url:window.location.href
+ };
 
-    if(navigator.share){
+ if(navigator.share){
 
-        try{
-            await navigator.share(shareData);
-        }catch{}
-        
-    }else{
+  try{
+   await navigator.share(data);
+  }catch{}
 
-        await copyLink();
+ }else{
 
-        showNotification(
-            "قابلیت ارسال مستقیم روی این دستگاه وجود ندارد؛ لینک کپی شد."
-        );
-    }
+  await copyLink();
+ }
 }
 
-/* =========================
-   QR CODE
-========================= */
+/* QR */
 
-function generateQR(){
+document.getElementById("qrImage").src=
+ `https://api.qrserver.com/v1/create-qr-code/?size=400x400&data=${encodeURIComponent(location.href)}`;
 
-    const url=encodeURIComponent(window.location.href);
-
-    document.getElementById("qrImage").src=
-        `https://api.qrserver.com/v1/create-qr-code/?size=400x400&data=${url}`;
-}
-
-generateQR();
-
-/* =========================
-   NOTIFICATIONS
-========================= */
+/* NOTIFICATION */
 
 let notificationTimer;
 
 function showNotification(message){
 
-    const box=document.getElementById("notification");
+ const box=document.getElementById("notification");
 
-    box.textContent=message;
+ box.textContent=message;
+ box.classList.add("show");
 
-    box.classList.add("show");
+ clearTimeout(notificationTimer);
 
-    clearTimeout(notificationTimer);
-
-    notificationTimer=setTimeout(()=>{
-        box.classList.remove("show");
-    },3000);
+ notificationTimer=setTimeout(()=>{
+  box.classList.remove("show");
+ },3000);
 }
 
-/* =========================
-   BACK TO TOP
-========================= */
+/* BACK TOP */
 
 window.addEventListener("scroll",()=>{
 
-    const button=document.getElementById("backTop");
-
-    button.style.display=
-        window.scrollY>500?"grid":"none";
+ document.getElementById("backTop").style.display=
+  window.scrollY>500?"grid":"none";
 });
 
-/* =========================
-   KEYBOARD SHORTCUT
-========================= */
+/* INITIAL LANGUAGE */
 
-document.addEventListener("keydown",event=>{
-
-    if(event.key==="/" &&
-       document.activeElement.tagName!=="INPUT" &&
-       document.activeElement.tagName!=="TEXTAREA"){
-
-        event.preventDefault();
-
-        document.getElementById("searchInput").focus();
-    }
-
-});
-
-/* =========================
-   SAVE RATING
-========================= */
-
-const previousRating=
-    Number(localStorage.getItem("hispanesh-rating")||0);
-
-if(previousRating){
-
-    document.querySelectorAll(".star").forEach(s=>{
-
-        s.classList.toggle(
-            "active",
-            Number(s.dataset.star)<=previousRating
-        );
-    });
-
-    document.getElementById("ratingText").textContent=
-        `امتیاز قبلی شما: ${previousRating} از ۵ ⭐`;
-}
+applyLanguage();
 
 </script>
 
 </body>
-    </html>
+       </html>
