@@ -25,6 +25,7 @@
  --shadow2:0 8px 30px rgba(15,23,42,.08);
  --radius:25px;
  --header-height:78px;
+ --music-bg:#1a1a2e;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
@@ -39,6 +40,7 @@ body{
  overflow-x:hidden;
  transition:.3s;
  min-height:100vh;
+ padding-bottom:80px;
 }
 body.dark{
  --bg:#0b0f17;
@@ -159,7 +161,6 @@ body.dark header{background:rgba(11,15,23,.84)}
 }
 .hamburger-btn:hover{transform:translateY(-3px);border-color:var(--red)}
 
-/* ===== MOBILE MENU - FIXED POSITION ===== */
 .mobile-menu-overlay{
  position:fixed;top:0;right:0;width:100%;height:100%;
  background:rgba(0,0,0,.5);z-index:9998;
@@ -582,7 +583,7 @@ footer ul{list-style:none}
 }
 #notification.show{transform:translateY(0);opacity:1}
 #backTop{
- position:fixed;bottom:20px;right:20px;
+ position:fixed;bottom:90px;right:20px;
  width:44px;height:44px;border:0;border-radius:14px;
  background:var(--red);color:#fff;font-size:18px;
  z-index:8000;display:none;box-shadow:0 10px 25px rgba(198,11,30,.3);
@@ -601,12 +602,439 @@ footer ul{list-style:none}
 }
 .no-results span {font-size:36px;display:block;margin-bottom:10px}
 
+/* ===== MUSIC PLAYER ===== */
+.music-player {
+ position:fixed;
+ bottom:0;
+ left:0;
+ right:0;
+ z-index:8000;
+ background:var(--music-bg);
+ backdrop-filter:blur(15px);
+ border-top:2px solid rgba(255,196,0,.2);
+ padding:8px 20px;
+ display:flex;
+ align-items:center;
+ justify-content:space-between;
+ gap:12px;
+ flex-wrap:wrap;
+ transition:.4s;
+}
+.music-player.hidden {
+ transform:translateY(100%);
+}
+.music-player .music-info {
+ display:flex;
+ align-items:center;
+ gap:10px;
+ color:#fff;
+ font-size:12px;
+}
+.music-player .music-info .music-icon {
+ font-size:22px;
+}
+.music-player .music-info .music-title {
+ font-weight:600;
+ color:var(--yellow);
+}
+.music-player .music-controls {
+ display:flex;
+ align-items:center;
+ gap:8px;
+}
+.music-player .music-controls button {
+ background:rgba(255,255,255,.1);
+ border:1px solid rgba(255,255,255,.15);
+ color:#fff;
+ width:34px;
+ height:34px;
+ border-radius:50%;
+ font-size:16px;
+ transition:.3s;
+ display:grid;
+ place-items:center;
+}
+.music-player .music-controls button:hover {
+ background:var(--red);
+ border-color:var(--red);
+ transform:scale(1.1);
+}
+.music-player .music-toggle {
+ background:rgba(255,255,255,.08);
+ border:1px solid rgba(255,255,255,.12);
+ color:#fff;
+ padding:5px 14px;
+ border-radius:20px;
+ font-size:12px;
+ transition:.3s;
+ display:flex;
+ align-items:center;
+ gap:6px;
+}
+.music-player .music-toggle:hover {
+ background:var(--red);
+ border-color:var(--red);
+}
+
+/* ===== NEW FEATURES STYLES ===== */
+
+/* Currency Converter */
+.currency-box {
+ max-width:500px;
+ margin:auto;
+ background:var(--card);
+ border:1px solid var(--border);
+ border-radius:20px;
+ padding:25px;
+ box-shadow:var(--shadow2);
+}
+.currency-box .currency-row {
+ display:flex;
+ gap:10px;
+ align-items:center;
+ margin-bottom:12px;
+}
+.currency-box .currency-row input,
+.currency-box .currency-row select {
+ padding:10px 14px;
+ border-radius:12px;
+ border:1px solid var(--border);
+ background:var(--bg);
+ color:var(--text);
+ font-size:14px;
+ outline:0;
+ flex:1;
+}
+.currency-box .currency-row input:focus,
+.currency-box .currency-row select:focus {
+ border-color:var(--red);
+}
+.currency-box .currency-result {
+ text-align:center;
+ font-size:20px;
+ font-weight:700;
+ color:var(--red);
+ padding:12px;
+ background:rgba(198,11,30,.06);
+ border-radius:12px;
+ margin-top:5px;
+}
+
+/* Random Restaurant */
+.restaurant-suggest {
+ text-align:center;
+ padding:20px;
+}
+.restaurant-suggest .restaurant-card {
+ background:var(--card);
+ border:1px solid var(--border);
+ border-radius:16px;
+ padding:20px;
+ margin:15px auto;
+ max-width:400px;
+ box-shadow:var(--shadow2);
+}
+.restaurant-suggest .restaurant-card h4 {
+ color:var(--red);
+ font-size:18px;
+}
+.restaurant-suggest .restaurant-card p {
+ color:var(--muted);
+ font-size:13px;
+ margin:5px 0;
+}
+
+/* Calendar Events */
+.calendar-grid {
+ display:grid;
+ grid-template-columns:repeat(auto-fill,minmax(200px,1fr));
+ gap:12px;
+ margin-top:15px;
+}
+.calendar-event {
+ background:var(--card);
+ border:1px solid var(--border);
+ border-radius:14px;
+ padding:16px;
+ text-align:center;
+ transition:.3s;
+ border-right:4px solid var(--red);
+}
+.calendar-event:hover {
+ transform:translateY(-4px);
+ box-shadow:var(--shadow2);
+}
+.calendar-event .event-month {
+ font-size:13px;
+ color:var(--muted);
+}
+.calendar-event .event-name {
+ font-size:16px;
+ font-weight:700;
+ color:var(--text);
+ margin:4px 0;
+}
+.calendar-event .event-location {
+ font-size:12px;
+ color:var(--muted);
+}
+
+/* Spain Today Widget */
+.spain-today {
+ background:linear-gradient(135deg,var(--red),#70000d);
+ color:#fff;
+ border-radius:20px;
+ padding:25px 30px;
+ text-align:center;
+ max-width:650px;
+ margin:auto;
+ box-shadow:var(--shadow);
+}
+.spain-today .today-date {
+ font-size:14px;
+ opacity:.8;
+}
+.spain-today .today-fact {
+ font-size:20px;
+ font-weight:700;
+ margin:10px 0 5px;
+}
+.spain-today .today-desc {
+ font-size:14px;
+ opacity:.9;
+}
+
+/* Dictionary */
+.dict-box {
+ max-width:600px;
+ margin:auto;
+}
+.dict-box .dict-search {
+ display:flex;
+ gap:8px;
+ margin-bottom:15px;
+}
+.dict-box .dict-search input {
+ flex:1;
+ padding:12px 16px;
+ border-radius:12px;
+ border:2px solid var(--border);
+ background:var(--card);
+ color:var(--text);
+ outline:0;
+ font-size:14px;
+}
+.dict-box .dict-search input:focus {
+ border-color:var(--red);
+}
+.dict-box .dict-result {
+ background:var(--card);
+ border:1px solid var(--border);
+ border-radius:14px;
+ padding:20px;
+ min-height:80px;
+ box-shadow:var(--shadow2);
+}
+.dict-box .dict-result .dict-word {
+ font-size:20px;
+ font-weight:700;
+ color:var(--red);
+}
+.dict-box .dict-result .dict-meaning {
+ color:var(--muted);
+ margin-top:5px;
+ font-size:14px;
+}
+.dict-box .dict-result .dict-example {
+ font-size:13px;
+ color:var(--muted);
+ font-style:italic;
+ margin-top:8px;
+ padding-top:8px;
+ border-top:1px solid var(--border);
+}
+.dict-box .dict-result .dict-speak {
+ display:inline-block;
+ margin-top:10px;
+ padding:6px 16px;
+ border-radius:100px;
+ background:var(--red);
+ color:#fff;
+ border:0;
+ font-size:13px;
+ transition:.3s;
+}
+.dict-box .dict-result .dict-speak:hover {
+ transform:scale(1.05);
+}
+
+/* Travel Planner */
+.travel-planner {
+ background:var(--card);
+ border:1px solid var(--border);
+ border-radius:20px;
+ padding:25px;
+ max-width:700px;
+ margin:auto;
+ box-shadow:var(--shadow2);
+}
+.travel-planner .planner-row {
+ display:grid;
+ grid-template-columns:1fr 1fr;
+ gap:12px;
+ margin-bottom:12px;
+}
+.travel-planner .planner-row label {
+ font-size:13px;
+ font-weight:600;
+ color:var(--muted);
+ display:block;
+ margin-bottom:3px;
+}
+.travel-planner .planner-row input,
+.travel-planner .planner-row select {
+ width:100%;
+ padding:10px 14px;
+ border-radius:12px;
+ border:1px solid var(--border);
+ background:var(--bg);
+ color:var(--text);
+ font-size:14px;
+ outline:0;
+}
+.travel-planner .planner-row input:focus,
+.travel-planner .planner-row select:focus {
+ border-color:var(--red);
+}
+.travel-planner .planner-result {
+ margin-top:15px;
+ padding:15px;
+ background:rgba(198,11,30,.06);
+ border-radius:12px;
+ text-align:center;
+ display:none;
+}
+.travel-planner .planner-result.show {
+ display:block;
+}
+.travel-planner .planner-result .route {
+ font-weight:700;
+ color:var(--red);
+ font-size:16px;
+}
+.travel-planner .planner-result .suggestions {
+ color:var(--muted);
+ font-size:13px;
+ margin-top:5px;
+}
+
+/* Leaderboard */
+.leaderboard {
+ max-width:500px;
+ margin:auto;
+}
+.leaderboard .lb-item {
+ display:flex;
+ align-items:center;
+ gap:12px;
+ padding:10px 16px;
+ background:var(--card);
+ border:1px solid var(--border);
+ border-radius:12px;
+ margin-bottom:6px;
+ transition:.3s;
+}
+.leaderboard .lb-item:hover {
+ transform:translateX(-4px);
+ box-shadow:var(--shadow2);
+}
+.leaderboard .lb-rank {
+ width:30px;
+ height:30px;
+ border-radius:50%;
+ display:grid;
+ place-items:center;
+ font-weight:800;
+ font-size:14px;
+ background:var(--bg);
+ color:var(--muted);
+}
+.leaderboard .lb-rank.gold {background:var(--gold);color:#000;}
+.leaderboard .lb-rank.silver {background:#c0c0c0;color:#000;}
+.leaderboard .lb-rank.bronze {background:#cd7f32;color:#fff;}
+.leaderboard .lb-name {flex:1;font-weight:600;}
+.leaderboard .lb-score {font-weight:700;color:var(--red);}
+
+/* Bookmark */
+.bookmark-btn {
+ background:rgba(255,196,0,.15);
+ border:1px solid var(--border);
+ padding:6px 12px;
+ border-radius:100px;
+ font-size:12px;
+ color:var(--text);
+ transition:.3s;
+ display:inline-flex;
+ align-items:center;
+ gap:4px;
+}
+.bookmark-btn:hover {
+ background:var(--red);
+ color:#fff;
+ border-color:var(--red);
+}
+.bookmark-btn.bookmarked {
+ background:var(--red);
+ color:#fff;
+ border-color:var(--red);
+}
+
+/* FAQ */
+.faq-item {
+ background:var(--card);
+ border:1px solid var(--border);
+ border-radius:14px;
+ margin-bottom:8px;
+ overflow:hidden;
+}
+.faq-item .faq-question {
+ padding:14px 18px;
+ font-weight:700;
+ cursor:pointer;
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ transition:.3s;
+}
+.faq-item .faq-question:hover {
+ background:rgba(198,11,30,.04);
+}
+.faq-item .faq-question .faq-icon {
+ transition:.3s;
+}
+.faq-item .faq-question.active .faq-icon {
+ transform:rotate(180deg);
+}
+.faq-item .faq-answer {
+ padding:0 18px;
+ max-height:0;
+ overflow:hidden;
+ transition:.4s;
+ color:var(--muted);
+ font-size:14px;
+}
+.faq-item .faq-answer.open {
+ padding:0 18px 16px;
+ max-height:300px;
+}
+
 @media(max-width:1050px){
  .nav-links{display:none}
  .stats{grid-template-columns:repeat(2,1fr)}
  .cards,.comments{grid-template-columns:repeat(2,1fr)}
  .teams{grid-template-columns:repeat(2,1fr)}
  .culture-box{grid-template-columns:1fr}
+ .travel-planner .planner-row{grid-template-columns:1fr}
 }
 @media(max-width:700px){
  .hero{padding:50px 20px}
@@ -634,6 +1062,11 @@ footer ul{list-style:none}
  .hero h2{font-size:20px}
  .hero p{font-size:15px}
  .stat strong{font-size:22px}
+ .music-player .music-info .music-title{font-size:11px}
+ .music-player .music-info .music-icon{font-size:18px}
+ .music-player .music-controls button{width:28px;height:28px;font-size:13px}
+ .currency-box .currency-row{flex-wrap:wrap}
+ .calendar-grid{grid-template-columns:1fr 1fr}
 }
 @media(max-width:400px){
  .mobile-menu{width:250px;right:-260px}
@@ -642,6 +1075,7 @@ footer ul{list-style:none}
  .logo-mark{width:32px;height:32px;font-size:17px}
  .hamburger-btn,.icon-btn{width:32px;height:32px;font-size:14px}
  .hero h1{font-size:34px}
+ .calendar-grid{grid-template-columns:1fr}
 }
 </style>
 </head>
@@ -2267,6 +2701,242 @@ footer ul{list-style:none}
  </div>
 </section>
 
+<!-- ============================================================ -->
+<!-- ===== NEW FEATURES SECTION ===== -->
+<!-- ============================================================ -->
+
+<!-- ===== CURRENCY CONVERTER ===== -->
+<section id="currency">
+ <div class="section-title">
+  <div class="eyebrow">CURRENCY CONVERTER</div>
+  <h2>💶 مبدل ارز (یورو به تومان/دلار)</h2>
+  <p>نرخ ارز را به صورت لحظه‌ای محاسبه کنید</p>
+ </div>
+
+ <div class="currency-box">
+  <div class="currency-row">
+   <input type="number" id="currencyAmount" value="1" min="0" step="0.1" placeholder="مقدار">
+   <select id="currencyFrom">
+    <option value="EUR">€ یورو</option>
+    <option value="USD">$ دلار</option>
+    <option value="GBP">£ پوند</option>
+   </select>
+   <span style="font-size:20px;color:var(--muted);">→</span>
+   <select id="currencyTo">
+    <option value="IRR">تومان</option>
+    <option value="USD">دلار</option>
+    <option value="EUR">یورو</option>
+    <option value="GBP">پوند</option>
+   </select>
+  </div>
+  <button class="btn btn-primary" id="currencyBtn" onclick="convertCurrency()">🔄 تبدیل</button>
+  <div class="currency-result" id="currencyResult">۱ € = ۵۲,۰۰۰ تومان</div>
+ </div>
+</section>
+
+<!-- ===== RANDOM RESTAURANT ===== -->
+<section id="restaurant-suggest">
+ <div class="section-title">
+  <div class="eyebrow">RESTAURANT SUGGESTION</div>
+  <h2>🍽️ پیشنهاد رستوران تصادفی</h2>
+  <p>هر بار یک رستوران معروف اسپانیایی به شما پیشنهاد می‌شود</p>
+ </div>
+
+ <div class="restaurant-suggest">
+  <button class="btn btn-primary" onclick="suggestRestaurant()">🎲 رستوران جدید</button>
+  <div class="restaurant-card" id="restaurantCard">
+   <h4>🍽️ رستوران بوکین د پوئرتو</h4>
+   <p>📍 مادرید، خیابان کوچرز، ۱۷</p>
+   <p>⭐ قدیمی‌ترین رستوران جهان (۱۷۲۵)</p>
+  </div>
+ </div>
+</section>
+
+<!-- ===== CALENDAR EVENTS ===== -->
+<section id="events">
+ <div class="section-title">
+  <div class="eyebrow">EVENTS CALENDAR</div>
+  <h2>📅 تقویم رویدادهای اسپانیا</h2>
+  <p>جشنواره‌ها و رویدادهای مهم هر ماه</p>
+ </div>
+
+ <div class="calendar-grid" id="calendarGrid">
+  <div class="calendar-event"><div class="event-month">ژانویه</div><div class="event-name">🎄 سه‌پادشاه</div><div class="event-location">سراسر اسپانیا</div></div>
+  <div class="calendar-event"><div class="event-month">فوریه</div><div class="event-name">🎭 کارناوال</div><div class="event-location">تنریفه، کادیز</div></div>
+  <div class="calendar-event"><div class="event-month">مارس</div><div class="event-name">🔥 Las Fallas</div><div class="event-location">والنسیا</div></div>
+  <div class="calendar-event"><div class="event-month">آوریل</div><div class="event-name">💃 Feria de Abril</div><div class="event-location">سویل</div></div>
+  <div class="calendar-event"><div class="event-month">مه</div><div class="event-name">🐎 Feria del Caballo</div><div class="event-location">خرس د لا فرونترا</div></div>
+  <div class="calendar-event"><div class="event-month">ژوئن</div><div class="event-name">🔥 Hogueras</div><div class="event-location">آلیکانته</div></div>
+  <div class="calendar-event"><div class="event-month">ژوئیه</div><div class="event-name">🐂 San Fermín</div><div class="event-location">پامپلونا</div></div>
+  <div class="calendar-event"><div class="event-month">اوت</div><div class="event-name">🍅 La Tomatina</div><div class="event-location">بونول</div></div>
+  <div class="calendar-event"><div class="event-month">سپتامبر</div><div class="event-name">🏃 La Mercè</div><div class="event-location">بارسلونا</div></div>
+  <div class="calendar-event"><div class="event-month">اکتبر</div><div class="event-name">🎵 Fiesta del Pilar</div><div class="event-location">ساراگوسا</div></div>
+  <div class="calendar-event"><div class="event-month">نوامبر</div><div class="event-name">🕯️ Día de Todos los Santos</div><div class="event-location">سراسر اسپانیا</div></div>
+  <div class="calendar-event"><div class="event-month">دسامبر</div><div class="event-name">🎄 کریسمس</div><div class="event-location">سراسر اسپانیا</div></div>
+ </div>
+</section>
+
+<!-- ===== SPAIN TODAY ===== -->
+<section id="spain-today">
+ <div class="section-title">
+  <div class="eyebrow">SPAIN TODAY</div>
+  <h2>🇪🇸 اسپانیا امروز</h2>
+  <p>یک واقعیت جالب درباره اسپانیا برای امروز</p>
+ </div>
+
+ <div class="spain-today" id="spainToday">
+  <div class="today-date" id="todayDate">امروز - ۱۳ اوت ۲۰۲۶</div>
+  <div class="today-fact" id="todayFact">اسپانیا دومین کشور پربازدید جهان است!</div>
+  <div class="today-desc" id="todayDesc">سالانه بیش از ۸۰ میلیون گردشگر از اسپانیا دیدن می‌کنند.</div>
+ </div>
+</section>
+
+<!-- ===== DICTIONARY ===== -->
+<section id="dictionary">
+ <div class="section-title">
+  <div class="eyebrow">SPANISH DICTIONARY</div>
+  <h2>🗣️ دیکشنری اسپانیایی</h2>
+  <p>کلمات و عبارات پرکاربرد اسپانیایی را با ترجمه فارسی بیاموزید</p>
+ </div>
+
+ <div class="dict-box">
+  <div class="dict-search">
+   <input type="text" id="dictInput" placeholder="کلمه اسپانیایی را وارد کنید..." oninput="searchDict()">
+   <button class="btn btn-primary" onclick="searchDict()">🔍 جستجو</button>
+  </div>
+  <div class="dict-result" id="dictResult">
+   <div class="dict-word">👋 Hola</div>
+   <div class="dict-meaning">سلام</div>
+   <div class="dict-example">"Hola, ¿cómo estás?" → سلام، چطوری؟</div>
+  </div>
+ </div>
+</section>
+
+<!-- ===== TRAVEL PLANNER ===== -->
+<section id="travel-planner">
+ <div class="section-title">
+  <div class="eyebrow">TRAVEL PLANNER</div>
+  <h2>✈️ برنامه‌ریزی سفر به اسپانیا</h2>
+  <p>شهرهای مقصد، تاریخ و بودجه خود را انتخاب کنید</p>
+ </div>
+
+ <div class="travel-planner">
+  <div class="planner-row">
+   <div>
+    <label>🏙️ شهر مبدأ</label>
+    <select id="plannerFrom">
+     <option value="tehran">تهران</option>
+     <option value="dubai">دبی</option>
+     <option value="istanbul">استانبول</option>
+     <option value="london">لندن</option>
+    </select>
+   </div>
+   <div>
+    <label>📍 شهر مقصد</label>
+    <select id="plannerTo">
+     <option value="madrid">مادرید</option>
+     <option value="barcelona">بارسلونا</option>
+     <option value="valencia">والنسیا</option>
+     <option value="sevilla">سویل</option>
+     <option value="granada">گرانادا</option>
+     <option value="malaga">مالاگا</option>
+    </select>
+   </div>
+  </div>
+  <div class="planner-row">
+   <div>
+    <label>📅 تاریخ سفر</label>
+    <input type="date" id="plannerDate">
+   </div>
+   <div>
+    <label>💰 بودجه (یورو)</label>
+    <input type="number" id="plannerBudget" placeholder="مثلاً ۲۰۰۰" min="0">
+   </div>
+  </div>
+  <button class="btn btn-primary" onclick="planTrip()">🗺️ برنامه سفر</button>
+  <div class="planner-result" id="plannerResult">
+   <div class="route">مسیر: تهران → مادرید</div>
+   <div class="suggestions">💡 جاذبه‌های پیشنهادی: کاخ سلطنتی، موزه پرادو، پارک رتیرو</div>
+   <div class="suggestions">🍽️ غذاهای محلی: پائیا، تاپاس، چوروس</div>
+  </div>
+ </div>
+</section>
+
+<!-- ===== LEADERBOARD ===== -->
+<section id="leaderboard">
+ <div class="section-title">
+  <div class="eyebrow">LEADERBOARD</div>
+  <h2>🏆 جدول امتیازات</h2>
+  <p>بهترین امتیازدهندگان چالش اسپانیا</p>
+ </div>
+
+ <div class="leaderboard" id="leaderboardContainer">
+  <div class="lb-item"><div class="lb-rank gold">🏆</div><div class="lb-name">کیان نبی‌فر</div><div class="lb-score">۱۰۰ امتیاز</div></div>
+  <div class="lb-item"><div class="lb-rank silver">🥈</div><div class="lb-name">اروین گچکاران</div><div class="lb-score">۸۰ امتیاز</div></div>
+  <div class="lb-item"><div class="lb-rank bronze">🥉</div><div class="lb-name">سینا شریعتمداری</div><div class="lb-score">۷۰ امتیاز</div></div>
+  <div class="lb-item"><div class="lb-rank">۴</div><div class="lb-name">گرشا صمدی</div><div class="lb-score">۶۰ امتیاز</div></div>
+  <div class="lb-item"><div class="lb-rank">۵</div><div class="lb-name">رادمهر محمد کاظمی</div><div class="lb-score">۵۰ امتیاز</div></div>
+ </div>
+</section>
+
+<!-- ===== FAQ ===== -->
+<section id="faq">
+ <div class="section-title">
+  <div class="eyebrow">FAQ</div>
+  <h2>❓ سوالات متداول درباره اسپانیا</h2>
+  <p>پاسخ به سوالات رایج درباره سفر، فرهنگ و زندگی در اسپانیا</p>
+ </div>
+
+ <div class="faq-item">
+  <div class="faq-question" onclick="toggleFaq(this)">
+   <span>🔹 بهترین زمان سفر به اسپانیا کی است؟</span>
+   <span class="faq-icon">▼</span>
+  </div>
+  <div class="faq-answer">بهترین زمان سفر به اسپانیا بهار (آوریل تا ژوئن) و پاییز (سپتامبر تا اکتبر) است. در این ماه‌ها آب‌وهوا معتدل و مناسب برای گشت‌وگذار است.</div>
+ </div>
+ <div class="faq-item">
+  <div class="faq-question" onclick="toggleFaq(this)">
+   <span>🔹 آیا برای سفر به اسپانیا ویزا نیاز است؟</span>
+   <span class="faq-icon">▼</span>
+  </div>
+  <div class="faq-answer">بله، برای سفر به اسپانیا به ویزای شنگن نیاز دارید. این ویزا برای ۹۰ روز در هر دوره ۱۸۰ روزه اعتبار دارد.</div>
+ </div>
+ <div class="faq-item">
+  <div class="faq-question" onclick="toggleFaq(this)">
+   <span>🔹 زبان رسمی اسپانیا چیست؟</span>
+   <span class="faq-icon">▼</span>
+  </div>
+  <div class="faq-answer">زبان رسمی اسپانیا اسپانیایی (کاستیلیان) است. همچنین در مناطق کاتالونیا، باسک و گالیسیا زبان‌های محلی نیز رسمی هستند.</div>
+ </div>
+ <div class="faq-item">
+  <div class="faq-question" onclick="toggleFaq(this)">
+   <span>🔹 معروف‌ترین غذاهای اسپانیا کدامند؟</span>
+   <span class="faq-icon">▼</span>
+  </div>
+  <div class="faq-answer">پائیا، گازپاچو، تورتییا اسپانیولا، تاپاس و کرم کاتالان از معروف‌ترین غذاهای اسپانیا هستند.</div>
+ </div>
+ <div class="faq-item">
+  <div class="faq-question" onclick="toggleFaq(this)">
+   <span>🔹 تیم‌های فوتبال معروف اسپانیا کدامند؟</span>
+   <span class="faq-icon">▼</span>
+  </div>
+  <div class="faq-answer">رئال مادرید، بارسلونا، اتلتیکو مادرید و سویا از معروف‌ترین تیم‌های فوتبال اسپانیا هستند.</div>
+ </div>
+</section>
+
+<!-- ===== BOOKMARK & NOTIFICATION TEST ===== -->
+<section>
+ <div class="section-title">
+  <div class="eyebrow">BONUS</div>
+  <h2>⭐ قابلیت‌های ویژه</h2>
+  <p>برای تست نشان‌گذاری و نوتیفیکیشن</p>
+ </div>
+ <div style="text-align:center;">
+  <button class="bookmark-btn" id="bookmarkTest" onclick="toggleBookmark(this)">⭐ نشان‌گذاری</button>
+  <button class="btn btn-primary" style="margin:10px;" onclick="showNotification('🚀 نوتیفیکیشن تست!')">📢 تست نوتیفیکیشن</button>
+ </div>
+</section>
+
 </main>
 
 <!-- ===== FOOTER ===== -->
@@ -2319,8 +2989,20 @@ footer ul{list-style:none}
 
 </footer>
 
-<div id="notification"></div>
+<!-- ===== MUSIC PLAYER ===== -->
+<div class="music-player" id="musicPlayer">
+ <div class="music-info">
+  <span class="music-icon">🎵</span>
+  <span class="music-title">🇪🇸 Flamenco Guitar - Spanish Melody</span>
+ </div>
+ <div class="music-controls">
+  <button onclick="toggleMusic()" id="musicPlayBtn">▶</button>
+  <button onclick="nextMusic()">⏭</button>
+  <button onclick="toggleMusicPlayer()">✕</button>
+ </div>
+</div>
 
+<div id="notification"></div>
 <button id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
 
 <script>
@@ -2331,21 +3013,39 @@ window.addEventListener("load",()=>{
   document.getElementById("loader").style.opacity="0";
   document.getElementById("loader").style.pointerEvents="none";
  },700);
+ // تنظیم تاریخ در ویجت اسپانیا امروز
+ updateSpainToday();
+ // تنظیم تاریخ پیش‌فرض در برنامه‌ریز سفر
+ const today = new Date().toISOString().split('T')[0];
+ document.getElementById('plannerDate').value = today;
 });
 
-// ===== THEME =====
-const themeBtn=document.getElementById("themeBtn");
-
-function setTheme(mode){
- document.body.classList.toggle("dark",mode==="dark");
- themeBtn.textContent=mode==="dark"?"☀️":"🌙";
- localStorage.setItem("hispanesh-theme",mode);
+// ===== AUTO THEME =====
+function getAutoTheme() {
+ const hour = new Date().getHours();
+ return (hour >= 6 && hour < 18) ? 'light' : 'dark';
 }
 
-setTheme(localStorage.getItem("hispanesh-theme")||"light");
+const themeBtn = document.getElementById('themeBtn');
+let autoThemeEnabled = true;
 
-themeBtn.onclick=()=>{
- setTheme(document.body.classList.contains("dark")?"light":"dark");
+function setTheme(mode) {
+ document.body.classList.toggle('dark', mode === 'dark');
+ themeBtn.textContent = mode === 'dark' ? '☀️' : '🌙';
+ localStorage.setItem('hispanesh-theme', mode);
+ autoThemeEnabled = false;
+}
+
+let savedTheme = localStorage.getItem('hispanesh-theme');
+if (!savedTheme) {
+ savedTheme = getAutoTheme();
+ localStorage.setItem('hispanesh-theme', savedTheme);
+}
+setTheme(savedTheme);
+
+themeBtn.onclick = () => {
+ const currentDark = document.body.classList.contains('dark');
+ setTheme(currentDark ? 'light' : 'dark');
 };
 
 // ===== LANGUAGE =====
@@ -3319,18 +4019,363 @@ function showNotification(message){
 
  notificationTimer=setTimeout(()=>{
   box.classList.remove("show");
- },3000);
+ },3500);
 }
 
 // ===== BACK TOP =====
 window.addEventListener("scroll",()=>{
-
- document.getElementById("backTop").style.display=
-  window.scrollY>500?"grid":"none";
+ const btn = document.getElementById("backTop");
+ btn.style.display = window.scrollY > 500 ? "grid" : "none";
 });
 
-// ===== INITIAL LANGUAGE =====
+// ============================================================
+// ===== NEW FEATURES FUNCTIONS =====
+// ============================================================
+
+// ===== CURRENCY CONVERTER =====
+function convertCurrency() {
+ const rates = { EUR: 1, USD: 1.09, GBP: 0.86, IRR: 52000 };
+ const amount = parseFloat(document.getElementById('currencyAmount').value) || 0;
+ const from = document.getElementById('currencyFrom').value;
+ const to = document.getElementById('currencyTo').value;
+ 
+ const inEUR = amount / rates[from];
+ const result = inEUR * rates[to];
+ 
+ const symbols = { EUR: '€', USD: '$', GBP: '£', IRR: 'تومان' };
+ const resultEl = document.getElementById('currencyResult');
+ 
+ if (to === 'IRR') {
+  resultEl.textContent = `${amount} ${symbols[from]} = ${Math.round(result).toLocaleString()} ${symbols[to]}`;
+ } else {
+  resultEl.textContent = `${amount} ${symbols[from]} = ${result.toFixed(2)} ${symbols[to]}`;
+ }
+}
+
+// اجرای اولیه
+setTimeout(convertCurrency, 300);
+
+// ===== RANDOM RESTAURANT =====
+const restaurants = [
+ { name: '🍽️ رستوران بوکین د پوئرتو', location: 'مادرید، خیابان کوچرز، ۱۷', desc: 'قدیمی‌ترین رستوران جهان (۱۷۲۵)' },
+ { name: '🍽️ رستوران ال بولّی', location: 'کاستا براوا، رُزِس', desc: '۳ ستاره میشلن - آشپزی مولکولی' },
+ { name: '🍽️ رستوران آرزاک', location: 'سن سباستین، خیابان آلتو د مچی', desc: '۳ ستاره میشلن - آشپزی باسک' },
+ { name: '🍽️ رستوران پائیا والنسیا', location: 'والنسیا، محله ال کابانیال', desc: 'بهترین پائیا والنسیا' },
+ { name: '🍽️ رستوران ال پرل', location: 'بارسلونا، منطقه لا باریا', desc: 'تاپاس اصیل بارسلونا' },
+ { name: '🍽️ کافه د لا اپرا', location: 'مادرید، خیابان سانتا ایزابل', desc: 'کافه تاریخی با چوروس و شکلات' }
+];
+
+let lastRestaurantIndex = -1;
+
+function suggestRestaurant() {
+ let idx;
+ do {
+  idx = Math.floor(Math.random() * restaurants.length);
+ } while (idx === lastRestaurantIndex && restaurants.length > 1);
+ lastRestaurantIndex = idx;
+ 
+ const r = restaurants[idx];
+ const card = document.getElementById('restaurantCard');
+ card.innerHTML = `
+  <h4>${r.name}</h4>
+  <p>📍 ${r.location}</p>
+  <p>⭐ ${r.desc}</p>
+ `;
+ showNotification('🍽️ رستوران جدید پیشنهاد شد!');
+}
+
+// ===== SPAIN TODAY =====
+function updateSpainToday() {
+ const facts = [
+  { fact: 'اسپانیا دومین کشور پربازدید جهان است!', desc: 'سالانه بیش از ۸۰ میلیون گردشگر از اسپانیا دیدن می‌کنند.' },
+  { fact: 'اسپانیا ۴۹ میراث جهانی یونسکو دارد!', desc: 'اسپانیا سومین کشور جهان از نظر تعداد میراث جهانی است.' },
+  { fact: 'زبان اسپانیایی دومین زبان پرگویشور جهان است!', desc: 'بیش از ۵۰۰ میلیون نفر در جهان به اسپانیایی صحبت می‌کنند.' },
+  { fact: 'پائیا غذای ملی اسپانیا از والنسیا است!', desc: 'پائیا با برنج، زعفران و غذاهای دریایی یا گوشت تهیه می‌شود.' },
+  { fact: 'رئال مادرید پرافتخارترین باشگاه فوتبال جهان است!', desc: 'با ۱۵ قهرمانی لیگ قهرمانان اروپا.' },
+  { fact: 'اسپانیا در سال ۱۹۸۶ به اتحادیه اروپا پیوست!', desc: 'اسپانیا یکی از اعضای تأسیس‌کننده اتحادیه اروپا نیست.' },
+  { fact: 'آنتونی گائودی معمار معروف بارسلونا بود!', desc: 'ساگرادا فامیلیا یکی از مشهورترین آثار اوست.' },
+  { fact: 'فلامنکو در اندلس متولد شد!', desc: 'این هنر در سال ۲۰۱۰ در یونسکو ثبت شد.' }
+ ];
+ 
+ const today = new Date();
+ const daysInMonth = today.getDate();
+ const factIndex = (daysInMonth - 1) % facts.length;
+ const fact = facts[factIndex];
+ 
+ const now = new Date();
+ const dateStr = new Intl.DateTimeFormat(
+  'fa-IR',
+  { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }
+ ).format(now);
+ 
+ document.getElementById('todayDate').textContent = `📅 ${dateStr}`;
+ document.getElementById('todayFact').textContent = fact.fact;
+ document.getElementById('todayDesc').textContent = fact.desc;
+}
+
+// ===== DICTIONARY =====
+const dictionary = [
+ { word: 'Hola', meaning: 'سلام', example: '"Hola, ¿cómo estás?" → سلام، چطوری؟' },
+ { word: 'Adiós', meaning: 'خداحافظ', example: '"Adiós, hasta luego" → خداحافظ، تا بعد' },
+ { word: 'Gracias', meaning: 'متشکرم', example: '"Muchas gracias" → خیلی متشکرم' },
+ { word: 'Por favor', meaning: 'لطفاً', example: '"Un café, por favor" → یک قهوه، لطفاً' },
+ { word: 'Buenos días', meaning: 'صبح بخیر', example: '"Buenos días, ¿qué tal?" → صبح بخیر، چطوری؟' },
+ { word: 'Buenas noches', meaning: 'شب بخیر', example: '"Buenas noches, descansa" → شب بخیر، استراحت کن' },
+ { word: 'Sí', meaning: 'بله', example: '"Sí, quiero ir" → بله، می‌خواهم بروم' },
+ { word: 'No', meaning: 'نه', example: '"No, gracias" → نه، متشکرم' },
+ { word: '¿Cómo estás?', meaning: 'چطوری؟', example: '"Hola, ¿cómo estás?" → سلام، چطوری؟' },
+ { word: 'Bien', meaning: 'خوب', example: '"Estoy bien, gracias" → خوبم، متشکرم' },
+ { word: 'La cuenta', meaning: 'صورتحساب', example: '"La cuenta, por favor" → صورتحساب، لطفاً' },
+ { word: 'Agua', meaning: 'آب', example: '"Un vaso de agua" → یک لیوان آب' },
+ { word: 'Comida', meaning: 'غذا', example: '"La comida está deliciosa" → غذا خوشمزه است' },
+ { word: 'Fútbol', meaning: 'فوتبال', example: '"Me gusta el fútbol" → فوتبال دوست دارم' },
+ { word: 'Flamenco', meaning: 'فلامنکو', example: '"El flamenco es arte" → فلامنکو هنر است' }
+];
+
+function searchDict() {
+ const input = document.getElementById('dictInput').value.trim();
+ const result = document.getElementById('dictResult');
+ 
+ if (!input) {
+  result.innerHTML = `
+   <div class="dict-word">👋 Hola</div>
+   <div class="dict-meaning">سلام</div>
+   <div class="dict-example">"Hola, ¿cómo estás?" → سلام، چطوری؟</div>
+  `;
+  return;
+ }
+ 
+ const found = dictionary.find(item => 
+  item.word.toLowerCase().includes(input.toLowerCase()) ||
+  item.meaning.includes(input)
+ );
+ 
+ if (found) {
+  result.innerHTML = `
+   <div class="dict-word">📖 ${found.word}</div>
+   <div class="dict-meaning">${found.meaning}</div>
+   <div class="dict-example">${found.example}</div>
+   <button class="dict-speak" onclick="speakWord('${found.word}')">🔊 گوش کن</button>
+  `;
+ } else {
+  result.innerHTML = `
+   <div style="text-align:center;padding:20px;color:var(--muted);">
+    🔍 کلمه "${input}" در دیکشنری پیدا نشد.
+    <br><small>کلمات موجود: ${dictionary.map(d => d.word).join(', ')}</small>
+   </div>
+  `;
+ }
+}
+
+function speakWord(word) {
+ if ('speechSynthesis' in window) {
+  const utterance = new SpeechSynthesisUtterance(word);
+  utterance.lang = 'es-ES';
+  utterance.rate = 0.8;
+  speechSynthesis.speak(utterance);
+ }
+}
+
+// ===== TRAVEL PLANNER =====
+const cityInfo = {
+ madrid: { attractions: 'کاخ سلطنتی، موزه پرادو، پارک رتیرو', food: 'پائیا، تاپاس، چوروس' },
+ barcelona: { attractions: 'ساگرادا فامیلیا، پارک گوئل، لا رامبلا', food: 'پائیا، کرم کاتالان، تاپاس' },
+ valencia: { attractions: 'شهر هنرها و علوم، بازار مرکزی، کلیسای جامع', food: 'پائیا، هورچاتا، فایا' },
+ sevilla: { attractions: 'میدان اسپانیا، کلیسای جامع، Alcázar', food: 'تاپاس، گازپاچو، خامون' },
+ granada: { attractions: 'کاخ الحمرا، البایزین، ساکرومونته', food: 'تاپاس، چای مراکشی، خامون' },
+ malaga: { attractions: 'موزه پیکاسو، قلعه جبل‌الطار، ساحل', food: 'اسقتیو، تاپاس، ماهی تازه' }
+};
+
+function planTrip() {
+ const from = document.getElementById('plannerFrom');
+ const to = document.getElementById('plannerTo');
+ const date = document.getElementById('plannerDate').value;
+ const budget = document.getElementById('plannerBudget').value;
+ 
+ const fromCity = from.options[from.selectedIndex].text;
+ const toCity = to.options[to.selectedIndex].text;
+ const cityKey = to.value;
+ const info = cityInfo[cityKey] || cityInfo.madrid;
+ 
+ const result = document.getElementById('plannerResult');
+ result.classList.add('show');
+ 
+ const dateDisplay = date ? new Date(date).toLocaleDateString('fa-IR') : 'تاریخ نامشخص';
+ 
+ result.innerHTML = `
+  <div class="route">🗺️ مسیر: ${fromCity} → ${toCity}</div>
+  <div class="suggestions">📅 تاریخ سفر: ${dateDisplay}</div>
+  <div class="suggestions">💰 بودجه: ${budget || 'نامشخص'} €</div>
+  <div class="suggestions" style="margin-top:8px;font-weight:600;color:var(--red);">💡 جاذبه‌های پیشنهادی:</div>
+  <div class="suggestions">🏛️ ${info.attractions}</div>
+  <div class="suggestions" style="margin-top:5px;font-weight:600;color:var(--red);">🍽️ غذاهای محلی:</div>
+  <div class="suggestions">${info.food}</div>
+ `;
+ 
+ showNotification(`🗺️ برنامه سفر به ${toCity} آماده شد!`);
+}
+
+// ===== FAQ =====
+function toggleFaq(el) {
+ const answer = el.nextElementSibling;
+ const isOpen = answer.classList.contains('open');
+ 
+ // بستن همه
+ document.querySelectorAll('.faq-answer').forEach(a => a.classList.remove('open'));
+ document.querySelectorAll('.faq-question').forEach(q => q.classList.remove('active'));
+ 
+ if (!isOpen) {
+  answer.classList.add('open');
+  el.classList.add('active');
+ }
+}
+
+// ===== BOOKMARK =====
+function toggleBookmark(btn) {
+ btn.classList.toggle('bookmarked');
+ if (btn.classList.contains('bookmarked')) {
+  btn.innerHTML = '⭐ نشان شده';
+  showNotification('📌 این بخش نشان‌گذاری شد!');
+ } else {
+  btn.innerHTML = '⭐ نشان‌گذاری';
+  showNotification('📌 نشان‌گذاری حذف شد');
+ }
+}
+
+// ============================================================
+// ===== MUSIC PLAYER =====
+// ============================================================
+
+const musicTracks = [
+ { name: '🇪🇸 Flamenco Guitar - Spanish Melody' },
+ { name: '🇪🇸 Spanish Guitar - Romantic Sunset' },
+ { name: '🇪🇸 Flamenco Dance - Passion' },
+ { name: '🇪🇸 Classical Spanish - Guitarra' }
+];
+
+let currentTrack = 0;
+let isPlaying = false;
+let audioContext = null;
+let oscillator = null;
+let gainNode = null;
+
+function initAudio() {
+ if (!audioContext) {
+  audioContext = new (window.AudioContext || window.webkitAudioContext)();
+  gainNode = audioContext.createGain();
+  gainNode.gain.value = 0.3;
+  gainNode.connect(audioContext.destination);
+ }
+}
+
+function playSimpleTone() {
+ initAudio();
+ if (audioContext.state === 'suspended') {
+  audioContext.resume();
+ }
+ 
+ if (oscillator) {
+  oscillator.stop();
+  oscillator.disconnect();
+ }
+ 
+ oscillator = audioContext.createOscillator();
+ oscillator.type = 'sine';
+ oscillator.frequency.value = 440 + Math.sin(Date.now() / 1000) * 50;
+ oscillator.connect(gainNode);
+ oscillator.start();
+ oscillator.stop(audioContext.currentTime + 0.5);
+}
+
+function toggleMusic() {
+ const btn = document.getElementById('musicPlayBtn');
+ isPlaying = !isPlaying;
+ 
+ if (isPlaying) {
+  btn.textContent = '⏸';
+  playMusicLoop();
+  showNotification('🎵 موسیقی اسپانیایی شروع شد!');
+ } else {
+  btn.textContent = '▶';
+  if (oscillator) {
+   oscillator.stop();
+   oscillator.disconnect();
+   oscillator = null;
+  }
+  showNotification('⏸ موسیقی متوقف شد');
+ }
+}
+
+let musicInterval = null;
+
+function playMusicLoop() {
+ if (!isPlaying) {
+  if (musicInterval) {
+   clearInterval(musicInterval);
+   musicInterval = null;
+  }
+  return;
+ }
+ 
+ playSimpleTone();
+ 
+ if (musicInterval) {
+  clearInterval(musicInterval);
+ }
+ 
+ musicInterval = setInterval(() => {
+  if (isPlaying) {
+   playSimpleTone();
+  } else {
+   clearInterval(musicInterval);
+   musicInterval = null;
+  }
+ }, 800);
+}
+
+function nextMusic() {
+ currentTrack = (currentTrack + 1) % musicTracks.length;
+ const title = document.querySelector('.music-title');
+ title.textContent = musicTracks[currentTrack].name;
+ showNotification(`🎵 ${musicTracks[currentTrack].name}`);
+ 
+ if (isPlaying) {
+  if (oscillator) {
+   oscillator.stop();
+   oscillator.disconnect();
+   oscillator = null;
+  }
+  setTimeout(playSimpleTone, 300);
+ }
+}
+
+function toggleMusicPlayer() {
+ const player = document.getElementById('musicPlayer');
+ player.classList.toggle('hidden');
+ if (!player.classList.contains('hidden')) {
+  showNotification('🎵 پلیر موسیقی باز شد');
+ } else {
+  showNotification('🎵 پلیر موسیقی بسته شد');
+ }
+}
+
+// ============================================================
+// ===== INIT =====
+// ============================================================
+
 applyLanguage();
+
+// صفحه کلید برای کنترل موسیقی
+document.addEventListener('keydown', (e) => {
+ if (e.key === ' ' && e.target === document.body) {
+  e.preventDefault();
+  toggleMusic();
+ }
+});
+
+console.log('🇪🇸 HISPANESH - تمام ویژگی‌ها فعال شدند!');
+console.log('🎵 برای کنترل موسیقی از کلید Space استفاده کنید');
+console.log('📌 بخش‌های جدید: مبدل ارز، پیشنهاد رستوران، تقویم، دیکشنری، برنامه‌ریز سفر، جدول امتیازات، FAQ');
 
 </script>
 
