@@ -2516,17 +2516,42 @@ document.querySelectorAll(".city-filter button").forEach(btn=>{
  };
 });
 
-// ===== SEARCH =====
-document.getElementById("searchInput").addEventListener("input",function(){
-
- const value=this.value.trim().toLowerCase();
-
- document.querySelectorAll("section .card").forEach(card=>{
-  card.style.display=
-   !value||card.innerText.toLowerCase().includes(value)
-   ?"":"none";
- });
-
+// ===== SEARCH - FIXED =====
+document.getElementById("searchInput").addEventListener("input", function() {
+    const searchTerm = this.value.trim().toLowerCase();
+    
+    // تمام کارت‌ها و مقاله‌های داخل بخش‌های مختلف
+    const allCards = document.querySelectorAll('.card, .big-box, .stat, .team, .timeline-box, .comment, .food-card');
+    
+    if (searchTerm === '') {
+        allCards.forEach(card => {
+            card.style.display = '';
+        });
+        // نمایش همه شهرها
+        document.querySelectorAll('.city').forEach(city => {
+            city.style.display = '';
+        });
+        return;
+    }
+    
+    allCards.forEach(card => {
+        const text = card.textContent.toLowerCase();
+        if (text.includes(searchTerm)) {
+            card.style.display = '';
+        } else {
+            card.style.display = 'none';
+        }
+    });
+    
+    // برای شهرها که ساختار متفاوتی دارند
+    document.querySelectorAll('.city').forEach(city => {
+        const text = city.textContent.toLowerCase();
+        if (text.includes(searchTerm)) {
+            city.style.display = '';
+        } else {
+            city.style.display = 'none';
+        }
+    });
 });
 
 // ===== CLOCK =====
