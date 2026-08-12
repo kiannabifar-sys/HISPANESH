@@ -330,6 +330,64 @@ section{max-width:1450px;margin:auto;padding:95px 30px}
 }
 .map-wrap iframe{width:100%;height:100%;border:0}
 
+/* ===== VIDEOS SECTION ===== */
+.videos-grid{
+ display:grid;
+ grid-template-columns:repeat(3,1fr);
+ gap:25px;
+ margin-top:30px;
+}
+.video-card{
+ background:var(--card);
+ border:1px solid var(--border);
+ border-radius:var(--radius);
+ overflow:hidden;
+ box-shadow:var(--shadow2);
+ transition:.35s;
+}
+.video-card:hover{
+ transform:translateY(-8px);
+ box-shadow:var(--shadow);
+}
+.video-wrapper{
+ position:relative;
+ padding-bottom:56.25%;
+ height:0;
+ overflow:hidden;
+}
+.video-wrapper iframe{
+ position:absolute;
+ top:0;
+ left:0;
+ width:100%;
+ height:100%;
+ border:0;
+}
+.video-info{
+ padding:18px 22px 22px;
+}
+.video-info h3{
+ font-size:18px;
+ font-weight:800;
+ margin-bottom:6px;
+}
+.video-info p{
+ color:var(--muted);
+ font-size:14px;
+}
+.video-link{
+ display:inline-block;
+ margin-top:10px;
+ color:var(--red);
+ text-decoration:none;
+ font-weight:700;
+ font-size:13px;
+ transition:.25s;
+}
+.video-link:hover{
+ color:#820512;
+}
+
 .weather-controls{
  display:flex;justify-content:center;gap:10px;margin-bottom:25px
 }
@@ -499,13 +557,13 @@ footer ul{list-style:none}
 @media(max-width:1050px){
  .nav-links{display:none}
  .stats{grid-template-columns:repeat(2,1fr)}
- .cards,.comments{grid-template-columns:repeat(2,1fr)}
+ .cards,.comments,.videos-grid{grid-template-columns:repeat(2,1fr)}
  .teams{grid-template-columns:repeat(2,1fr)}
 }
 @media(max-width:700px){
  .hero{padding:65px 25px}
  section{padding:65px 18px}
- .stats,.cards,.comments,.teams,.culture-box,.share-box,.footer-grid{
+ .stats,.cards,.comments,.teams,.culture-box,.share-box,.footer-grid,.videos-grid{
   grid-template-columns:1fr
  }
  .flag{font-size:27px}
@@ -550,12 +608,10 @@ footer ul{list-style:none}
  <a href="#history">تاریخ</a>
  <a href="#culture">فرهنگ</a>
  <a href="#food">غذا</a>
+ <a href="#videos">🎥 ویدیو</a>
  <a href="#football">فوتبال</a>
  <a href="#travel">سفر</a>
  <a href="#quiz">چالش</a>
- <a href="#celebrities">مشاهیر</a>
- <a href="#accommodation">اقامتگاه</a>
- <a href="#souvenirs">سوغات</a>
 </div>
 
 <div class="actions">
@@ -1057,212 +1113,71 @@ footer ul{list-style:none}
  </div>
 </section>
 
-<section id="accommodation">
+<!-- ===== VIDEOS SECTION ===== -->
+<section id="videos">
  <div class="section-title">
-  <div class="eyebrow">LUXURY ACCOMMODATION</div>
-  <h2 id="accommodationTitle">🏨 اقامتگاه‌های معروف اسپانیا</h2>
-  <p id="accommodationText">هتل‌ها و اقامتگاه‌های لوکس و تاریخی اسپانیا که تجربه‌ای فراموش‌نشدنی را رقم می‌زنند.</p>
+  <div class="eyebrow">SPAIN VIDEOS</div>
+  <h2 id="videosTitle">🎥 ویدیوهای اسپانیا</h2>
+  <p id="videosText">با تماشای این ویدیوهای کوتاه، سفری تصویری به اسپانیا داشته باشید.</p>
  </div>
 
- <div class="cards">
-
-  <div class="card">
-   <div class="card-icon">🏰</div>
-   <h3 data-fa="هتل الحمرا پالاس" data-es="Hotel Alhambra Palace">هتل الحمرا پالاس</h3>
-   <p>
-    <strong>📍 آدرس:</strong> گرانادا، خیابان پئینا، روبروی کاخ الحمرا<br>
-    <strong>⭐ ستاره:</strong> ۵ ستاره<br>
-    این هتل تاریخی با معماری موریش-اسپانیایی در بهترین موقعیت گرانادا قرار دارد و چشماندازی خیره‌کننده به کاخ الحمرا و کوه‌های سیرا ناوادا ارائه می‌دهد. این هتل که در سال ۱۹۱۰ افتتاح شد، میزبان شخصیت‌های مشهوری مانند وینستون چرچیل و ارنست همینگوی بوده است. امکانات شامل رستوران‌های مجلل، تراس با چشمانداز پانوراما و اتاق‌های مجهز به سبک اندلسی است.
-   </p>
+ <div class="videos-grid">
+  
+  <div class="video-card">
+   <div class="video-wrapper">
+    <iframe 
+     width="100%" 
+     height="280" 
+     src="https://www.youtube.com/embed/W3E3CyfHZcc" 
+     title="Spain in 5 minutes" 
+     frameborder="0" 
+     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+     allowfullscreen>
+    </iframe>
+   </div>
+   <div class="video-info">
+    <h3>🇪🇸 اسپانیا در ۵ دقیقه</h3>
+    <p>معرفی کامل جاذبه‌های گردشگری، شهرها و فرهنگ اسپانیا در یک ویدیوی ۵ دقیقه‌ای</p>
+    <a href="https://www.youtube.com/watch?v=W3E3CyfHZcc" target="_blank" class="video-link">▶ تماشا در یوتیوب</a>
+   </div>
   </div>
 
-  <div class="card">
-   <div class="card-icon">🏨</div>
-   <h3 data-fa="هتل ریتز مادرید" data-es="Hotel Ritz Madrid">هتل ریتز مادرید</h3>
-   <p>
-    <strong>📍 آدرس:</strong> مادرید، خیابان لئوپولدو آرزولا، ۵ (کنار موزه پرادو)<br>
-    <strong>⭐ ستاره:</strong> ۵ ستاره لوکس<br>
-    هتل ریتز مادرید که در سال ۱۹۱۰ به دستور پادشاه آلفونسو سیزدهم ساخته شد، یکی از نمادهای اشرافی مادرید است. این هتل با معماری بل-اکوپ، دکوراسیون باشکوه و خدمات سلطنتی، میزبان شخصیت‌های برجسته از سراسر جهان بوده است. رستوران Goya این هتل یکی از بهترین رستوران‌های اسپانیا محسوب می‌شود.
-   </p>
+  <div class="video-card">
+   <div class="video-wrapper">
+    <iframe 
+     width="100%" 
+     height="280" 
+     src="https://www.youtube.com/embed/JXZhuF8v-gw" 
+     title="Spain - Beautiful Places" 
+     frameborder="0" 
+     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+     allowfullscreen>
+    </iframe>
+   </div>
+   <div class="video-info">
+    <h3>🏔️ مناظر شگفت‌انگیز اسپانیا</h3>
+    <p>تماشای زیباترین مناظر طبیعی، سواحل و معماری خیره‌کننده اسپانیا</p>
+    <a href="https://www.youtube.com/watch?v=JXZhuF8v-gw" target="_blank" class="video-link">▶ تماشا در یوتیوب</a>
+   </div>
   </div>
 
-  <div class="card">
-   <div class="card-icon">🏖️</div>
-   <h3 data-fa="هتل ماریتیم مالاگا" data-es="Hotel Marítimo Málaga">هتل ماریتیم مالاگا</h3>
-   <p>
-    <strong>📍 آدرس:</strong> مالاگا، ساحل پلایا د لا مالاگا<br>
-    <strong>⭐ ستاره:</strong> ۴ ستاره<br>
-    این هتل ساحلی با معماری مدرن و دسترسی مستقیم به ساحل، یکی از بهترین گزینه‌های اقامتی در جنوب اسپانیا است. دارای استخر روباز با چشمانداز دریا، اسپا، دو رستوران و اتاق‌های با بالکن‌های رو به دریا. فاصله آن تا مرکز شهر و موزه پیکاسو تنها ۱۰ دقیقه است.
-   </p>
-  </div>
-
-  <div class="card">
-   <div class="card-icon">🏛️</div>
-   <h3 data-fa="پارادور د تولدو" data-es="Parador de Toledo">پارادور د تولدو</h3>
-   <p>
-    <strong>📍 آدرس:</strong> تولدو، روی تپه‌ای مشرف به شهر تاریخی<br>
-    <strong>⭐ ستاره:</strong> ۴ ستاره<br>
-    این هتل در یک صومعه تاریخی قرن پانزدهمی واقع شده و با معماری زیبا و چشماندازی بین‌نظیر به شهر تاریخی تولدو، یکی از خاص‌ترین اقامتگاه‌های اسپانیا است. پارادورها مجموعه‌ای از هتل‌های لوکس اسپانیا هستند که در بناهای تاریخی مانند قلعه‌ها، صومعه‌ها و کاخ‌ها قرار دارند.
-   </p>
-  </div>
-
-  <div class="card">
-   <div class="card-icon">🌴</div>
-   <h3 data-fa="هتل آرتس بارسلونا" data-es="Hotel Arts Barcelona">هتل آرتس بارسلونا</h3>
-   <p>
-    <strong>📍 آدرس:</strong> بارسلونا، منطقه پورت اولیمپیک<br>
-    <strong>⭐ ستاره:</strong> ۵ ستاره<br>
-    این هتل مدرن و لوکس با ۴۴ طبقه، یکی از نمادهای معماری بارسلونا و بهترین هتل این شهر محسوب می‌شود. دارای استخر روباز با چشمانداز مدیترانه، اسپای اختصاصی (با محصولات معروف Aveda)، رستوران‌های ستاره‌دار میشلن و دسترسی مستقیم به ساحل است. این هتل میزبان رویدادهای مهم بین‌المللی بوده است.
-   </p>
-  </div>
-
-  <div class="card">
-   <div class="card-icon">🏡</div>
-   <h3 data-fa="اقامتگاه‌های روستایی اندلس" data-es="Casas rurales de Andalucía">اقامتگاه‌های روستایی اندلس</h3>
-   <p>
-    <strong>📍 آدرس:</strong> مناطق مختلف اندلس (سویل، گرانادا، کوردوبا، روندا)<br>
-    <strong>⭐ ستاره:</strong> ۳-۴ ستاره<br>
-    اقامتگاه‌های روستایی یا "Casas Rurales" در اندلس، تجربه‌ای اصیل از زندگی محلی اسپانیا را ارائه می‌دهند. این اقامتگاه‌ها در خانه‌های سنتی اندلسی با حیاط‌های داخلی، باغ‌های پرتقال و استخرهای کوچک قرار دارند. مهمانان می‌توانند از غذاهای محلی، پیاده‌روی در طبیعت و بازدید از روستاهای سفید معروف اندلس لذت ببرند.
-   </p>
-  </div>
-
- </div>
-</section>
-
-<section id="restaurants">
- <div class="section-title">
-  <div class="eyebrow">FAMOUS RESTAURANTS</div>
-  <h2 id="restaurantsTitle">🍽️ رستوران‌های معروف اسپانیا</h2>
-  <p id="restaurantsText">بهترین رستوران‌های اسپانیا با غذاهای اصیل و بین‌المللی.</p>
- </div>
-
- <div class="cards">
-
-  <div class="card">
-   <div class="card-icon">🍽️</div>
-   <h3 data-fa="رستوران ال بولّی" data-es="El Bulli">رستوران ال بولّی</h3>
-   <p>
-    <strong>📍 آدرس:</strong> کاستا براوا، رُزِس (بارسلونا)<br>
-    <strong>⭐ امتیاز:</strong> ۳ ستاره میشلن (بسته شده - موزه)<br>
-    ال بولّی که توسط سرآشپز فران آدریا اداره می‌شد، یکی از تأثیرگذارترین رستوران‌های تاریخ آشپزی جهان بود. این رستوران که از سال ۲۰۱۱ به یک موزه و مرکز تحقیقاتی تبدیل شده، انقلابی در آشپزی مولکولی ایجاد کرد و ۵ بار به‌عنوان بهترین رستوران جهان انتخاب شد. امروزه موزه ال بولّی با بیش از ۲۰۰۰ بازدیدکننده روزانه، یکی از جاذبه‌های گردشگری اسپانیا محسوب می‌شود.
-   </p>
-  </div>
-
-  <div class="card">
-   <div class="card-icon">🥘</div>
-   <h3 data-fa="رستوران پائیا والنسیا" data-es="La Paella de Valencia">رستوران پائیا والنسیا</h3>
-   <p>
-    <strong>📍 آدرس:</strong> والنسیا، محله ال کابانیال (منطقه بندر)<br>
-    <strong>⭐ امتیاز:</strong> بهترین پائیا والنسیا<br>
-    این رستوران سنتی در منطقه بندر والنسیا، معروف‌ترین پائیا شهر را سرو می‌کند. پائیا در این رستوران با روش سنتی روی آتش چوب پخته می‌شود و از برنج محلی، زعفران تازه و مواد اولیه باکیفیت استفاده می‌کند. فضای رستوران با کاشی‌کاری‌های سنتی والنسیا، تجربه‌ای اصیل از غذاهای اسپانیایی را ارائه می‌دهد.
-   </p>
-  </div>
-
-  <div class="card">
-   <div class="card-icon">🍷</div>
-   <h3 data-fa="رستوران بوکین د پوئرتو" data-es="Botín de Puerto">رستوران بوکین د پوئرتو</h3>
-   <p>
-    <strong>📍 آدرس:</strong> مادرید، خیابان کوچرز، ۱۷ (نزدیک میدان مایور)<br>
-    <strong>⭐ امتیاز:</strong> قدیمی‌ترین رستوران جهان (رکورد گینس)<br>
-    رستوران بوکین که در سال ۱۷۲۵ تأسیس شده، قدیمی‌ترین رستوران فعال جهان محسوب می‌شود. این رستوران با تنور چوبی اصلی خود که بیش از ۳۰۰ سال قدمت دارد، گوشت بره و خوک معروفش را طبخ می‌کند. ارنست همینگوی و فردریکو گارسیا لورکا از مشتریان ثابت این رستوران بوده‌اند. فضای سنتی و غذاهای اصیل کاستیلیایی آن، تجربه‌ای فراموش‌نشدنی را رقم می‌زند.
-   </p>
-  </div>
-
-  <div class="card">
-   <div class="card-icon">🍣</div>
-   <h3 data-fa="رستوران آرزاک" data-es="Arzak">رستوران آرزاک</h3>
-   <p>
-    <strong>📍 آدرس:</strong> سن سباستین، خیابان آلتو د مچی، ۱ (استان باسک)<br>
-    <strong>⭐ امتیاز:</strong> ۳ ستاره میشلن<br>
-    رستوران آرزاک به سرپرستی خوان ماری آرزاک و دخترش النا، یکی از بهترین رستوران‌های جهان و نماد آشپزی باسک است. این رستوران با ترکیب سنت‌های محلی و تکنیک‌های مدرن، غذاهایی خلاقانه و چشمگیر سرو می‌کند. سن سباستین به‌عنوان پایتخت آشپزی جهان شناخته می‌شود و آرزاک یکی از ۳ رستوران ۳ ستاره میشلن این شهر است.
-   </p>
-  </div>
-
-  <div class="card">
-   <div class="card-icon">🦐</div>
-   <h3 data-fa="رستوران ال پرل" data-es="El Peral">رستوران ال پرل</h3>
-   <p>
-    <strong>📍 آدرس:</strong> بارسلونا، منطقه لا باریا (موزه پیکاسو)<br>
-    <strong>⭐ امتیاز:</strong> تاپاس بارسلونا<br>
-    این رستوران تاپاس معروف بارسلونا با فضای سنتی کاتالان، یکی از بهترین مکان‌ها برای تجربه تاپاس اصیل اسپانیایی است. غذاهای دریایی تازه، کروکت‌های معروف، پاتاتاس براواس (سیب‌زمینی با سس تند) و ژامبون ایبریکو از محبوب‌ترین غذاهای این رستوران هستند. این رستوران در نزدیکی موزه پیکاسو قرار دارد و مورد استقبال گردشگران قرار می‌گیرد.
-   </p>
-  </div>
-
-  <div class="card">
-   <div class="card-icon">🍮</div>
-   <h3 data-fa="کافه د لا اپرا" data-es="Café de la Ópera">کافه د لا اپرا</h3>
-   <p>
-    <strong>📍 آدرس:</strong> مادرید، خیابان سانتا ایزابل (روبروی تئاتر سلطنتی)<br>
-    <strong>⭐ امتیاز:</strong> کافه تاریخی مادرید<br>
-    این کافه تاریخی مادرید که در سال ۱۸۸۰ تأسیس شده، با دکوراسیون بل-اکوپ و فضای ادبی، یکی از نمادهای فرهنگی اسپانیا محسوب می‌شود. کافه د لا اپرا محل ملاقات روشنفکران، هنرمندان و سیاستمداران اسپانیا در قرن‌های ۱۹ و ۲۰ بوده است. امروزه با سرو شکلات داغ و چوروس معروف، یکی از محبوب‌ترین کافه‌های مادرید برای گردشگران است.
-   </p>
-  </div>
-
- </div>
-</section>
-
-<section id="souvenirs">
- <div class="section-title">
-  <div class="eyebrow">SPANISH SOUVENIRS</div>
-  <h2 id="souvenirsTitle">🎁 سوغات و هدیه‌های اسپانیا</h2>
-  <p id="souvenirsText">بهترین سوغاتی‌های اسپانیا که می‌توانید برای خود و عزیزانتان تهیه کنید.</p>
- </div>
-
- <div class="cards">
-
-  <div class="card">
-   <div class="card-icon">🧺</div>
-   <h3 data-fa="ژامبون ایبریکو" data-es="Jamón Ibérico">ژامبون ایبریکو</h3>
-   <p>
-    <strong>💰 قیمت تقریبی:</strong> از ۳۰ تا ۵۰۰ یورو (بسته به کیفیت)<br>
-    ژامبون ایبریکو معروف‌ترین سوغات اسپانیا و یکی از بهترین ژامبون‌های جهان است. این ژامبون از گوشت خوک سیاه ایبریایی تهیه می‌شود که در جنگل‌های بلوط اندلس پرورش یافته و از بلوط تغذیه کرده است. فرآیند خشک‌کردن آن بین ۱۸ تا ۴۸ ماه طول می‌کشد. بهترین برندها عبارتند از: Cinco Jotas، Joselito و ۴۰۲.
-    <br><strong>🏷️ نکته:</strong> در بسته‌بندی خلاء خریداری کنید و به پروانه‌های روی آن (رنگ برچسب) توجه کنید که نشان‌دهنده کیفیت است.
-   </p>
-  </div>
-
-  <div class="card">
-   <div class="card-icon">🧣</div>
-   <h3 data-fa="مانتاس و پانچو" data-es="Mantas y ponchos">مانتاس و پانچو</h3>
-   <p>
-    <strong>💰 قیمت تقریبی:</strong> از ۲۰ تا ۲۰۰ یورو<br>
-    پانچو و مانتاس (پتوهای سنتی) اسپانیایی از پشم مرینو با کیفیت بالا تهیه می‌شوند. این محصولات با طرح‌های سنتی اندلسی یا باسکی و رنگ‌های گرم و جذاب، سوغاتی کاربردی و زیبا محسوب می‌شوند. بهترین تولیدکنندگان در مناطق تولدو، سگوبیا و اندلس قرار دارند. مانتاس اندلسی با رنگ‌های قرمز و زرد و طرح‌های هندسی، محبوبیت خاصی دارند.
-   </p>
-  </div>
-
-  <div class="card">
-   <div class="card-icon">🍷</div>
-   <h3 data-fa="شراب ریوخا" data-es="Vino de Rioja">شراب ریوخا</h3>
-   <p>
-    <strong>💰 قیمت تقریبی:</strong> از ۵ تا ۲۰۰ یورو<br>
-    شراب ریوخا یکی از معروف‌ترین شراب‌های اسپانیا و جهان است که از منطقه ریوخا در شمال اسپانیا می‌آید. این شراب با انگور تامپرانیلو تهیه می‌شود و در بشکه‌های بلوط کهنه می‌شود. ریوخا در سه دسته اصلی عرضه می‌شود: Crianza (کمتر از ۲ سال)، Reserva (حداقل ۳ سال که ۱ سال در بشکه) و Gran Reserva (حداقل ۵ سال که ۲ سال در بشکه). برندهای معروف: Marqués de Riscal، Muga و La Rioja Alta.
-   </p>
-  </div>
-
-  <div class="card">
-   <div class="card-icon">🍬</div>
-   <h3 data-fa="شیرینی تورون" data-es="Turrón">شیرینی تورون</h3>
-   <p>
-    <strong>💰 قیمت تقریبی:</strong> از ۵ تا ۳۰ یورو<br>
-    تورون یک شیرینی سنتی اسپانیایی است که از بادام، عسل و تخم‌مرغ تهیه می‌شود. این شیرینی مخصوصاً در کریسمس محبوب است و دو نوع اصلی دارد: تورون د آلیکانته (سفت) و تورون د خیخون (نرم). بهترین تورون‌ها در مناطق آلیکانته و کاتالونیا تولید می‌شوند. برندهای معروف: El Almendro، ۱۸۸۰ و Delaviuda. تورون با شکلات، نارگیل و میوه‌های خشک نیز موجود است.
-   </p>
-  </div>
-
-  <div class="card">
-   <div class="card-icon">🧵</div>
-   <h3 data-fa="پنکه اسپانیایی" data-es="Abanico español">پنکه اسپانیایی</h3>
-   <p>
-    <strong>💰 قیمت تقریبی:</strong> از ۵ تا ۱۰۰ یورو<br>
-    پنکه‌های اسپانیایی (abanicos) یکی از نمادهای فرهنگی این کشور هستند که در قرن ۱۸ و ۱۹ به اوج محبوبیت رسیدند. این پنکه‌ها با چوب و پارچه‌های دستی با طرح‌های گل، مناظر اندلس و نقوش سنتی ساخته می‌شوند. بهترین پنکه‌ها در شهر والنسیا و مادرید تولید می‌شوند. پنکه‌های دست‌ساز با نقاشی‌های ظریف و دستگیره‌های مرواریدنشان، سوغاتی ارزشمندی محسوب می‌شوند.
-   </p>
-  </div>
-
-  <div class="card">
-   <div class="card-icon">🏺</div>
-   <h3 data-fa="کاشی‌های اندلسی" data-es="Azulejos">کاشی‌های اندلسی</h3>
-   <p>
-    <strong>💰 قیمت تقریبی:</strong> از ۵ تا ۵۰ یورو<br>
-    کاشی‌های سرامیکی اندلسی (azulejos) با طرح‌های هندسی، گل‌ها و خطاطی عربی-اسپانیایی، یکی از زیباترین سوغاتی‌های اسپانیا هستند. این کاشی‌ها در شهرهای سویل، گرانادا و کوردوبا تولید می‌شوند و در اندازه‌های مختلف از آهنربا و جاگلاسی کوچک تا بشقاب‌ها و تابلوهای بزرگ موجود هستند. طرح‌های معروف شامل الماس‌های هندسی، برگ‌های اسلیمی و کتیبه‌های عربی است. این کاشی‌ها دکوراسیون منزل را بسیار زیبا می‌کنند.
-   </p>
+  <div class="video-card">
+   <div class="video-wrapper">
+    <iframe 
+     width="100%" 
+     height="280" 
+     src="https://www.youtube.com/embed/8Jj1T2ZkKlY" 
+     title="Madrid & Barcelona" 
+     frameborder="0" 
+     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+     allowfullscreen>
+    </iframe>
+   </div>
+   <div class="video-info">
+    <h3>🏙️ مادرید و بارسلونا</h3>
+    <p>سفر تصویری به دو شهر اصلی و پرجنب‌وجوش اسپانیا با جاذبه‌های دیدنی</p>
+    <a href="https://www.youtube.com/watch?v=8Jj1T2ZkKlY" target="_blank" class="video-link">▶ تماشا در یوتیوب</a>
+   </div>
   </div>
 
  </div>
@@ -1433,175 +1348,6 @@ footer ul{list-style:none}
 
  </div>
 
-</section>
-
-<section id="celebrities">
- <div class="section-title">
-  <div class="eyebrow">FAMOUS SPANISH ARTISTS & PERSONALITIES</div>
-  <h2 id="celebritiesTitle">🎨 هنرمندان و مشاهیر اسپانیا</h2>
-  <p id="celebritiesText">اسپانیا سرزمین هنرمندان، نویسندگان، معماران و دانشمندانی است که جهان را تحت تأثیر قرار داده‌اند.</p>
- </div>
-
- <div class="cards">
-
-  <div class="card">
-   <div class="card-icon">🎨</div>
-   <h3 data-fa="نقاشان مشهور" data-es="Pintores famosos">نقاشان مشهور</h3>
-   <p>
-    <strong>پابلو پیکاسو</strong> (۱۸۸۱-۱۹۷۳) - یکی از تأثیرگذارترین نقاشان قرن بیستم و بنیانگذار کوبیسم. آثار معروف: گرنیکا، آوینیون‌ها.<br>
-    <strong>سالوادور دالی</strong> (۱۹۰۴-۱۹۸۹) - نقاش سورئالیست مشهور با تخیل بی‌نظیر. آثار معروف: تداوم حافظه، فیل‌های فضایی.<br>
-    <strong>فرانسیسکو گویا</strong> (۱۷۴۶-۱۸۲۸) - نقاش و چاپ‌گر بزرگ، پدر هنر مدرن. آثار معروف: ماه می ۱۸۰۸، ماجاهای برهنه و پوشیده.<br>
-    <strong>دیه‌گو ولاسکس</strong> (۱۵۹۹-۱۶۶۰) - نقاش بزرگ عصر طلایی اسپانیا. اثر معروف: لاس مِنیاس.<br>
-    <strong>خوان میرو</strong> (۱۸۹۳-۱۹۸۳) - نقاش، مجسمه‌ساز و سرامیک‌کار سورئالیست.
-   </p>
-  </div>
-
-  <div class="card">
-   <div class="card-icon">✍️</div>
-   <h3 data-fa="نویسندگان و شاعران" data-es="Escritores y poetas">نویسندگان و شاعران</h3>
-   <p>
-    <strong>میگل د سروانتس</strong> (۱۵۴۷-۱۶۱۶) - بزرگترین نویسنده اسپانیا و خالق "دن کیشوت" (یکی از مهم‌ترین رمان‌های تاریخ ادبیات).<br>
-    <strong>فدریکو گارسیا لورکا</strong> (۱۸۹۸-۱۹۳۶) - شاعر و نمایشنامه‌نویس بزرگ، عضو نسل ۲۷.<br>
-    <strong>پدرو کالدرون د لا بارکا</strong> (۱۶۰۰-۱۶۸۱) - نمایشنامه‌نویس بزرگ عصر طلایی.<br>
-    <strong>لئوپولدو آلاس "کلارین"</strong> (۱۸۵۲-۱۹۰۱) - نویسنده رئالیست و منتقد ادبی.<br>
-    <strong>آنتونیو ماچادو</strong> (۱۸۷۵-۱۹۳۹) - شاعر بزرگ نسل ۹۸.
-   </p>
-  </div>
-
-  <div class="card">
-   <div class="card-icon">🏛️</div>
-   <h3 data-fa="معماران مشهور" data-es="Arquitectos famosos">معماران مشهور</h3>
-   <p>
-    <strong>آنتونی گائودی</strong> (۱۸۵۲-۱۹۲۶) - معمار نابغه کاتالان و نماد مدرنیسم. آثار معروف: ساگرادا فامیلیا، پارک گوئل، کازا میلا، کازا باتلو.<br>
-    <strong>سانتیاگو کالاتراوا</strong> (زاده ۱۹۵۱) - معمار، مهندس و مجسمه‌ساز مشهور جهانی. آثار معروف: شهر هنرها و علوم والنسیا، پل زنان در بوئنوس آیرس.<br>
-    <strong>ریکاردو بوفیل</strong> (۱۹۳۹-۲۰۲۲) - معمار پست‌مدرن با آثار شاخص در سراسر جهان.<br>
-    <strong>رافائل مونئو</strong> (زاده ۱۹۳۷) - برنده جایزه پریتزکر (۱۹۹۶) و طراح موزه هنر مدرن استکهلم.
-   </p>
-  </div>
-
-  <div class="card">
-   <div class="card-icon">🎬</div>
-   <h3 data-fa="کارگردانان و بازیگران" data-es="Directores y actores">کارگردانان و بازیگران</h3>
-   <p>
-    <strong>پدرو آلمودوار</strong> (زاده ۱۹۴۹) - یکی از مشهورترین کارگردانان جهان با سبک منحصربه‌فرد. آثار معروف: همه چیز درباره مادرم، با او حرف بزن، درد و شکوه.<br>
-    <strong>لوئیس بونوئل</strong> (۱۹۰۰-۱۹۸۳) - کارگردان بزرگ سورئالیست و همکار سالوادور دالی.<br>
-    <strong>خاویر باردم</strong> (زاده ۱۹۶۹) - بازیگر مشهور برنده اسکار. فیلم‌های معروف: پیرمردها و دریا، نوتردام، بیگانه.<br>
-    <strong>پنه‌لوپه کروز</strong> (زاده ۱۹۷۴) - بازیگر مشهور اسپانیایی برنده اسکار.<br>
-    <strong>ایسابل کویشت</strong> (زاده ۱۹۶۹) - کارگردان برنده گویا و نامزد اسکار.
-   </p>
-  </div>
-
-  <div class="card">
-   <div class="card-icon">🔬</div>
-   <h3 data-fa="دانشمندان و کاشفان" data-es="Científicos y exploradores">دانشمندان و کاشفان</h3>
-   <p>
-    <strong>سانتیاگو رامون ای کاخال</strong> (۱۸۵۲-۱۹۳۴) - پدر علوم اعصاب و برنده جایزه نوبل پزشکی (۱۹۰۶).<br>
-    <strong>کریستف کلمب</strong> (۱۴۵۱-۱۵۰۶) - کاشف بزرگ که با حمایت اسپانیا به قاره آمریکا سفر کرد.<br>
-    <strong>فرناندو ماژلان</strong> (۱۴۸۰-۱۵۲۱) - کاوشگر پرتغالی‌الاصل که با حمایت اسپانیا اولین سفر دور جهان را رهبری کرد.<br>
-    <strong>سورینو اوراگا</strong> (۱۹۴۶-۲۰۲۳) - پزشک برجسته و مسئول اولین پیوند سر در جهان.<br>
-    <strong>گرگوریو مارانیون</strong> (۱۸۸۷-۱۹۶۰) - پزشک، دانشمند و اندیشمند بزرگ اسپانیایی.
-   </p>
-  </div>
-
-  <div class="card">
-   <div class="card-icon">🎶</div>
-   <h3 data-fa="موسیقیدانان مشهور" data-es="Músicos famosos">موسیقیدانان مشهور</h3>
-   <p>
-    <strong>پابلو د ساراساته</strong> (۱۸۴۴-۱۹۰۸) - بزرگترین ویولونیست اسپانیا و آهنگساز.<br>
-    <strong>انریکه گرانادوس</strong> (۱۸۶۷-۱۹۱۶) - آهنگساز و پیانیست بزرگ، نماینده موسیقی ملی‌گرای اسپانیا.<br>
-    <strong>ایزاک آلبنیس</strong> (۱۸۶۰-۱۹۰۹) - آهنگساز و پیانیست تأثیرگذار.<br>
-    <strong>مانوئل د فایا</strong> (۱۸۷۶-۱۹۴۶) - یکی از بزرگترین آهنگسازان اسپانیا.<br>
-    <strong>پاکو د لوسیا</strong> (۱۹۴۷-۲۰۱۴) - بهترین نوازنده گیتار فلامنکو در تمام دوران.
-   </p>
-  </div>
-
- </div>
-</section>
-
-<section id="opportunities">
- <div class="section-title">
-  <div class="eyebrow">OPPORTUNITIES & CHALLENGES</div>
-  <h2 id="opportunitiesTitle">🎯 فرصت‌ها و چالش‌های اسپانیا</h2>
-  <p id="opportunitiesText">شناخت یک کشور فقط به دیدن نقاط مثبت آن محدود نمی‌شود.</p>
- </div>
-
- <div class="cards">
-
-  <div class="card">
-   <div class="card-icon">💼</div>
-   <h3 data-fa="فرصت‌های اقتصادی" data-es="Oportunidades económicas">فرصت‌های اقتصادی</h3>
-   <p class="opp1">
-    گردشگری (با بیش از ۸۰ میلیون گردشگر سالانه)، خدمات مالی، صنعت خودروسازی (دومین تولیدکننده خودرو در اروپا)، 
-    کشاورزی (مخصوصاً میوه، سبزیجات، زیتون و شراب)، انرژی‌های تجدیدپذیر و فناوری اطلاعات 
-    از بخش‌های مهم اقتصاد اسپانیا هستند. اسپانیا چهارمین اقتصاد بزرگ اروپا و چهاردهمین اقتصاد جهان است 
-    و فرصت‌های شغلی زیادی برای متخصصان، کارآفرینان و سرمایه‌گذاران خارجی ایجاد کرده است.
-   </p>
-  </div>
-
-  <div class="card">
-   <div class="card-icon">☀️</div>
-   <h3 data-fa="انرژی‌های تجدیدپذیر" data-es="Energías renovables">انرژی‌های تجدیدپذیر</h3>
-   <p class="opp2">
-    شرایط جغرافیایی و اقلیمی اسپانیا با بیش از ۳۰۰ روز آفتابی در سال، 
-    ظرفیت مناسبی برای انرژی خورشیدی ایجاد کرده است. 
-    اسپانیا یکی از پیشروان انرژی بادی در اروپا محسوب می‌شود 
-    و به‌طور مداوم در حال توسعه زیرساخت‌های انرژی سبز است. 
-    این کشور هدف دارد تا سال ۲۰۵۰ به کربن خالص صفر دست یابد 
-    و در سال‌های اخیر سرمایه‌گذاری‌های چشمگیری در انرژی‌های خورشیدی، بادی و هیدروژن سبز انجام داده است.
-   </p>
-  </div>
-
-  <div class="card">
-   <div class="card-icon">✈️</div>
-   <h3 data-fa="گردشگری" data-es="Turismo">گردشگری</h3>
-   <p class="opp3">
-    تاریخ غنی، سواحل زیبا، شهرهای دیدنی، غذاهای متنوع، آب‌وهوای عالی و فرهنگ غنی 
-    باعث شده گردشگری به یکی از ستون‌های اصلی اقتصاد اسپانیا تبدیل شود. 
-    اسپانیا پس از فرانسه، دومین کشور پربازدید جهان است 
-    و سالانه بیش از ۸۰ میلیون گردشگر بین‌المللی را جذب می‌کند 
-    که درآمدی بالغ بر ۹۰ میلیارد یورو برای این کشور به همراه دارد. 
-    گردشگری حدود ۱۲٪ از تولید ناخالص داخلی اسپانیا را تشکیل می‌دهد.
-   </p>
-  </div>
-
-  <div class="card">
-   <div class="card-icon">🏠</div>
-   <h3 data-fa="چالش‌های مسکن" data-es="Desafíos de vivienda">چالش‌های مسکن</h3>
-   <p class="opp4">
-    هزینه مسکن و اجاره در برخی شهرهای بزرگ مانند مادرید، بارسلونا، والیبدید و سویل 
-    به‌طور قابل‌توجهی افزایش یافته است. این موضوع به ویژه برای جوانان و خانواده‌های کم‌درآمد 
-    چالش‌برانگیز شده و بسیاری از جوانان مجبور به ترک شهرهای بزرگ یا زندگی با والدین خود هستند. 
-    دولت اسپانیا برنامه‌هایی برای کنترل قیمت‌ها، افزایش عرضه مسکن اجتماعی و حمایت از مستاجران 
-    در دستور کار دارد. این چالش یکی از مهم‌ترین مسائل اجتماعی اسپانیا محسوب می‌شود.
-   </p>
-  </div>
-
-  <div class="card">
-   <div class="card-icon">🌡️</div>
-   <h3 data-fa="چالش‌های اقلیمی" data-es="Desafíos climáticos">چالش‌های اقلیمی</h3>
-   <p class="opp5">
-    خشکسالی، گرمای شدید، افزایش سطح آب دریاها، بیابان‌زایی و مدیریت منابع آب 
-    از موضوعات مهم زیست‌محیطی اسپانیا هستند. این کشور با کمبود آب در مناطق جنوبی و شرقی مواجه است 
-    و نیازمند سرمایه‌گذاری در زیرساخت‌های آبی، تصفیه‌خانه‌ها، نمک‌زدایی آب دریا 
-    و روش‌های نوین آبیاری برای مقابله با تغییرات اقلیمی می‌باشد. 
-    اسپانیا همچنین یکی از کشورهای اروپایی است که بیشترین آسیب را از گرمایش جهانی می‌بیند.
-   </p>
-  </div>
-
-  <div class="card">
-   <div class="card-icon">👥</div>
-   <h3 data-fa="تنوع منطقه‌ای" data-es="Diversidad regional">تنوع منطقه‌ای</h3>
-   <p class="opp6">
-    اسپانیا شامل ۱۷ منطقه خودمختار با زبان‌ها، فرهنگ‌ها و سنت‌های متنوع است. 
-    زبان‌های رسمی شامل اسپانیایی (کاستیلیان)، کاتالان، باسکی و گالیسیایی هستند 
-    که هرکدام ادبیات و تاریخ غنی خود را دارند. 
-    این تنوع غنای فرهنگی شگفت‌انگیزی ایجاد کرده اما چالش‌های مدیریتی و سیاسی نیز به همراه داشته است. 
-    جنبش‌های استقلال‌طلبانه در کاتالونیا و باسک از مهم‌ترین چالش‌های سیاسی اسپانیا محسوب می‌شوند 
-    و نیازمند مدیریت هوشمندانه و گفت‌وگوی مستمر هستند.
-   </p>
-  </div>
-
- </div>
 </section>
 
 <section id="travel">
@@ -1894,10 +1640,9 @@ footer ul{list-style:none}
    <li>📜 تاریخ</li>
    <li>💃 فرهنگ</li>
    <li>🥘 غذا</li>
+   <li>🎥 ویدیو</li>
    <li>⚽ فوتبال</li>
-   <li>🎨 مشاهیر</li>
-   <li>🏨 اقامتگاه</li>
-   <li>🎁 سوغات</li>
+   <li>✈️ سفر</li>
   </ul>
  </div>
 
@@ -1980,12 +1725,8 @@ fa:{
  cultureText:"فرهنگ اسپانیا ترکیبی از میراث مدیترانه‌ای، اروپایی، اندلسی و منطقه‌ای است.",
  foodTitle:"🥘 غذاهای معروف اسپانیا",
  foodText:"غذا در اسپانیا فقط تغذیه نیست؛ بخشی از فرهنگ اجتماعی و سبک زندگی مردم است.",
- accommodationTitle:"🏨 اقامتگاه‌های معروف اسپانیا",
- accommodationText:"هتل‌ها و اقامتگاه‌های لوکس و تاریخی اسپانیا که تجربه‌ای فراموش‌نشدنی را رقم می‌زنند.",
- restaurantsTitle:"🍽️ رستوران‌های معروف اسپانیا",
- restaurantsText:"بهترین رستوران‌های اسپانیا با غذاهای اصیل و بین‌المللی.",
- souvenirsTitle:"🎁 سوغات و هدیه‌های اسپانیا",
- souvenirsText:"بهترین سوغاتی‌های اسپانیا که می‌توانید برای خود و عزیزانتان تهیه کنید.",
+ videosTitle:"🎥 ویدیوهای اسپانیا",
+ videosText:"با تماشای این ویدیوهای کوتاه، سفری تصویری به اسپانیا داشته باشید.",
  footballTitle:"⚽ فوتبال اسپانیا",
  footballText:"فوتبال یکی از مهم‌ترین بخش‌های فرهنگ ورزشی و هویت ملی اسپانیاست.",
  footballHero:"تیم ملی اسپانیا (با نام مستعار \"La Roja\" به معنی \"قرمزها\") یکی از موفق‌ترین تیم‌های تاریخ فوتبال جهان است. اسپانیا قهرمان جام جهانی ۲۰۱۰ در آفریقای جنوبی شد و سه‌بار قهرمان یورو (۱۹۶۴، ۲۰۰۸، ۲۰۱۲) شده است. همچنین اسپانیا در سال ۲۰۲۶ برای دومین بار قهرمان جام جهانی شد و با درخشش نسل جدید ستارگان خود، بار دیگر نام خود را در تاریخ فوتبال جهان ماندگار کرد. فوتبال این کشور به پاس‌کاری دقیق، مالکیت توپ هوشمندانه، بازی ترکیبی و پرورش بازیکنان خلاق شهرت دارد. سبک بازی \"تیکی تاکا\" که توسط اسپانیا و باشگاه بارسلونا به اوج خود رسید، انقلابی در فوتبال جهان ایجاد کرد.",
@@ -1994,10 +1735,6 @@ fa:{
  barca:"باشگاهی با سبک فنی و فلسفه منحصربه‌فرد با ۵ قهرمانی لیگ قهرمانان اروپا، ۲۷ قهرمانی لالیگا، ۳۱ قهرمانی جام حذفی و ۳ قهرمانی جام باشگاه‌های جهان.",
  atleti:"باشگاهی با روحیه جنگندگی و سبک دفاعی منظم با ۱۱ قهرمانی لالیگا، ۱۰ قهرمانی جام حذفی، ۳ قهرمانی لیگ اروپا و ۳ سوپرجام اروپا.",
  betis:"باشگاه تاریخی شهر سویل با هواداران پرشور و وفادار. یک قهرمانی لالیگا (۱۹۳۵)، ۳ قهرمانی جام حذفی و ۲ قهرمانی سگوندا دیویسیون.",
- celebritiesTitle:"🎨 هنرمندان و مشاهیر اسپانیا",
- celebritiesText:"اسپانیا سرزمین هنرمندان، نویسندگان، معماران و دانشمندانی است که جهان را تحت تأثیر قرار داده‌اند.",
- opportunitiesTitle:"🎯 فرصت‌ها و چالش‌های اسپانیا",
- opportunitiesText:"شناخت یک کشور فقط به دیدن نقاط مثبت آن محدود نمی‌شود.",
  travelTitle:"✈️ چرا به اسپانیا سفر کنیم؟",
  travelText:"در یک سفر به اسپانیا می‌توان تاریخ، هنر، ساحل، غذا، ورزش و فرهنگ را کنار هم تجربه کرد.",
  weatherTitle:"🌤️ آب‌وهوای زنده",
@@ -2056,12 +1793,8 @@ es:{
  cultureText:"La cultura española combina herencias mediterráneas, europeas, andaluzas y regionales.",
  foodTitle:"🥘 Comida típica de España",
  foodText:"La comida en España no es solo alimentación; es parte de la cultura social y el estilo de vida.",
- accommodationTitle:"🏨 Alojamientos famosos de España",
- accommodationText:"Hoteles y alojamientos de lujo e históricos de España que ofrecen una experiencia inolvidable.",
- restaurantsTitle:"🍽️ Restaurantes famosos de España",
- restaurantsText:"Los mejores restaurantes de España con cocina auténtica e internacional.",
- souvenirsTitle:"🎁 Souvenirs y regalos de España",
- souvenirsText:"Los mejores souvenirs de España que puedes comprar para ti y tus seres queridos.",
+ videosTitle:"🎥 Videos de España",
+ videosText:"Disfruta de estos videos cortos y haz un viaje visual por España.",
  footballTitle:"⚽ Fútbol español",
  footballText:"El fútbol es una de las partes más importantes de la cultura deportiva y la identidad nacional de España.",
  footballHero:"La selección española (apodada \"La Roja\") es uno de los equipos más exitosos de la historia del fútbol. España ganó el Mundial de 2010 en Sudáfrica y tres Eurocopas (1964, 2008, 2012). Además, en 2026 España ganó su segundo Mundial, consolidando su legado con una nueva generación de estrellas. Su fútbol es conocido por el pase preciso, la posesión inteligente, el juego combinativo y el desarrollo de talentos creativos. El estilo \"tiki-taka\" llevado a la cima por España y el FC Barcelona revolucionó el fútbol mundial.",
@@ -2070,10 +1803,6 @@ es:{
  barca:"Club con estilo técnico y filosofía única con 5 Champions League, 27 Ligas, 31 Copas del Rey y 3 Mundiales de Clubes.",
  atleti:"Club con espíritu combativo y estilo defensivo con 11 Ligas, 10 Copas del Rey, 3 Europa League y 3 Supercopas de Europa.",
  betis:"Club histórico de Sevilla con afición apasionada y fiel. 1 Liga (1935), 3 Copas del Rey y 2 Segundas Divisiones.",
- celebritiesTitle:"🎨 Artistas y personalidades de España",
- celebritiesText:"España es tierra de artistas, escritores, arquitectos y científicos que han influido en el mundo.",
- opportunitiesTitle:"🎯 Oportunidades y desafíos de España",
- opportunitiesText:"Conocer un país también significa comprender sus desafíos.",
  travelTitle:"✈️ ¿Por qué viajar a España?",
  travelText:"En un viaje a España puedes disfrutar de historia, arte, playas, gastronomía, deporte y cultura.",
  weatherTitle:"🌤️ Tiempo en vivo",
@@ -2160,12 +1889,8 @@ function applyLanguage(){
  set("foodTitle",t.foodTitle);
  set("foodText",t.foodText);
 
- set("accommodationTitle",t.accommodationTitle);
- set("accommodationText",t.accommodationText);
- set("restaurantsTitle",t.restaurantsTitle);
- set("restaurantsText",t.restaurantsText);
- set("souvenirsTitle",t.souvenirsTitle);
- set("souvenirsText",t.souvenirsText);
+ set("videosTitle",t.videosTitle);
+ set("videosText",t.videosText);
 
  set("footballTitle",t.footballTitle);
  set("footballText",t.footballText);
@@ -2175,12 +1900,6 @@ function applyLanguage(){
  set("barcaText",t.barca);
  set("atletiText",t.atleti);
  set("betisText",t.betis);
-
- set("celebritiesTitle",t.celebritiesTitle);
- set("celebritiesText",t.celebritiesText);
-
- set("opportunitiesTitle",t.opportunitiesTitle);
- set("opportunitiesText",t.opportunitiesText);
 
  set("travelTitle",t.travelTitle);
  set("travelText",t.travelText);
