@@ -132,6 +132,63 @@ body.dark header{background:rgba(11,15,23,.84)}
 }
 .icon-btn:hover{transform:translateY(-3px);border-color:var(--red)}
 
+/* ===== MENU HAMBURGER ===== */
+.hamburger-btn{
+ width:44px;height:44px;border-radius:14px;
+ border:1px solid var(--border);background:var(--card);
+ color:var(--text);font-size:22px;transition:.25s;
+ display:grid;place-items:center;line-height:1
+}
+.hamburger-btn:hover{transform:translateY(-3px);border-color:var(--red)}
+
+.mobile-menu-overlay{
+ position:fixed;top:0;right:0;width:100%;height:100%;
+ background:rgba(0,0,0,.5);z-index:9998;
+ opacity:0;pointer-events:none;transition:.4s
+}
+.mobile-menu-overlay.active{opacity:1;pointer-events:auto}
+
+.mobile-menu{
+ position:fixed;top:0;right:-350px;width:340px;height:100%;
+ background:var(--bg);z-index:9999;
+ padding:30px 25px;overflow-y:auto;
+ transition:.4s cubic-bezier(.4,0,.2,1);
+ box-shadow:-10px 0 40px rgba(0,0,0,.15);
+ border-left:2px solid var(--border)
+}
+body.dark .mobile-menu{background:var(--card)}
+.mobile-menu.active{right:0}
+.mobile-menu-header{
+ display:flex;justify-content:space-between;align-items:center;
+ margin-bottom:30px;padding-bottom:20px;
+ border-bottom:2px solid var(--border)
+}
+.mobile-menu-header h2{
+ font-family:"Playfair Display",serif;
+ font-size:24px;color:var(--red)
+}
+.mobile-menu-close{
+ width:44px;height:44px;border-radius:14px;
+ border:1px solid var(--border);background:var(--card);
+ color:var(--text);font-size:24px;transition:.25s
+}
+.mobile-menu-close:hover{border-color:var(--red)}
+.mobile-menu-links{
+ display:flex;flex-direction:column;gap:6px
+}
+.mobile-menu-links a{
+ padding:12px 16px;border-radius:12px;
+ color:var(--text);text-decoration:none;
+ transition:.25s;font-size:15px;
+ border:1px solid transparent
+}
+.mobile-menu-links a:hover{
+ background:var(--red);color:#fff;
+ transform:translateX(-4px);
+ border-color:var(--red)
+}
+.mobile-menu-links a i{margin-left:10px}
+
 .hero{
  min-height:calc(100vh - 78px);
  display:flex;align-items:center;position:relative;
@@ -497,27 +554,17 @@ footer ul{list-style:none}
  z-index:8000;display:none;box-shadow:0 10px 25px rgba(198,11,30,.3)
 }
 
-/* ===== HIGHLIGHT FOR SEARCH ===== */
 .search-highlight {
  background:rgba(255,196,0,.35);
- padding:0 2px;
- border-radius:3px;
+ padding:0 2px;border-radius:3px
 }
 .search-highlight-dark {
- background:rgba(255,196,0,.25);
+ background:rgba(255,196,0,.25)
 }
-
 .no-results {
- text-align:center;
- padding:40px 20px;
- color:var(--muted);
- font-size:18px;
+ text-align:center;padding:40px 20px;color:var(--muted);font-size:18px
 }
-.no-results span {
- font-size:40px;
- display:block;
- margin-bottom:12px;
-}
+.no-results span {font-size:40px;display:block;margin-bottom:12px}
 
 @media(max-width:1050px){
  .nav-links{display:none}
@@ -539,6 +586,7 @@ footer ul{list-style:none}
  .quiz-question{font-size:20px}
  .quiz-final-score{font-size:48px}
  .share-box{text-align:center}
+ .mobile-menu{width:300px;right:-310px}
 }
 </style>
 </head>
@@ -585,12 +633,43 @@ footer ul{list-style:none}
 </div>
 
 <div class="actions">
+ <button class="hamburger-btn" id="menuToggle" aria-label="منو">☰</button>
  <button class="icon-btn" id="langBtn" title="تغییر زبان">🇪🇸</button>
  <button class="icon-btn" id="themeBtn">🌙</button>
 </div>
 
 </nav>
 </header>
+
+<!-- ===== MOBILE MENU OVERLAY ===== -->
+<div class="mobile-menu-overlay" id="menuOverlay"></div>
+
+<!-- ===== MOBILE MENU ===== -->
+<div class="mobile-menu" id="mobileMenu">
+ <div class="mobile-menu-header">
+  <h2>📋 منو</h2>
+  <button class="mobile-menu-close" id="menuClose">✕</button>
+ </div>
+ <div class="mobile-menu-links">
+  <a href="#cities"><i>🏙️</i> شهرهای اسپانیا</a>
+  <a href="#places"><i>📍</i> جاذبه‌های دیدنی</a>
+  <a href="#history"><i>📜</i> تاریخ اسپانیا</a>
+  <a href="#culture"><i>💃</i> فرهنگ اسپانیا</a>
+  <a href="#food"><i>🥘</i> غذاهای معروف</a>
+  <a href="#football"><i>⚽</i> فوتبال اسپانیا</a>
+  <a href="#travel"><i>✈️</i> چرا سفر کنیم؟</a>
+  <a href="#quiz"><i>🎮</i> چالش اسپانیا</a>
+  <a href="#celebrities"><i>🎨</i> مشاهیر اسپانیا</a>
+  <a href="#accommodation"><i>🏨</i> اقامتگاه‌ها</a>
+  <a href="#souvenirs"><i>🎁</i> سوغات اسپانیا</a>
+  <a href="#festivals"><i>🎭</i> جشنواره‌ها</a>
+  <a href="#islands"><i>🏝️</i> جزایر اسپانیا</a>
+  <a href="#unesco"><i>🏛️</i> میراث یونسکو</a>
+  <a href="#opportunities"><i>🎯</i> فرصت‌ها و چالش‌ها</a>
+  <a href="#weather"><i>🌤️</i> آب‌وهوا</a>
+  <a href="#map"><i>🗺️</i> نقشه اسپانیا</a>
+ </div>
+</div>
 
 <main>
 
@@ -2522,6 +2601,40 @@ document.getElementById("langBtn").onclick=()=>{
  );
 };
 
+// ===== MOBILE MENU =====
+const menuToggle = document.getElementById('menuToggle');
+const mobileMenu = document.getElementById('mobileMenu');
+const menuOverlay = document.getElementById('menuOverlay');
+const menuClose = document.getElementById('menuClose');
+
+function openMenu() {
+ mobileMenu.classList.add('active');
+ menuOverlay.classList.add('active');
+ document.body.style.overflow = 'hidden';
+}
+
+function closeMenu() {
+ mobileMenu.classList.remove('active');
+ menuOverlay.classList.remove('active');
+ document.body.style.overflow = '';
+}
+
+menuToggle.addEventListener('click', openMenu);
+menuClose.addEventListener('click', closeMenu);
+menuOverlay.addEventListener('click', closeMenu);
+
+// بستن منو با کلیک روی لینک‌ها
+document.querySelectorAll('.mobile-menu-links a').forEach(link => {
+ link.addEventListener('click', closeMenu);
+});
+
+// بستن منو با کلید ESC
+document.addEventListener('keydown', (e) => {
+ if (e.key === 'Escape' && mobileMenu.classList.contains('active')) {
+  closeMenu();
+ }
+});
+
 // ===== CITY FILTER =====
 document.querySelectorAll(".city-filter button").forEach(btn=>{
  btn.onclick=()=>{
@@ -2545,7 +2658,6 @@ document.getElementById("searchInput").addEventListener("input", function() {
     const searchTerm = this.value.trim().toLowerCase();
     const resultsContainer = document.getElementById("searchResults");
     
-    // حذف هایلایت‌های قبلی
     document.querySelectorAll(".search-highlight, .search-highlight-dark").forEach(el => {
         const parent = el.parentNode;
         const text = el.textContent;
@@ -2553,20 +2665,14 @@ document.getElementById("searchInput").addEventListener("input", function() {
         parent.normalize();
     });
     
-    // اگر جستجو خالی است
     if (searchTerm === '') {
         resultsContainer.innerHTML = '';
-        // نمایش همه محتوا
-        document.querySelectorAll('.card, .city, .big-box, .stat, .team, .timeline-box, .comment, .food-card, .group .members .member').forEach(el => {
-            el.style.display = '';
-        });
         document.querySelectorAll('.city, .card, .big-box, .stat, .team, .timeline-box, .comment, .food-card, .group .members .member').forEach(el => {
             el.style.display = '';
         });
         return;
     }
     
-    // جستجو در تمام المان‌های قابل جستجو
     const searchableItems = document.querySelectorAll([
         '.city',
         '.card:not(.city)',
@@ -2582,12 +2688,10 @@ document.getElementById("searchInput").addEventListener("input", function() {
     let foundCount = 0;
     const results = [];
     
-    // ابتدا همه را مخفی کن
     searchableItems.forEach(el => {
         el.style.display = 'none';
     });
     
-    // جستجو در هر المان
     searchableItems.forEach(el => {
         const text = el.textContent.toLowerCase();
         const searchAttr = el.getAttribute('data-search') || '';
@@ -2600,7 +2704,6 @@ document.getElementById("searchInput").addEventListener("input", function() {
         }
     });
     
-    // هایلایت کلمات جستجو شده
     if (foundCount > 0) {
         results.forEach(el => {
             const walker = document.createTreeWalker(
@@ -2644,7 +2747,6 @@ document.getElementById("searchInput").addEventListener("input", function() {
         });
     }
     
-    // نمایش نتایج
     if (foundCount === 0) {
         resultsContainer.innerHTML = `
             <div class="no-results">
@@ -3182,4 +3284,4 @@ applyLanguage();
 </script>
 
 </body>
- </html>
+   </html>
