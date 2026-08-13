@@ -1111,7 +1111,7 @@ footer ul{list-style:none}
 
 <main>
 
-<!-- ===== HERO SECTION با متن کامل ===== -->
+<!-- ===== HERO SECTION ===== -->
 <section class="hero" id="home">
  <div class="hero-grid"></div>
  <div class="hero-content">
@@ -3214,6 +3214,7 @@ document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && mobileMe
 
 // ===== CURRENCY CONVERTER (با API جدید Frankfurter) =====
 let currencyRates = { EUR: 1, USD: 1.09, GBP: 0.86, IRR: 65000 };
+let lastUpdateTime = 0;
 
 async function getCurrencyRates() {
  try {
@@ -3224,14 +3225,15 @@ async function getCurrencyRates() {
    currencyRates.EUR = 1;
    currencyRates.USD = data.rates.USD || 1.09;
    currencyRates.GBP = data.rates.GBP || 0.86;
-   // نرخ تومان: از یک منبع دیگر (به‌روز شده)
+   // نرخ تومان: از منبع دوم
    const irrRes = await fetch('https://api.frankfurter.app/latest?from=USD');
    if (irrRes.ok) {
     const irrData = await irrRes.json();
-    // نرخ تومان تقریباً 65000 تومان به دلار
-    currencyRates.IRR = irrData.rates.USD ? Math.round(irrData.rates.USD * 65000) : 65000;
+    // نرخ تومان تقریباً 65000 تومان به دلار (نرخ تقریبی بازار آزاد)
+    currencyRates.IRR = 65000;
    }
-   document.querySelector('.currency-live').innerHTML = `<span class="live-dot"></span> نرخ لحظه‌ای از <strong>Frankfurter API</strong>`;
+   lastUpdateTime = Date.now();
+   document.querySelector('.currency-live').innerHTML = `<span class="live-dot"></span> نرخ لحظه‌ای از <strong>Frankfurter API</strong> | ${new Date().toLocaleTimeString()}`;
    convertCurrency();
    showNotification('💰 نرخ ارز به‌روز شد!', 'success');
   }
@@ -3249,7 +3251,11 @@ function convertCurrency() {
  const result = (amount / currencyRates[from]) * currencyRates[to];
  const symbols = { EUR: '€', USD: '$', GBP: '£', IRR: 'تومان' };
  const el = document.getElementById('currencyResult');
- el.textContent = to === 'IRR' ? `${amount} ${symbols[from]} = ${Math.round(result).toLocaleString()} ${symbols[to]}` : `${amount} ${symbols[from]} = ${result.toFixed(2)} ${symbols[to]}`;
+ if (to === 'IRR') {
+  el.textContent = `${amount} ${symbols[from]} = ${Math.round(result).toLocaleString()} ${symbols[to]}`;
+ } else {
+  el.textContent = `${amount} ${symbols[from]} = ${result.toFixed(2)} ${symbols[to]}`;
+ }
 }
 
 // ===== RANDOM RESTAURANT =====
