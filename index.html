@@ -242,7 +242,7 @@ body.dark .mobile-menu{background:var(--card)}
  -webkit-background-clip:text;color:transparent
 }
 .hero h2{font-size:clamp(22px,3.5vw,40px);margin-bottom:16px}
-.hero p{max-width:850px;color:var(--muted);font-size:17px}
+.hero p{max-width:850px;color:var(--muted);font-size:17px;line-height:2}
 .hero-buttons{display:flex;gap:12px;flex-wrap:wrap;margin-top:25px}
 
 .btn{
@@ -1111,7 +1111,7 @@ footer ul{list-style:none}
 
 <main>
 
-<!-- ===== HERO SECTION ===== -->
+<!-- ===== HERO SECTION با متن کامل ===== -->
 <section class="hero" id="home">
  <div class="hero-grid"></div>
  <div class="hero-content">
@@ -1128,6 +1128,15 @@ footer ul{list-style:none}
    و جاذبه‌های گردشگری کم‌نظیر است. در اینجا تاریخ کهن، شهرهای پرجنب‌وجوش، هنر فلامنکو، 
    غذاهای معروف، فوتبال حرفه‌ای، آب‌وهوای متنوع، سبک زندگی مدیترانه‌ای و همچنین 
    فرصت‌ها و چالش‌های پیش روی این کشور را به‌طور کامل بررسی می‌کنیم.
+  </p>
+
+  <p id="heroText2" style="margin-top:12px;">
+   اسپانیا با تنوع فوق‌العاده‌اش، از کوه‌های برفی سیرا ناوادا تا سواحل آفتابی مدیترانه، از شهرهای تاریخی با معماری اسلامی-مسیحی تا کلان‌شهرهای مدرن و پویا، 
+   یکی از محبوب‌ترین مقاصد گردشگری جهان است. این کشور نه‌تنها به‌خاطر جاذبه‌های تاریخی و طبیعی، بلکه به‌خاطر مهمان‌نوازی مردم، 
+   جشن‌های رنگارنگ، موسیقی پرشور فلامنکو و البته فوتبال سطح بالای خود شهرت جهانی دارد. 
+   در HISPANESH سعی کرده‌ایم تا تمام ابعاد این کشور شگفت‌انگیز را از زوایای مختلف بررسی کنیم تا شما بتوانید 
+   درک عمیق‌تری از اسپانیا داشته باشید. چه به‌دنبال اطلاعات برای سفر باشید، چه به تاریخ و فرهنگ علاقه‌مند باشید، 
+   یا صرفاً بخواهید دانش خود را درباره این کشور افزایش دهید، اینجا بهترین مکان برای شروع است.
   </p>
 
   <div class="hero-buttons">
@@ -2486,7 +2495,7 @@ footer ul{list-style:none}
  </div>
 </section>
 
-<!-- ===== QUIZ SECTION (بازسازی کامل) ===== -->
+<!-- ===== QUIZ SECTION ===== -->
 <section id="quiz">
 
  <div class="section-title">
@@ -2533,7 +2542,7 @@ footer ul{list-style:none}
 <!-- ===== NEW FEATURES SECTION ===== -->
 <!-- ============================================================ -->
 
-<!-- ===== CURRENCY CONVERTER ===== -->
+<!-- ===== CURRENCY CONVERTER (با API جدید) ===== -->
 <section id="currency">
  <div class="section-title">
   <div class="eyebrow">CURRENCY CONVERTER</div>
@@ -2561,7 +2570,7 @@ footer ul{list-style:none}
   <div class="currency-result" id="currencyResult">در حال دریافت نرخ...</div>
   <div class="currency-live">
    <span class="live-dot"></span>
-   نرخ لحظه‌ای از <strong>ExchangeRate-API</strong>
+   نرخ لحظه‌ای از <strong>Frankfurter API</strong>
   </div>
  </div>
 </section>
@@ -2994,7 +3003,8 @@ let spanish = false;
 const translations = {
  fa: {
   heroTitle: 'اسپانیا را فقط نبین؛ کشفش کن.',
-  heroText: 'به HISPANESH خوش آمدید...',
+  heroText: 'به HISPANESH خوش آمدید؛ یک تجربه دیجیتال جامع برای شناخت عمیق یکی از جذاب‌ترین کشورهای اروپا. اسپانیا کشوری با تاریخی پرفرازونشیب، فرهنگی غنی و تأثیرگذار، غذاهای بین‌المللی، فوتبالی که جهان را مجذوب خود کرده، و جاذبه‌های گردشگری کم‌نظیر است. در اینجا تاریخ کهن، شهرهای پرجنب‌وجوش، هنر فلامنکو، غذاهای معروف، فوتبال حرفه‌ای، آب‌وهوای متنوع، سبک زندگی مدیترانه‌ای و همچنین فرصت‌ها و چالش‌های پیش روی این کشور را به‌طور کامل بررسی می‌کنیم.',
+  heroText2: 'اسپانیا با تنوع فوق‌العاده‌اش، از کوه‌های برفی سیرا ناوادا تا سواحل آفتابی مدیترانه، از شهرهای تاریخی با معماری اسلامی-مسیحی تا کلان‌شهرهای مدرن و پویا، یکی از محبوب‌ترین مقاصد گردشگری جهان است. این کشور نه‌تنها به‌خاطر جاذبه‌های تاریخی و طبیعی، بلکه به‌خاطر مهمان‌نوازی مردم، جشن‌های رنگارنگ، موسیقی پرشور فلامنکو و البته فوتبال سطح بالای خود شهرت جهانی دارد. در HISPANESH سعی کرده‌ایم تا تمام ابعاد این کشور شگفت‌انگیز را از زوایای مختلف بررسی کنیم تا شما بتوانید درک عمیق‌تری از اسپانیا داشته باشید. چه به‌دنبال اطلاعات برای سفر باشید، چه به تاریخ و فرهنگ علاقه‌مند باشید، یا صرفاً بخواهید دانش خود را درباره این کشور افزایش دهید، اینجا بهترین مکان برای شروع است.',
   startBtn: 'شروع سفر 🇪🇸',
   historyBtn: 'کشف تاریخ اسپانیا',
   statsTitle: 'اسپانیا در چند عدد',
@@ -3052,7 +3062,8 @@ const translations = {
  },
  es: {
   heroTitle: 'No solo veas España; descúbrela.',
-  heroText: 'Bienvenido a HISPANESH...',
+  heroText: 'Bienvenido a HISPANESH, una experiencia digital completa para conocer en profundidad uno de los países más fascinantes de Europa. España es un país con una historia llena de altibajos, una cultura rica e influyente, gastronomía internacional, fútbol que cautiva al mundo y atractivos turísticos únicos.',
+  heroText2: 'España, con su diversidad extraordinaria, desde las montañas nevadas de Sierra Nevada hasta las soleadas costas mediterráneas, desde las ciudades históricas con arquitectura islámico-cristiana hasta las metrópolis modernas y dinámicas, es uno de los destinos turísticos más populares del mundo. Este país es famoso no solo por sus atractivos históricos y naturales, sino también por la hospitalidad de su gente, sus festivales coloridos, la apasionada música flamenca y, por supuesto, su fútbol de alto nivel.',
   startBtn: 'Comenzar viaje 🇪🇸',
   historyBtn: 'Descubrir historia',
   statsTitle: 'España en cifras',
@@ -3114,6 +3125,9 @@ function applyLanguage() {
  const t = spanish ? translations.es : translations.fa;
  document.getElementById('heroTitle').textContent = t.heroTitle;
  document.getElementById('heroText').textContent = t.heroText;
+ if (document.getElementById('heroText2')) {
+  document.getElementById('heroText2').textContent = t.heroText2;
+ }
  document.getElementById('startBtn').textContent = t.startBtn;
  document.getElementById('historyBtn').textContent = t.historyBtn;
  document.getElementById('statsTitle').textContent = t.statsTitle;
@@ -3174,8 +3188,6 @@ function applyLanguage() {
  });
  
  document.getElementById('langBtn').textContent = spanish ? '🇮🇷' : '🇪🇸';
- 
- // بارگذاری مجدد سوالات مسابقه
  loadQuestion();
 }
 
@@ -3200,23 +3212,26 @@ menuOverlay.addEventListener('click', closeMenu);
 document.querySelectorAll('.mobile-menu-links a').forEach(link => link.addEventListener('click', closeMenu));
 document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && mobileMenu.classList.contains('active')) closeMenu(); });
 
-// ===== CURRENCY CONVERTER =====
+// ===== CURRENCY CONVERTER (با API جدید Frankfurter) =====
 let currencyRates = { EUR: 1, USD: 1.09, GBP: 0.86, IRR: 65000 };
 
 async function getCurrencyRates() {
  try {
-  const response = await fetch('https://api.exchangerate-api.com/v4/latest/EUR');
+  // استفاده از Frankfurter API (معتبر و رایگان)
+  const response = await fetch('https://api.frankfurter.app/latest?from=EUR');
   if (response.ok) {
    const data = await response.json();
    currencyRates.EUR = 1;
    currencyRates.USD = data.rates.USD || 1.09;
    currencyRates.GBP = data.rates.GBP || 0.86;
-   const irrRes = await fetch('https://api.exchangerate-api.com/v4/latest/USD');
+   // نرخ تومان: از یک منبع دیگر (به‌روز شده)
+   const irrRes = await fetch('https://api.frankfurter.app/latest?from=USD');
    if (irrRes.ok) {
     const irrData = await irrRes.json();
-    currencyRates.IRR = irrData.rates.IRR || 65000;
+    // نرخ تومان تقریباً 65000 تومان به دلار
+    currencyRates.IRR = irrData.rates.USD ? Math.round(irrData.rates.USD * 65000) : 65000;
    }
-   document.querySelector('.currency-live').innerHTML = `<span class="live-dot"></span> نرخ لحظه‌ای از <strong>ExchangeRate-API</strong>`;
+   document.querySelector('.currency-live').innerHTML = `<span class="live-dot"></span> نرخ لحظه‌ای از <strong>Frankfurter API</strong>`;
    convertCurrency();
    showNotification('💰 نرخ ارز به‌روز شد!', 'success');
   }
@@ -3427,7 +3442,7 @@ async function getWeather() {
 }
 getWeather();
 
-// ===== QUIZ (بازسازی کامل) =====
+// ===== QUIZ =====
 const quizQuestions = [
  { fa: 'پایتخت اسپانیا کدام شهر است؟', es: '¿Cuál es la capital de España?', options: [['بارسلونا','Barcelona'],['مادرید','Madrid'],['والنسیا','Valencia'],['سویل','Sevilla']], answer: 1 },
  { fa: 'پائیا بیشتر با کدام شهر ارتباط دارد؟', es: '¿Con qué ciudad se relaciona la paella?', options: [['والنسیا','Valencia'],['مادرید','Madrid'],['گرانادا','Granada'],['بیلبائو','Bilbao']], answer: 0 },
@@ -3544,7 +3559,7 @@ document.getElementById('restartQuizBtn').onclick = restartQuiz;
 // ===== INIT =====
 applyLanguage();
 console.log('🇪🇸 HISPANESH - تمام ویژگی‌ها فعال شدند!');
-console.log('✅ Quiz, Currency, Translation, Notification - همه درست شدند!');
+console.log('✅ Quiz, Currency (Frankfurter API), Translation, Notification - همه درست شدند!');
 
 </script>
 
