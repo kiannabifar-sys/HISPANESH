@@ -2486,7 +2486,7 @@ footer ul{list-style:none}
  </div>
 </section>
 
-<!-- ===== QUIZ SECTION ===== -->
+<!-- ===== QUIZ SECTION (بازسازی کامل) ===== -->
 <section id="quiz">
 
  <div class="section-title">
@@ -2514,9 +2514,7 @@ footer ul{list-style:none}
 
   <br>
 
-  <button class="btn btn-primary" id="nextQuizBtn" onclick="nextQuestion()">
-   سؤال بعدی ➜
-  </button>
+  <button class="btn btn-primary" id="nextQuizBtn">سؤال بعدی ➜</button>
 
   <div class="quiz-final" id="quizFinal">
    <div style="font-size:48px">🏆</div>
@@ -2525,9 +2523,7 @@ footer ul{list-style:none}
     <span id="finalScore">۰</span> / ۱۰۰
    </div>
    <div class="quiz-final-sub" id="quizFinalSub">امتیاز نهایی شما</div>
-   <button class="btn btn-primary" id="restartQuizBtn" onclick="restartQuiz()">
-    🔄 شروع دوباره
-   </button>
+   <button class="btn btn-primary" id="restartQuizBtn">🔄 شروع دوباره</button>
   </div>
 
  </div>
@@ -2950,6 +2946,7 @@ window.addEventListener("load",()=>{
  const today = new Date().toISOString().split('T')[0];
  document.getElementById('plannerDate').value = today;
  getCurrencyRates();
+ initQuiz();
 });
 
 // ===== NOTIFICATION SYSTEM =====
@@ -2991,31 +2988,201 @@ themeBtn.onclick = () => {
  setTheme(currentDark ? 'light' : 'dark');
 };
 
-// ===== LANGUAGE (ساده شده) =====
+// ===== LANGUAGE =====
 let spanish = false;
 
 const translations = {
  fa: {
   heroTitle: 'اسپانیا را فقط نبین؛ کشفش کن.',
-  // ... بقیه متن‌ها
+  heroText: 'به HISPANESH خوش آمدید...',
+  startBtn: 'شروع سفر 🇪🇸',
+  historyBtn: 'کشف تاریخ اسپانیا',
+  statsTitle: 'اسپانیا در چند عدد',
+  statsText: 'قبل از شروع سفر، چند حقیقت سریع و جالب درباره اسپانیا.',
+  stat1: 'جمعیت تقریبی (۲۰۲۴)',
+  stat2: 'کیلومتر مربع مساحت',
+  stat3: 'واحد پول؛ یورو (€)',
+  stat4: 'سال عضویت در اتحادیه اروپا',
+  searchTitle: '🔎 جست‌وجوی HISPANESH',
+  searchText: 'نام شهر، غذا، فرهنگ یا فوتبال را جست‌وجو کن و اطلاعات کامل دریافت کن.',
+  searchPlaceholder: 'مثلاً مادرید، فلامنکو، پائیا، فوتبال، بارسلونا، گائودی...',
+  citiesTitle: '🏙️ شهرهای اسپانیا',
+  citiesText: 'هر شهر اسپانیا داستان، معماری، غذا، فرهنگ و هویت خاص خودش را دارد.',
+  all: 'همه',
+  capital: 'پایتخت',
+  coast: 'ساحلی',
+  history: 'تاریخی',
+  placesTitle: '📍 جاذبه‌های دیدنی اسپانیا',
+  placesText: 'از کاخ‌های تاریخی تا معماری مدرن؛ اسپانیا جاذبه‌های متنوع و کم‌نظیری دارد.',
+  mapTitle: '🗺️ نقشه اسپانیا',
+  mapText: 'موقعیت جغرافیایی اسپانیا و شهرهای مختلف آن را روی نقشه تعاملی بررسی کن.',
+  historyTitle: '📜 تاریخ اسپانیا؛ سفری در زمان',
+  historyText: 'تاریخ اسپانیا نتیجه برخورد و تلفیق تمدن‌های مختلف در شبه‌جزیره ایبری است.',
+  cultureTitle: '💃 فرهنگ اسپانیا',
+  cultureText: 'فرهنگ اسپانیا ترکیبی از میراث مدیترانه‌ای، اروپایی، اندلسی و منطقه‌ای است.',
+  foodTitle: '🥘 غذاهای معروف اسپانیا',
+  foodText: 'غذا در اسپانیا فقط تغذیه نیست؛ بخشی از فرهنگ اجتماعی و سبک زندگی مردم است.',
+  footballTitle: '⚽ فوتبال اسپانیا',
+  footballText: 'فوتبال یکی از مهم‌ترین بخش‌های فرهنگ ورزشی و هویت ملی اسپانیاست.',
+  weatherTitle: '🌤️ آب‌وهوای زنده',
+  weatherText: 'اطلاعات آب‌وهوا از سرویس عمومی هواشناسی دریافت می‌شود.',
+  update: 'به‌روزرسانی',
+  temp: 'دمای فعلی',
+  clockTitle: '🕐 ساعت زنده اسپانیا',
+  quizTitle: '🎮 چالش اسپانیا',
+  quizText: 'دانش خود را درباره اسپانیا امتحان کن و امتیاز بگیر!',
+  next: 'سؤال بعدی ➜',
+  restart: '🔄 شروع دوباره',
+  ratingTitle: '⭐ امتیازدهی به HISPANESH',
+  ratingDesc: 'نظرت درباره تجربه سایت چیست؟',
+  commentsTitle: '💬 نظرات کاربران',
+  commentsDesc: 'نظر خودت را درباره سایت بنویس و با دیگران به اشتراک بگذار.',
+  commentBtn: 'ثبت نظر',
+  shareTitle: '📤 ما را به دوستان خود معرفی کنید',
+  shareDesc: 'اگر از HISPANESH خوشت آمد، آن را با دوستانت به اشتراک بگذار.',
+  shareHeading: '🇪🇸 یک سفر دیجیتال را با دوستانت شروع کن!',
+  shareText: 'لینک سایت را می‌توانی کپی یا برای دوستانت ارسال کنی و آن‌ها را به این تجربه دیجیتال دعوت کنی.',
+  shareBtn: '📤 ارسال برای دوست',
+  copyBtn: '🔗 کپی لینک',
+  groupText: 'این پروژه با هدف معرفی جامع کشور اسپانیا و آشنایی با تاریخ، فرهنگ، جغرافیا، غذا و فوتبال این کشور طراحی شده است.',
+  leader: '👑 سرگروه',
+  members: '👥 اعضای گروه',
+  footerText: 'یک پروژه آموزشی و خلاقانه درباره اسپانیا...',
+  footerQuick: 'دسترسی سریع'
  },
  es: {
   heroTitle: 'No solo veas España; descúbrela.',
-  // ... بقیه متن‌ها
+  heroText: 'Bienvenido a HISPANESH...',
+  startBtn: 'Comenzar viaje 🇪🇸',
+  historyBtn: 'Descubrir historia',
+  statsTitle: 'España en cifras',
+  statsText: 'Antes de comenzar, datos rápidos sobre España.',
+  stat1: 'Población aprox. (2024)',
+  stat2: 'Kilómetros cuadrados',
+  stat3: 'Moneda: Euro (€)',
+  stat4: 'Adhesión a la UE',
+  searchTitle: '🔎 Buscar en HISPANESH',
+  searchText: 'Busca ciudad, comida, cultura o fútbol.',
+  searchPlaceholder: 'Ej: Madrid, flamenco, paella...',
+  citiesTitle: '🏙️ Ciudades de España',
+  citiesText: 'Cada ciudad tiene su propia historia.',
+  all: 'Todas',
+  capital: 'Capital',
+  coast: 'Costa',
+  history: 'Histórica',
+  placesTitle: '📍 Lugares de España',
+  placesText: 'Desde palacios hasta arquitectura moderna.',
+  mapTitle: '🗺️ Mapa de España',
+  mapText: 'Explora la geografía española.',
+  historyTitle: '📜 Historia de España',
+  historyText: 'La historia de España es fascinante.',
+  cultureTitle: '💃 Cultura de España',
+  cultureText: 'Cultura mediterránea y europea.',
+  foodTitle: '🥘 Comida española',
+  foodText: 'La gastronomía es parte de la cultura.',
+  footballTitle: '⚽ Fútbol español',
+  footballText: 'El fútbol es parte de la identidad nacional.',
+  weatherTitle: '🌤️ Tiempo en vivo',
+  weatherText: 'Información meteorológica actual.',
+  update: 'Actualizar',
+  temp: 'Temperatura',
+  clockTitle: '🕐 Hora de España',
+  quizTitle: '🎮 Reto de España',
+  quizText: '¡Pon a prueba tus conocimientos!',
+  next: 'Siguiente ➜',
+  restart: '🔄 Reiniciar',
+  ratingTitle: '⭐ Valora HISPANESH',
+  ratingDesc: '¿Qué opinas de la experiencia?',
+  commentsTitle: '💬 Comentarios',
+  commentsDesc: 'Escribe tu opinión sobre el sitio.',
+  commentBtn: 'Publicar',
+  shareTitle: '📤 Comparte HISPANESH',
+  shareDesc: 'Comparte con tus amigos.',
+  shareHeading: '🇪🇸 ¡Comienza un viaje digital!',
+  shareText: 'Comparte el enlace con tus amigos.',
+  shareBtn: '📤 Compartir',
+  copyBtn: '🔗 Copiar enlace',
+  groupText: 'Proyecto educativo sobre España.',
+  leader: '👑 Líder',
+  members: '👥 Miembros',
+  footerText: 'Proyecto educativo sobre España.',
+  footerQuick: 'Acceso rápido'
  }
 };
 
 function applyLanguage() {
  const t = spanish ? translations.es : translations.fa;
  document.getElementById('heroTitle').textContent = t.heroTitle;
- // ... بقیه المان‌ها
+ document.getElementById('heroText').textContent = t.heroText;
+ document.getElementById('startBtn').textContent = t.startBtn;
+ document.getElementById('historyBtn').textContent = t.historyBtn;
+ document.getElementById('statsTitle').textContent = t.statsTitle;
+ document.getElementById('statsText').textContent = t.statsText;
+ document.getElementById('stat1').textContent = t.stat1;
+ document.getElementById('stat2').textContent = t.stat2;
+ document.getElementById('stat3').textContent = t.stat3;
+ document.getElementById('stat4').textContent = t.stat4;
+ document.getElementById('searchTitle').textContent = t.searchTitle;
+ document.getElementById('searchText').textContent = t.searchText;
+ document.getElementById('searchInput').placeholder = t.searchPlaceholder;
+ document.getElementById('citiesTitle').textContent = t.citiesTitle;
+ document.getElementById('citiesText').textContent = t.citiesText;
+ document.getElementById('filterAll').textContent = t.all;
+ document.getElementById('filterCapital').textContent = t.capital;
+ document.getElementById('filterCoast').textContent = t.coast;
+ document.getElementById('filterHistory').textContent = t.history;
+ document.getElementById('placesTitle').textContent = t.placesTitle;
+ document.getElementById('placesText').textContent = t.placesText;
+ document.getElementById('mapTitle').textContent = t.mapTitle;
+ document.getElementById('mapText').textContent = t.mapText;
+ document.getElementById('historyTitle').textContent = t.historyTitle;
+ document.getElementById('historyText').textContent = t.historyText;
+ document.getElementById('cultureTitle').textContent = t.cultureTitle;
+ document.getElementById('cultureText').textContent = t.cultureText;
+ document.getElementById('foodTitle').textContent = t.foodTitle;
+ document.getElementById('foodText').textContent = t.foodText;
+ document.getElementById('footballTitle').textContent = t.footballTitle;
+ document.getElementById('footballText').textContent = t.footballText;
+ document.getElementById('weatherTitle').textContent = t.weatherTitle;
+ document.getElementById('weatherText').textContent = t.weatherText;
+ document.getElementById('weatherBtn').textContent = t.update;
+ document.getElementById('tempLabel').textContent = t.temp;
+ document.getElementById('clockTitle').textContent = t.clockTitle;
+ document.getElementById('quizTitle').textContent = t.quizTitle;
+ document.getElementById('quizText').textContent = t.quizText;
+ document.getElementById('nextQuizBtn').textContent = t.next;
+ document.getElementById('restartQuizBtn').textContent = t.restart;
+ document.getElementById('ratingTitle').textContent = t.ratingTitle;
+ document.getElementById('ratingDesc').textContent = t.ratingDesc;
+ document.getElementById('commentsTitle').textContent = t.commentsTitle;
+ document.getElementById('commentsDesc').textContent = t.commentsDesc;
+ document.getElementById('commentBtn').textContent = t.commentBtn;
+ document.getElementById('shareTitle').textContent = t.shareTitle;
+ document.getElementById('shareDesc').textContent = t.shareDesc;
+ document.getElementById('shareHeading').textContent = t.shareHeading;
+ document.getElementById('shareText').textContent = t.shareText;
+ document.getElementById('shareBtn').textContent = t.shareBtn;
+ document.getElementById('copyBtn').textContent = t.copyBtn;
+ document.getElementById('groupText').textContent = t.groupText;
+ document.getElementById('leaderTitle').textContent = t.leader;
+ document.getElementById('membersTitle').textContent = t.members;
+ document.getElementById('footerText').textContent = t.footerText;
+ document.getElementById('footerQuick').textContent = t.footerQuick;
+ 
+ document.querySelectorAll('[data-fa]').forEach(el => {
+  el.textContent = spanish ? el.dataset.es : el.dataset.fa;
+ });
+ 
+ document.getElementById('langBtn').textContent = spanish ? '🇮🇷' : '🇪🇸';
+ 
+ // بارگذاری مجدد سوالات مسابقه
+ loadQuestion();
 }
 
 document.getElementById('langBtn').onclick = () => {
  spanish = !spanish;
  applyLanguage();
- document.getElementById('langBtn').textContent = spanish ? '🇮🇷' : '🇪🇸';
- showNotification(spanish ? 'Idioma cambiado a español' : 'زبان به فارسی تغییر کرد', 'info');
+ showNotification(spanish ? 'Idioma cambiado a español 🇪🇸' : 'زبان به فارسی تغییر کرد 🇮🇷', 'info');
 };
 
 // ===== MOBILE MENU =====
@@ -3034,7 +3201,7 @@ document.querySelectorAll('.mobile-menu-links a').forEach(link => link.addEventL
 document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && mobileMenu.classList.contains('active')) closeMenu(); });
 
 // ===== CURRENCY CONVERTER =====
-let currencyRates = { EUR: 1, USD: 1.09, GBP: 0.86, IRR: 52000 };
+let currencyRates = { EUR: 1, USD: 1.09, GBP: 0.86, IRR: 65000 };
 
 async function getCurrencyRates() {
  try {
@@ -3044,11 +3211,10 @@ async function getCurrencyRates() {
    currencyRates.EUR = 1;
    currencyRates.USD = data.rates.USD || 1.09;
    currencyRates.GBP = data.rates.GBP || 0.86;
-   // نرخ تومان (تقریبی از منابع دیگر)
    const irrRes = await fetch('https://api.exchangerate-api.com/v4/latest/USD');
    if (irrRes.ok) {
     const irrData = await irrRes.json();
-    currencyRates.IRR = irrData.rates.IRR || 52000;
+    currencyRates.IRR = irrData.rates.IRR || 65000;
    }
    document.querySelector('.currency-live').innerHTML = `<span class="live-dot"></span> نرخ لحظه‌ای از <strong>ExchangeRate-API</strong>`;
    convertCurrency();
@@ -3056,7 +3222,6 @@ async function getCurrencyRates() {
   }
  } catch (error) {
   console.log('خطا در دریافت نرخ ارز، استفاده از نرخ پیش‌فرض');
-  // استفاده از نرخ‌های تقریبی
   currencyRates = { EUR: 1, USD: 1.09, GBP: 0.86, IRR: 65000 };
   convertCurrency();
  }
@@ -3114,18 +3279,27 @@ const dict = [
  { word: 'Hola', meaning: 'سلام', example: '"Hola, ¿cómo estás?" → سلام، چطوری؟' },
  { word: 'Adiós', meaning: 'خداحافظ', example: '"Adiós, hasta luego" → خداحافظ، تا بعد' },
  { word: 'Gracias', meaning: 'متشکرم', example: '"Muchas gracias" → خیلی متشکرم' },
- { word: 'Por favor', meaning: 'لطفاً', example: '"Un café, por favor" → یک قهوه، لطفاً' }
+ { word: 'Por favor', meaning: 'لطفاً', example: '"Un café, por favor" → یک قهوه، لطفاً' },
+ { word: 'Buenos días', meaning: 'صبح بخیر', example: '"Buenos días" → صبح بخیر' },
+ { word: 'Buenas noches', meaning: 'شب بخیر', example: '"Buenas noches" → شب بخیر' },
+ { word: 'Sí', meaning: 'بله', example: '"Sí, quiero" → بله، می‌خواهم' },
+ { word: 'No', meaning: 'نه', example: '"No, gracias" → نه، متشکرم' },
+ { word: '¿Cómo estás?', meaning: 'چطوری؟', example: '"¿Cómo estás?" → چطوری؟' },
+ { word: 'Bien', meaning: 'خوب', example: '"Estoy bien" → خوبم' }
 ];
 
 function searchDict() {
- const input = document.getElementById('dictInput').value.trim();
+ const input = document.getElementById('dictInput').value.trim().toLowerCase();
  const res = document.getElementById('dictResult');
- if (!input) { res.innerHTML = `<div class="dict-word">👋 Hola</div><div class="dict-meaning">سلام</div><div class="dict-example">"Hola, ¿cómo estás?" → سلام، چطوری؟</div>`; return; }
- const found = dict.find(d => d.word.toLowerCase().includes(input.toLowerCase()));
+ if (!input) { 
+  res.innerHTML = `<div class="dict-word">👋 Hola</div><div class="dict-meaning">سلام</div><div class="dict-example">"Hola, ¿cómo estás?" → سلام، چطوری؟</div>`;
+  return; 
+ }
+ const found = dict.find(d => d.word.toLowerCase().includes(input) || d.meaning.includes(input));
  if (found) {
   res.innerHTML = `<div class="dict-word">📖 ${found.word}</div><div class="dict-meaning">${found.meaning}</div><div class="dict-example">${found.example}</div>`;
  } else {
-  res.innerHTML = `<div style="text-align:center;padding:20px;color:var(--muted);">🔍 "${input}" پیدا نشد.</div>`;
+  res.innerHTML = `<div style="text-align:center;padding:20px;color:var(--muted);">🔍 "${input}" پیدا نشد.<br><small>کلمات: ${dict.map(d => d.word).join(', ')}</small></div>`;
  }
 }
 
@@ -3253,81 +3427,124 @@ async function getWeather() {
 }
 getWeather();
 
-// ===== QUIZ =====
-const questions = [
- { fa: 'پایتخت اسپانیا کدام شهر است؟', options: ['بارسلونا', 'مادرید', 'والنسیا', 'سویل'], answer: 1 },
- { fa: 'پائیا بیشتر با کدام شهر ارتباط دارد؟', options: ['والنسیا', 'مادرید', 'گرانادا', 'بیلبائو'], answer: 0 },
- { fa: 'فلامنکو بیشتر با کدام منطقه است؟', options: ['اندلس', 'گالیسیا', 'آستوریاس', 'باسک'], answer: 0 },
- { fa: 'واحد پول اسپانیا چیست؟', options: ['پوند', 'دلار', 'یورو', 'فرانک'], answer: 2 },
- { fa: 'اسپانیا چه سالی قهرمان جام جهانی شد؟', options: ['۲۰۰۶', '۲۰۱۰', '۲۰۱۴', '۲۰۱۸'], answer: 1 },
- { fa: 'ساگرادا فامیلیا در کدام شهر است؟', options: ['سویل', 'مالاگا', 'بارسلونا', 'مادرید'], answer: 2 },
- { fa: 'کاخ الحمرا در کدام شهر است؟', options: ['گرانادا', 'والنسیا', 'مادرید', 'مالاگا'], answer: 0 },
- { fa: 'کدام دریا در شرق اسپانیا است؟', options: ['سیاه', 'مدیترانه', 'بالتیک', 'شمال'], answer: 1 },
- { fa: 'پارک رتیرو در کدام شهر است؟', options: ['بارسلونا', 'سویل', 'مادرید', 'بیلبائو'], answer: 2 },
- { fa: 'زبان رسمی اصلی اسپانیا چیست؟', options: ['اسپانیایی', 'فرانسوی', 'ایتالیایی', 'پرتغالی'], answer: 0 }
+// ===== QUIZ (بازسازی کامل) =====
+const quizQuestions = [
+ { fa: 'پایتخت اسپانیا کدام شهر است؟', es: '¿Cuál es la capital de España?', options: [['بارسلونا','Barcelona'],['مادرید','Madrid'],['والنسیا','Valencia'],['سویل','Sevilla']], answer: 1 },
+ { fa: 'پائیا بیشتر با کدام شهر ارتباط دارد؟', es: '¿Con qué ciudad se relaciona la paella?', options: [['والنسیا','Valencia'],['مادرید','Madrid'],['گرانادا','Granada'],['بیلبائو','Bilbao']], answer: 0 },
+ { fa: 'فلامنکو بیشتر با کدام منطقه است؟', es: '¿Con qué región se relaciona el flamenco?', options: [['اندلس','Andalucía'],['گالیسیا','Galicia'],['آستوریاس','Asturias'],['باسک','País Vasco']], answer: 0 },
+ { fa: 'واحد پول اسپانیا چیست؟', es: '¿Cuál es la moneda de España?', options: [['پوند','Libra'],['دلار','Dólar'],['یورو','Euro'],['فرانک','Franco']], answer: 2 },
+ { fa: 'اسپانیا چه سالی قهرمان جام جهانی شد؟', es: '¿En qué año ganó España el Mundial?', options: [['۲۰۰۶','2006'],['۲۰۱۰','2010'],['۲۰۱۴','2014'],['۲۰۱۸','2018']], answer: 1 },
+ { fa: 'ساگرادا فامیلیا در کدام شهر است؟', es: '¿En qué ciudad está la Sagrada Familia?', options: [['سویل','Sevilla'],['مالاگا','Málaga'],['بارسلونا','Barcelona'],['مادرید','Madrid']], answer: 2 },
+ { fa: 'کاخ الحمرا در کدام شهر است؟', es: '¿En qué ciudad está la Alhambra?', options: [['گرانادا','Granada'],['والنسیا','Valencia'],['مادرید','Madrid'],['مالاگا','Málaga']], answer: 0 },
+ { fa: 'کدام دریا در شرق اسپانیا است؟', es: '¿Qué mar está al este de España?', options: [['سیاه','Negro'],['مدیترانه','Mediterráneo'],['بالتیک','Báltico'],['شمال','del Norte']], answer: 1 },
+ { fa: 'پارک رتیرو در کدام شهر است؟', es: '¿En qué ciudad está el Parque del Retiro?', options: [['بارسلونا','Barcelona'],['سویل','Sevilla'],['مادرید','Madrid'],['بیلبائو','Bilbao']], answer: 2 },
+ { fa: 'زبان رسمی اصلی اسپانیا چیست؟', es: '¿Cuál es el idioma oficial de España?', options: [['اسپانیایی','Español'],['فرانسوی','Francés'],['ایتالیایی','Italiano'],['پرتغالی','Portugués']], answer: 0 }
 ];
-let currentQ = 0, score = 0, quizFinished = false;
 
-function faNum(n) { return String(n).replace(/\d/g, d => '۰۱۲۳۴۵۶۷۸۹'[d]); }
+let currentQ = 0;
+let quizScore = 0;
+let quizFinished = false;
+
+function initQuiz() {
+ currentQ = 0;
+ quizScore = 0;
+ quizFinished = false;
+ document.getElementById('quizFinal').classList.remove('show');
+ document.getElementById('quizOptions').style.display = 'grid';
+ document.getElementById('nextQuizBtn').style.display = 'inline-block';
+ loadQuestion();
+}
 
 function loadQuestion() {
  if (quizFinished) return;
- const q = questions[currentQ];
- document.getElementById('quizQuestion').textContent = `${currentQ + 1}. ${q.fa}`;
+ const q = quizQuestions[currentQ];
+ const isSpanish = spanish;
+ document.getElementById('quizQuestion').textContent = `${isSpanish ? currentQ + 1 : faNum(currentQ + 1)}. ${isSpanish ? q.es : q.fa}`;
  const opt = document.getElementById('quizOptions');
  opt.innerHTML = '';
  q.options.forEach((o, i) => {
   const btn = document.createElement('button');
   btn.className = 'quiz-option';
-  btn.textContent = o;
-  btn.onclick = () => answerQuestion(btn, i, q);
+  btn.textContent = isSpanish ? o[1] : o[0];
+  btn.dataset.index = i;
+  btn.onclick = function() { answerQuestion(this, i, q); };
   opt.appendChild(btn);
  });
  document.getElementById('quizResult').style.display = 'none';
  const n = currentQ + 1;
- document.getElementById('quizProgressText').textContent = `سؤال ${n} از ۱۰`;
+ document.getElementById('quizProgressText').textContent = isSpanish ? `Question ${n} of 10` : `سؤال ${faNum(n)} از ۱۰`;
  document.getElementById('quizProgressBar').style.width = `${(n / 10) * 100}%`;
- document.getElementById('score').textContent = score;
+ document.getElementById('score').textContent = isSpanish ? quizScore : faNum(quizScore);
+ document.getElementById('nextQuizBtn').textContent = isSpanish ? (currentQ === 9 ? '🏆 Ver resultado' : 'Siguiente ➜') : (currentQ === 9 ? '🏆 نمایش نتیجه' : 'سؤال بعدی ➜');
 }
 
-function answerQuestion(clicked, idx, q) {
+function answerQuestion(btn, idx, q) {
  if (quizFinished) return;
  document.querySelectorAll('.quiz-option').forEach(b => b.disabled = true);
  const btns = [...document.querySelectorAll('.quiz-option')];
  btns[q.answer].classList.add('correct');
  const res = document.getElementById('quizResult');
  res.style.display = 'block';
- if (idx === q.answer) { score += 10; res.textContent = '🎉 پاسخ درست! +۱۰ امتیاز'; }
- else { clicked.classList.add('wrong'); res.textContent = `❌ پاسخ اشتباه. پاسخ صحیح: ${q.options[q.answer]}`; }
- document.getElementById('score').textContent = score;
- if (currentQ === questions.length - 1) document.getElementById('nextQuizBtn').textContent = '🏆 نمایش نتیجه';
+ if (idx === q.answer) {
+  quizScore += 10;
+  res.textContent = spanish ? '🎉 ¡Correcto! +10 puntos' : '🎉 پاسخ درست! +۱۰ امتیاز';
+ } else {
+  btn.classList.add('wrong');
+  const correct = spanish ? q.options[q.answer][1] : q.options[q.answer][0];
+  res.textContent = spanish ? `❌ Incorrecto. Correcta: ${correct}` : `❌ پاسخ اشتباه. پاسخ صحیح: ${correct}`;
+ }
+ document.getElementById('score').textContent = spanish ? quizScore : faNum(quizScore);
+ if (currentQ === 9) {
+  document.getElementById('nextQuizBtn').textContent = spanish ? '🏆 Ver resultado' : '🏆 نمایش نتیجه';
+ }
 }
 
 function nextQuestion() {
  if (quizFinished) return;
- if (!document.querySelector('.quiz-option:disabled')) { showNotification('اول پاسخ بده', 'warning'); return; }
- if (currentQ < questions.length - 1) { currentQ++; loadQuestion(); } else { finishQuiz(); }
+ if (!document.querySelector('.quiz-option:disabled')) {
+  showNotification(spanish ? 'Primero responde' : 'اول پاسخ بده', 'warning');
+  return;
+ }
+ if (currentQ < 9) {
+  currentQ++;
+  loadQuestion();
+ } else {
+  finishQuiz();
+ }
 }
 
 function finishQuiz() {
  quizFinished = true;
- document.getElementById('finalScore').textContent = score;
+ document.getElementById('finalScore').textContent = spanish ? quizScore : faNum(quizScore);
  document.getElementById('quizFinal').classList.add('show');
  document.getElementById('quizOptions').style.display = 'none';
  document.getElementById('quizResult').style.display = 'none';
  document.getElementById('nextQuizBtn').style.display = 'none';
- let title = score === 100 ? '🏆 فوق‌العاده!' : score >= 70 ? '🌟 عالی!' : score >= 40 ? '👏 خوب!' : '💪 بیشتر تمرین کن!';
+ let title = quizScore === 100 ? (spanish ? '🏆 ¡Perfecto!' : '🏆 فوق‌العاده!') : 
+             quizScore >= 70 ? (spanish ? '🌟 ¡Excelente!' : '🌟 عالی!') : 
+             quizScore >= 40 ? (spanish ? '👏 ¡Buen trabajo!' : '👏 خوب!') : 
+             (spanish ? '💪 ¡Sigue practicando!' : '💪 بیشتر تمرین کن!');
  document.getElementById('quizFinalTitle').textContent = title;
- document.getElementById('quizFinalSub').textContent = `امتیاز شما: ${score} از ۱۰۰`;
- document.getElementById('quizProgressText').textContent = 'مسابقه کامل شد';
+ document.getElementById('quizFinalSub').textContent = spanish ? `Tu puntuación: ${quizScore} de 100` : `امتیاز شما: ${faNum(quizScore)} از ۱۰۰`;
+ document.getElementById('quizProgressText').textContent = spanish ? 'Quiz completado' : 'مسابقه کامل شد';
  document.getElementById('quizProgressBar').style.width = '100%';
 }
 
-function restartQuiz() { currentQ = 0; score = 0; quizFinished = false; document.getElementById('quizFinal').classList.remove('show'); document.getElementById('quizOptions').style.display = 'grid'; document.getElementById('nextQuizBtn').style.display = 'inline-block'; loadQuestion(); }
+function restartQuiz() {
+ initQuiz();
+}
+
+function faNum(n) {
+ return String(n).replace(/\d/g, d => '۰۱۲۳۴۵۶۷۸۹'[d]);
+}
+
+document.getElementById('nextQuizBtn').onclick = nextQuestion;
+document.getElementById('restartQuizBtn').onclick = restartQuiz;
 
 // ===== INIT =====
 applyLanguage();
 console.log('🇪🇸 HISPANESH - تمام ویژگی‌ها فعال شدند!');
+console.log('✅ Quiz, Currency, Translation, Notification - همه درست شدند!');
 
 </script>
 
